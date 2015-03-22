@@ -1,4 +1,4 @@
-# ILM
+# OpenIoD Connector ILM
 
 
 Copyright (C) 2015, Scapeler

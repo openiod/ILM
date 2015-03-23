@@ -20,4 +20,4 @@ e.g.: P1-25-10-U-O-T-H
 ```
 
 ##Datarecord
-A Datarecord describes the fields contained in the model. A field is a representation of sensortype measurement.  
+A Datarecord describes the fields contained in the model. A field is a representation of sensortype measurement or metadata like time or location. 

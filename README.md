@@ -1,5 +1,6 @@
 # OpenIoD Connector ILM
 
+THIS IS WORK IN PROGRESS. DON'T WORRY, UPDATES WILL CONTINUE THE WORK ;-)
 
 Copyright (C) 2015, Scapeler
 

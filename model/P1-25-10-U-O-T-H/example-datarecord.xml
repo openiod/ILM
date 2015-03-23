@@ -20,24 +20,38 @@
 		</swe:Quantity>
 	</swe:field>
 	<swe:field
-		name="WindSpeed">
+		name="Ozone">
 		<swe:Quantity
-			definition="http://sweet.jpl.nasa.gov/2.0/atmoWind.owl#WindSpeed">
-			<swe:uom code="m/s"/>
+			definition="http://sweet.jpl.nasa.gov/2.3/matrElementalMolecule.owl#O3">
+			<swe:uom code="μg/m3"/>
 		</swe:Quantity>
 	</swe:field>
 	<swe:field
-		name="WindDirection">
+		name="UFP">
 		<swe:Quantity
-			definition="http://sweet.jpl.nasa.gov/2.0/atmoWind.owl#WindDirectionToNorth">
-			<swe:uom code="deg"/>
+			definition="">
+			<swe:uom code="count/m3"/>
 		</swe:Quantity>
 	</swe:field>
 	<swe:field
-		name="AtmosphericPressure">
+		name="PM1">
 		<swe:Quantity
-			definition="http://sweet.jpl.nasa.gov/2.0/atmoPressure.owl#BarometricPressure">
-			<swe:uom code="hPa"/>
+			definition="http://sweet.jpl.nasa.gov/2.3/matrAerosol.owl#PM1">
+			<swe:uom code="μg/m3"/>
+		</swe:Quantity>
+	</swe:field>
+	<swe:field
+		name="PM25">
+		<swe:Quantity
+			definition="http://sweet.jpl.nasa.gov/2.3/matrAerosol.owl#PM2point5">
+			<swe:uom code="μg/m3"/>
+		</swe:Quantity>
+	</swe:field>	
+	<swe:field
+		name="PM10">
+		<swe:Quantity
+			definition="http://sweet.jpl.nasa.gov/2.3/matrAerosol.owl#PM10">
+			<swe:uom code="μg/m3"/>
 		</swe:Quantity>
 	</swe:field>
 	<swe:field

@@ -13,8 +13,10 @@ Attributes:
 
 Name|example
 -------|--------
+systemUuid|2a1c1d09-c044-447c-9346-1b40692c59e6
 systemId|'ILM'
-nodeUuid|'de305d54-75b4-431b-adb2-eb6b9e546013'
+systemName|'ILM Air quality system'
+nodeUuid|d46a9592-3f38-436c-9e94-4e82d0f798b3
 nodeId|'23.cal'
 nodeName|'23.cal'
 modelId|'P1-25-10-U-T-H'
@@ -29,6 +31,8 @@ locationPrefix|''
 locationCode|'5655 JJ'
 locationCity|'Eindhoven'
 logEmail|['support@example.com','log@example.com']
+mutationBy|'system'
+MutationTimeUuid|3d637d80-d622-11e4-9662-1f9bdd0c391d
 
 ##Status descriptions
 Status|Description

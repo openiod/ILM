@@ -22,7 +22,7 @@ CREATE TABLE "featureofinterest" (
   locationPrefix varchar,
   locationCode varchar,
   locationCity varchar,
-  mutationDate timestamp,
+  mutationDate timeuuid,
   mutationBy varchar,
   PRIMARY KEY ((systemUuid, nodeUuid), startTime)
 ) WITH CLUSTERING ORDER BY ( startTime DESC);

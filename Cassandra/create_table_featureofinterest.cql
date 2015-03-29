@@ -1,7 +1,13 @@
 // work in progress !!
 
+//Cassandra database for OpenIoD
+
+// drop table featureofinterest;
+
 CREATE TABLE "featureofinterest" (
+  systemUuid uuid,
   systemId varchar,
+  systemName varchar,
   nodeUuid uuid,
   nodeId varchar,
   nodeName varchar,
@@ -16,5 +22,7 @@ CREATE TABLE "featureofinterest" (
   locationPrefix varchar,
   locationCode varchar,
   locationCity varchar,
-  PRIMARY KEY ((systemId, nodeId), startTime)
+  mutationDate timestamp,
+  mutationBy varchar,
+  PRIMARY KEY ((systemUuid, nodeUuid), startTime)
 ) WITH CLUSTERING ORDER BY ( startTime DESC);

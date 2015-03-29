@@ -39,7 +39,7 @@ active|Active state, produced data
 maintenance|in maintenance, not producing data or testdata only. Historical data available
 blocked|In case of defect. No data available
 
-See [this file](./cassandra/create table featureofinterest) for the create table statement for a Cassandra NoSQL database.
+See [this file](./Cassandra/create_table_featureofinterest.cql) for the create table statement for a Cassandra NoSQL database.
 	
 
 	

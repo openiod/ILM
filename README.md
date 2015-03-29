@@ -7,7 +7,7 @@ THIS IS WORK IN PROGRESS. DON'T WORRY, UPDATES WILL CONTINUE THE WORK ;-)
 ## Feature of Interest
 The feature of interest is in the case of the ILM-system, the box or Airbox containing the sensors.
 
-A feature of interest gets an unique ID (nodeUuid) for the combination of systemId, nodeId, start-/endtime period.
+Every feature of interest has an unique ID (nodeUuid). For the combination of nodeUuid and start-/endtime period a record exists in the database. More then one time period (record) can exist for an nodeUuid but time periods may not overlap.
 
 Attributes:
 

@@ -71,14 +71,14 @@ module.exports = {
 		aireasLocalPathRoot = __dirname + '/../../';
 //		fileFolder 			= '';
 //		tmpFolder 			= aireasLocalPathRoot + fileFolder + "/" + 'tmp/';
-		tmpFolder 			= aireasLocalPathRoot + "/";
+		tmpFolder 			= aireasLocalPathRoot;
 
 		// create subfolders
 //		try {fs.mkdirSync(tmpFolder );} catch (e) {};//console.log('ERROR: no tmp folder found, batch run aborted.'); return } ;
 
 		// 10-minuten reeksen met actuele AiREAS luchtmetingen. Verversing elke 10 minuten.
 	
-		this.streamCsvHistoryFile (csvHistoryUrl, airboxCsvFileName,	false, 'aireascsvdata');
+		this.streamCsvHistoryFile (csvHistoryUrl + airboxCsvFileName, airboxCsvFileName,	false, 'aireascsvdata');
 
 		console.log('All retrieve actions are activated.');
 

@@ -16,6 +16,7 @@ module.exports = {
 
 	loadAllModels: function(folder) {
 	
+		var context = this;
 		var modelLocalPath = __dirname+'/model/';
 		var localModelIndex = -1;
 		localModelFolders=[]; // reset localModels array
@@ -29,7 +30,7 @@ module.exports = {
 					if (localModelFolders[i] == 'README.md' ) {
 						continue;
 					}
-					this.loadModel(localModelFolders[i]);
+					context.loadModel(localModelFolders[i]);
 				}
 			}
 		});

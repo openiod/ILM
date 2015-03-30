@@ -5,10 +5,15 @@
  * @param  {String} ##todo 
  * @return {String}
  */
+ 
+var fs 		= require('fs');
+ 
 module.exports = {
 
 
 	loadAllModels: function(folder) {
+	
+		console.log(__dirname);
 	
 		var modelLocalPath = folder + '/model/';
 		var localModelIndex = -1;

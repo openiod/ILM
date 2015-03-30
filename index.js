@@ -214,7 +214,7 @@ module.exports = {
 				outFile = outFile + "INSERT INTO observation " +
 				"( systemUuid, systemId, foiUuid, foiId, modelId, phenomenonTime, epsg, lat, lng, status, sweFieldNames, sweFieldValues, sweFieldUoms, mutationTimeUuid, mutationBy) \n " +
 				"VALUES( 2a1c1d09-c044-447c-9346-1b40692c59e6, 'ILM', d46a9592-3f38-436c-9e94-4e82d0f798b3, '25.cal', 'P1-25-10-UOHT' \n" +
-				", '"+ _dataRecord.phenomenonTime + "', '4326', "+ _dataRecord.lat + ", " + _dataRecord.lng + ", " + " 'active'" +					
+				", minTimeuuid('"+ _dataRecord.phenomenonTime + "'), '4326', "+ _dataRecord.lat + ", " + _dataRecord.lng + ", " + " 'active'" +					
 					", ['PM1', 'PM25', 'PM10', 'UFP', 'OZON', 'HUM', 'CELC']" +
 					 ", [" +_dataRecord.PM1 + ", " + _dataRecord.PM25 + ", " + _dataRecord.PM10 + ", " + _dataRecord.UFP + ", " + _dataRecord.OZON + ", " + _dataRecord.HUM + ", " + _dataRecord.CELC + 
 					 "], ['μg/m3', 'μg/m3', 'μg/m3', 'count/m3', 'μg/m3', 'per', 'cel'], now(), 'system' );\n";

@@ -8,7 +8,7 @@
 module.exports = {
 
 
-	loadAllModels: function(folder, ) {
+	loadAllModels: function(folder) {
 	
 		var modelLocalPath = folder + '/model/';
 		var localModelIndex = -1;

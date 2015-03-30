@@ -213,7 +213,9 @@ module.exports = {
 				
 				outFile = outFile + "INSERT INTO observations ( gpsLat, gpsLng, lat, lng, list fieldNames, list fieldValues, list fieldUom, mutationTimeUuid, mutationBy) \
 				VALUES( 2a1c1d09-c044-447c-9346-1b40692c59e6, 'ILM', 'ILM Air quality system', d46a9592-3f38-436c-9e94-4e82d0f798b3, '1.cal', \
-					_dataRecord.gpsLat, _dataRecord.gpsLng, _dataRecord.lat, _dataRecord.lng, _dataRecord.PM1, _dataRecord.PM25, _dataRecord.PM10, _dataRecord.UFP, _dataRecord.OZON, _dataRecord.HUM, _dataRecord.CELC, now(), 'system' );\n";
+					["+ _dataRecord.lat + "," + _dataRecord.lng  + "," + _dataRecord.PM1 + "," + _dataRecord.PM25  +
+					 "," + _dataRecord.PM10 + "," + _dataRecord.UFP + "," + _dataRecord.OZON + "," + _dataRecord.HUM + "," + _dataRecord.CELC "], \
+					 ['PM1', 'PM25', 'PM10', 'UFP', 'OZON', 'HUM', 'CELC'], now(), 'system' );\n";
 				
 				
 

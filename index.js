@@ -13,9 +13,11 @@ module.exports = {
 
 	loadAllModels: function(folder) {
 	
-		console.log(__dirname);
+		console.log('dirname: '+ __dirname);
+		console.log('folder: '+ folder);
 	
-		var modelLocalPath = folder + '/model/';
+//		var modelLocalPath = folder + '/model/';
+		var modelLocalPath = __dirname+'/model/';
 		var localModelIndex = -1;
 		var localModels=[];
 		fs.readdir(modelLocalPath, function (err, files) {

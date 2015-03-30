@@ -44,6 +44,7 @@ module.exports = {
 		models[modelFolderName] = {};
 		var model = models[modelFolderName];
 		console.log('model: ' +  modelFolderName);
+		console.log('  data: ' + dataRecordJson;
 		var _dataRecord = JSON.parse(dataRecordJson);
 		model.dataRecord = _dataRecord.dataRecord;
 	},

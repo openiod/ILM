@@ -43,7 +43,7 @@ module.exports = {
 		var dataRecordJson = fs.readFileSync(modelFolderLocalPath+'/datarecord.json');
 		models[modelFolderName] = {};
 		var model = models[modelFolderName];
-		console.log('model: ' + );
+		console.log('model: ' +  modelFolderName);
 		var _dataRecord = JSON.parse(dataRecordJson);
 		model.dataRecord = _dataRecord;
 	},

@@ -160,7 +160,9 @@ module.exports = {
 		
 		function createCql(inpFile) {
 		
-			for(i=1;i<inpFile.length-1;i++) {  // start i=1 !!
+			var tmpArray = inpFile.split('\n');
+		
+			for(i=1;i<tmpArray.length-1;i++) {  // start i=1 !!
 
 				inpRecordArray 		= tmpArray[i].split(':(');
 
@@ -209,10 +211,10 @@ module.exports = {
 			var currDate = new Date();
 			var iso8601 = currDate.toISOString();
 			
-			// cqlFile = createCql(_wfsResult);			
-			console.log(' Aantal records: ' + _wfsResult.length);
+			var cqlFile = createCql(_wfsResult);			
+			console.log(' Aantal records: ' + cqlFile.length);
 
-			writeFile(tmpFolder, fileName, iso8601 + ' ' + _wfsResult);
+			writeFile(tmpFolder, fileName, iso8601 + ' ' + cqlFile);
 			
 			
 			

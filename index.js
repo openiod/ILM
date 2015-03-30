@@ -185,7 +185,7 @@ module.exports = {
 					_waardeDataRecord[j] = inpMetingenArray[j];// parseFloat(inpMetingenArray[j]);
 				}
 
-				_dataRecord.retrievedDate 	= _waardeDataRecord[9];
+				_dataRecord.phenomenonTime 	= _waardeDataRecord[9];
 				_dataRecord.measureDate 	= "";  // not yet as key/value in measure data
 				_dataRecord.gpsLat 	= _waardeDataRecord[7];
 				_dataRecord.gpsLng 	= _waardeDataRecord[8];
@@ -211,11 +211,12 @@ module.exports = {
 
 				//dataRecords.push(_dataRecord);	
 				
-				outFile = outFile + "INSERT INTO observations ( gpsLat, gpsLng, lat, lng, list fieldNames, list fieldValues, list fieldUom, mutationTimeUuid, mutationBy) \
-				VALUES( 2a1c1d09-c044-447c-9346-1b40692c59e6, 'ILM', 'ILM Air quality system', d46a9592-3f38-436c-9e94-4e82d0f798b3, '1.cal', \
-					["+ _dataRecord.lat + "," + _dataRecord.lng  + "," + _dataRecord.PM1 + "," + _dataRecord.PM25  +
+				outFile = outFile + "INSERT INTO observation ( systemUuid, systemId, foiUuid, foiId, modelId, phenomenonTime, epsg, lat, lng, status, sweFieldNames, sweFieldValues, sweFieldUoms, mutationTimeUuid, mutationBy) \
+				VALUES( 2a1c1d09-c044-447c-9346-1b40692c59e6, 'ILM', d46a9592-3f38-436c-9e94-4e82d0f798b3, '25.cal', 'P1-25-10-UOHT', "+ _dataRecord.phenomenonTime +", '4326', "+ _dataRecord.lat + ", " + _dataRecord.lon + ", " + " 'active' \
+					[" + _dataRecord.PM1 + "," + _dataRecord.PM25  +
+					"['PM1', 'PM25', 'PM10', 'UFP', 'OZON', 'HUM', 'CELC']" +
 					 "," + _dataRecord.PM10 + "," + _dataRecord.UFP + "," + _dataRecord.OZON + "," + _dataRecord.HUM + "," + _dataRecord.CELC + "], \
-					 ['PM1', 'PM25', 'PM10', 'UFP', 'OZON', 'HUM', 'CELC'], now(), 'system' );\n";
+					 ['μg/m3', 'μg/m3', 'μg/m3', 'count/m3', 'μg/m3', '%', 'cel'], now(), 'system' );\n";
 				
 				
 

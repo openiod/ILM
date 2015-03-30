@@ -40,13 +40,13 @@ module.exports = {
 	
 		var modelFolderLocalPath = __dirname+'/model/'+modelFolderName;
 		
-		var dataRecordJson = fs.readFileSync(modelFolderLocalPath+'/datarecord.json');
+		var sweDataRecordJson = fs.readFileSync(modelFolderLocalPath+'/datarecord.json');
 		models[modelFolderName] = {};
 		var model = models[modelFolderName];
 		console.log('model: ' +  modelFolderName);
-		console.log('  data: ' + dataRecordJson);
-		var _dataRecord = JSON.parse(dataRecordJson);
-		model.dataRecord = _dataRecord.dataRecord;
+		console.log('  data: ' + sweDataRecordJson);
+		var _sweDataRecord = JSON.parse(sweDataRecordJson);
+		model.sweDataRecord = _sweDataRecord.sweDataRecord;
 	},
 
 	getModel: function(modelName) {	

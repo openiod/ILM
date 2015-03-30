@@ -1,5 +1,5 @@
 {
-  datarecord: [
+  "datarecord": [
     {
       name: "Lat",
       type: "sweQuantity",

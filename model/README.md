@@ -7,7 +7,7 @@ Naming convention for these models is as follows:
 
 Letters represent the type of sensors contained in the 'airbox'. Numeric values represents the sub-type. 
 
-e.g.: P1-25-10-U-O-T-H
+e.g.: P1-25-10-UOHT
 ```
   P   = PM = Particulare Matter
   1   = PM1 
@@ -15,8 +15,8 @@ e.g.: P1-25-10-U-O-T-H
   10  = PM10
   U   = Ultra fine PM
   O   = Ozon
-  T   = Temperature
   H   = Humidity
+  T   = Temperature
 ```
 
 ##Datarecord

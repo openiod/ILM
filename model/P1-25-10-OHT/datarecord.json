@@ -1,0 +1,104 @@
+{
+  datarecord: [
+    {
+      name: "Lat",
+      type: "sweQuantity",
+      definition: "http://sweet.jpl.nasa.gov/2.0/spaceCoordinates.owl#Latitude",
+      uom: {
+        attributes: {
+          code: "deg"
+        }
+      }
+    },
+    {
+      name: "Lng",
+      type: "sweQuantity",
+      definition: "http://sweet.jpl.nasa.gov/2.0/spaceCoordinates.owl#Longitude",
+      uom: {
+        attributes: {
+          code: "deg"
+        }
+      }
+    },
+    {
+      name: "NotUsed",
+      type: "sweQuantity",
+      definition: "",
+      uom: {
+        attributes: {
+          code: "NaN"
+        }
+      }
+    },
+    {
+      name: "Ozone",
+      type: "sweQuantity",
+      definition: "http://sweet.jpl.nasa.gov/2.3/matrElementalMolecule.owl#O3",
+      uom: {
+        attributes: {
+          code: "μg/m3"
+        }
+      }
+    },
+    {
+      name: "PM10",
+      type: "sweQuantity",
+      definition: "http://sweet.jpl.nasa.gov/2.3/matrAerosol.owl#PM10",
+      uom: {
+        attributes: {
+          code: "μg/m3"
+        }
+      }
+    },
+    {
+      name: "PM1",
+      type: "sweQuantity",
+      definition: "http://sweet.jpl.nasa.gov/2.3/matrAerosol.owl#PM1",
+      uom: {
+        attributes: {
+          code: "μg/m3"
+        }
+      }
+    },
+    {
+      name: "PM25",
+      type: "sweQuantity",
+      definition: "http://sweet.jpl.nasa.gov/2.3/matrAerosol.owl#PM2point5",
+      uom: {
+        attributes: {
+          code: "μg/m3"
+        }
+      }
+    },
+    {
+      name: "RelativeHumidity",
+      type: "sweQuantity",
+      definition: "http://sweet.jpl.nasa.gov/ontology/property.owl#RelativeHumidity",
+      uom: {
+        attributes: {
+          code: "%"
+        }
+      }
+    },
+	{
+      name: "AirTemperature",
+      type: "sweQuantity",
+      definition: "http://sweet.jpl.nasa.gov/2.0/physThermo.owl#Temperature",
+      uom: {
+        attributes: {
+          code: "Cel"
+        }
+      }
+    },
+    {
+      name: "Time",
+      type: "sweTime",
+      definition: "http://www.opengis.net/def/property/OGC/0/SamplingTime",
+      uom: {
+        attributes: {
+          xlinkHref: "urn:ogc:def:unit:OGC::ISO-8601"
+        }
+      }
+    }
+  ]
+}

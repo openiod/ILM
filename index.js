@@ -64,7 +64,7 @@ module.exports = {
 		return models;		
 	},
 	
-	reqCsvHistory: function (options) {
+	reqCsvHistory: function (options, callback) {
 
 		airboxCsvFileName 		= '25_cal.csv';
 
@@ -78,17 +78,18 @@ module.exports = {
 
 		// 10-minuten reeksen met actuele AiREAS luchtmetingen. Verversing elke 10 minuten.
 	
-		this.streamCsvHistoryFile (csvHistoryUrl + airboxCsvFileName, airboxCsvFileName,	false, 'aireascsvdata');
+		this.streamCsvHistoryFile (csvHistoryUrl + airboxCsvFileName, airboxCsvFileName,	false, 'aireascsvdata', callback);
 
 		console.log('All retrieve actions are activated.');
 
 	},
 	
-	streamCsvHistoryFile: function (url, fileName, unzip, desc) {
+	streamCsvHistoryFile: function (url, fileName, unzip, desc, callback ) {
 	
 		var _wfsResult=null;
 		console.log("Request start: " + desc + " (" + url + ")");
 
+		var outFile;
 
 		function StreamBuffer(req) {
   			var self = this
@@ -235,8 +236,10 @@ module.exports = {
 			var cqlFile = createCql(_wfsResult);			
 			console.log(' Aantal records: ' + cqlFile.length);
 
-			writeFile(tmpFolder, fileName, iso8601 + ' ' + cqlFile);
+		//	writeFile(tmpFolder, fileName, iso8601 + ' ' + cqlFile);
+		//	writeFile(tmpFolder, fileName, cqlFile);
 			
+			callback(cqlFile);
 			
 			
 			})

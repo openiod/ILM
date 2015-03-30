@@ -157,12 +157,12 @@ module.exports = {
   			});	 
 		}
 	
-		convertGPS2LatLng: function(gpsValue){
+		function convertGPS2LatLng(gpsValue){
 			var degrees = Math.floor(gpsValue /100);
 			var minutes = gpsValue - (degrees*100);
 			var result  = degrees + (minutes /60);
 			return result;
-		},	
+		}
 		
 		function createCql(inpFile) {
 		

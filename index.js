@@ -160,7 +160,9 @@ module.exports = {
 		
 		function createCql(inpFile) {
 		
-			var tmpArray = inpFile.split('\n');
+			var inpFileString = inpFile.toString();
+			
+			var tmpArray = inpFileString.split('\n');
 		
 			for(i=1;i<tmpArray.length-1;i++) {  // start i=1 !!
 

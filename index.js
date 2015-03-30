@@ -8,28 +8,49 @@
  
 var fs 		= require('fs');
  
+var localModelFolders 	= [];
+var models 				= {};
+
 module.exports = {
 
 
 	loadAllModels: function(folder) {
 	
-		console.log('dirname: '+ __dirname);
-		console.log('folder: '+ folder);
-	
-//		var modelLocalPath = folder + '/model/';
 		var modelLocalPath = __dirname+'/model/';
 		var localModelIndex = -1;
-		var localModels=[];
+		localModelFolders=[]; // reset localModels array
 		fs.readdir(modelLocalPath, function (err, files) {
-  			//localPostcodes=files;
-  			//console.log("Local postcodes: " + localPostcodes.toString());
 			if (err) { console.log("Local model folder not found: " + modelLocalPath);
 			} else {
-				localModels=files;
-  				console.log("Local models: " + localModels.toString());
+				localModelFolders 	= files;
+  				console.log("Local models: " + localModelFolders.toString());
+				
+				for (var i=0;i<localModelFolders.length;i++) {
+					if (localModelFolders[i] == 'README.md' ) {
+						continue;
+					}
+					this.loadModel(localModelFolders[i]);
+				}
 			}
 		});
+	},
+
+	loadModel: function(modelFolderName) {
+	
+		var modelFolderLocalPath = __dirname+'/model/'+modelFolderName;
+		
+		var dataRecordJson = fs.readFileSync(modelFolderLocalPath+'/'+modelFolderName+'/datarecord.json');
+		models[modelFolderName] = {};
+		models[modelFolderName].dataRecord = JSON.parse(dataRecordJson);
+	},
+
+	getModel: function(modelName) {	
+		return models[modelName];		
 	}
 
 
 };
+
+
+
+

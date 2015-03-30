@@ -185,7 +185,7 @@ module.exports = {
 					_waardeDataRecord[j] = inpMetingenArray[j];// parseFloat(inpMetingenArray[j]);
 				}
 
-				_dataRecord.phenomenonTime 	= _waardeDataRecord[9];
+				_dataRecord.phenomenonTime 	= _waardeDataRecord[9].substr(1,19);
 				_dataRecord.measureDate 	= "";  // not yet as key/value in measure data
 				_dataRecord.gpsLat 	= _waardeDataRecord[7];
 				_dataRecord.gpsLng 	= _waardeDataRecord[8];

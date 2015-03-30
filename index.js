@@ -44,7 +44,7 @@ module.exports = {
 		models[modelFolderName] = {};
 		var model = models[modelFolderName];
 		console.log('model: ' +  modelFolderName);
-		console.log('  data: ' + sweDataRecordJson);
+		//console.log('  data: ' + sweDataRecordJson);
 		var _sweDataRecord = JSON.parse(sweDataRecordJson);
 		model.sweDataRecord = _sweDataRecord.sweDataRecord;
 	},

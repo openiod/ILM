@@ -50,7 +50,12 @@ module.exports = {
 
 	getModel: function(modelName) {	
 		return models[modelName];		
+	},
+	
+	getModels: function() {	
+		return models;		
 	}
+
 
 
 };

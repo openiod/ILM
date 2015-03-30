@@ -1,5 +1,5 @@
 {
-  "datarecord": [
+  "sweDataRecord": [
     {
       "name": "Lat",
       "type": "sweQuantity",

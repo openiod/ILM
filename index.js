@@ -42,7 +42,8 @@ module.exports = {
 		
 		var dataRecordJson = fs.readFileSync(modelFolderLocalPath+'/datarecord.json');
 		models[modelFolderName] = {};
-		models[modelFolderName].dataRecord = JSON.parse(dataRecordJson);
+		var model = models[modelFolderName];
+		model.dataRecord = JSON.parse(dataRecordJson);
 	},
 
 	getModel: function(modelName) {	

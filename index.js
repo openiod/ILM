@@ -40,7 +40,7 @@ module.exports = {
 	
 		var modelFolderLocalPath = __dirname+'/model/'+modelFolderName;
 		
-		var dataRecordJson = fs.readFileSync(modelFolderLocalPath+'/'+modelFolderName+'/datarecord.json');
+		var dataRecordJson = fs.readFileSync(modelFolderLocalPath+'/datarecord.json');
 		models[modelFolderName] = {};
 		models[modelFolderName].dataRecord = JSON.parse(dataRecordJson);
 	},

@@ -178,7 +178,7 @@ module.exports = {
 					_waardeDataRecord[j] = inpMetingenArray[j];// parseFloat(inpMetingenArray[j]);
 				}
 
-				_dataRecord.retrievedDate 	= dateRetrieved;
+				_dataRecord.retrievedDate 	= _waardeDataRecord[9];
 				_dataRecord.measureDate 	= "";  // not yet as key/value in measure data
 				_dataRecord.gpsLat 	= _waardeDataRecord[7];
 				_dataRecord.gpsLng 	= _waardeDataRecord[8];
@@ -203,8 +203,12 @@ module.exports = {
 				_dataRecord.CELCFloat 	= parseFloat(_waardeDataRecord[6]);
 
 				dataRecords.push(_dataRecord);	
+				
+				
 
 			}
+			
+			
 		}
 		
 

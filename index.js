@@ -166,12 +166,12 @@ module.exports = {
 		
 			for(i=1;i<tmpArray.length-1;i++) {  // start i=1 !!
 
-				inpRecordArray 		= tmpArray[i].split(':(');
+				//inpRecordArray 		= tmpArray[i].split(':(');
 
 				_dataRecord			= {};
-				_dataRecord.airBox	= inpRecordArray[0];
+				//_dataRecord.airBox	= inpRecordArray[0];
 
-				inpMetingenArray 	= inpRecordArray[1].split(',');
+				inpMetingenArray 	= tmpArray[i].split(',');
 		
 				_waardeDataRecord 	= [];
 				for(j=0;j<inpMetingenArray.length;j++) {

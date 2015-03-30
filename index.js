@@ -156,13 +156,66 @@ module.exports = {
     			}
   			});	 
 		}
+		
+		
+		function createCql(inpFile) {
+		
+			for(i=1;i<inpFile.length-1;i++) {  // start i=1 !!
+
+				inpRecordArray 		= tmpArray[i].split(':(');
+
+				_dataRecord			= {};
+				_dataRecord.airBox	= inpRecordArray[0];
+
+				inpMetingenArray 	= inpRecordArray[1].split(',');
+		
+				_waardeDataRecord 	= [];
+				for(j=0;j<inpMetingenArray.length;j++) {
+					_waardeDataRecord[j] = inpMetingenArray[j];// parseFloat(inpMetingenArray[j]);
+				}
+
+				_dataRecord.retrievedDate 	= dateRetrieved;
+				_dataRecord.measureDate 	= "";  // not yet as key/value in measure data
+				_dataRecord.gpsLat 	= _waardeDataRecord[7];
+				_dataRecord.gpsLng 	= _waardeDataRecord[8];
+				_dataRecord.lat 	= this.convertGPS2LatLng(_waardeDataRecord[7]);
+				_dataRecord.lng 	= this.convertGPS2LatLng(_waardeDataRecord[8]);
+				_dataRecord.PM1 	= _waardeDataRecord[0];
+				_dataRecord.PM25 	= _waardeDataRecord[1];
+				_dataRecord.PM10 	= _waardeDataRecord[2];
+				_dataRecord.UFP 	= _waardeDataRecord[3];
+				_dataRecord.OZON 	= _waardeDataRecord[4];
+				_dataRecord.HUM 	= _waardeDataRecord[5];
+				_dataRecord.CELC 	= _waardeDataRecord[6];
+
+				_dataRecord.gpsLatFloat = parseFloat(_waardeDataRecord[7]);
+				_dataRecord.gpsLngFloat	= parseFloat(_waardeDataRecord[8]);
+				_dataRecord.PM1Float 	= parseFloat(_waardeDataRecord[0]);
+				_dataRecord.PM25Float 	= parseFloat(_waardeDataRecord[1]);
+				_dataRecord.PM10Float 	= parseFloat(_waardeDataRecord[2]);
+				_dataRecord.UFPFloat 	= parseFloat(_waardeDataRecord[3]);
+				_dataRecord.OZONFloat 	= parseFloat(_waardeDataRecord[4]);
+				_dataRecord.HUMFloat 	= parseFloat(_waardeDataRecord[5]);
+				_dataRecord.CELCFloat 	= parseFloat(_waardeDataRecord[6]);
+
+				dataRecords.push(_dataRecord);	
+
+			}
+		}
+		
 
   		new StreamBuffer(request.get( { url: url }, function(error, response) {
 			console.log("Request completed: " + desc + " " );
 			var currDate = new Date();
 			var iso8601 = currDate.toISOString();
+			
+			// cqlFile = createCql(_wfsResult);			
+			console.log(' Aantal records: ' + _wfsResult.length);
 
 			writeFile(tmpFolder, fileName, iso8601 + ' ' + _wfsResult);
+			
+			
+			
 			})
   		);
 

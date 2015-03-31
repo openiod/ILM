@@ -216,6 +216,8 @@ module.exports = {
 
 				//dataRecords.push(_dataRecord);	
 				
+				if (i==)
+				
 				insertQuery = "INSERT INTO observation ( systemUuid, systemId, foiUuid, foiId, modelId, phenomenonTime, phenomenonTimeChar, epsg, lat, lng, status, sweFieldNames, sweFieldValues, sweFieldUoms, mutationTimeUuid, mutationBy) VALUES( 2a1c1d09-c044-447c-9346-1b40692c59e6, 'ILM', d46a9592-3f38-436c-9e94-4e82d0f798b3, '25.cal', 'P1-25-10-UOHT', minTimeuuid('"+ _dataRecord.phenomenonTime + "'), '" + _dataRecord.phenomenonTime + "', " + "'4326', " + _dataRecord.lat + ", " + _dataRecord.lng + ", " + " 'active'" + ", ['PM1', 'PM25', 'PM10', 'UFP', 'OZON', 'HUM', 'CELC']" + ", [" +_dataRecord.PM1 + ", " + _dataRecord.PM25 + ", " + _dataRecord.PM10 + ", " + _dataRecord.UFP + ", " + _dataRecord.OZON + ", " + _dataRecord.HUM + ", " + _dataRecord.CELC + "], ['ugm3', 'ugm3', 'ugm3', 'countm3', 'ugm3', 'per', 'cel'], now(), 'system' );\r\n";
 				
 				cassandra.executeCql(insertQuery, {}, function(err, result) {
@@ -228,6 +230,10 @@ module.exports = {
 			//		break;
 			//	}	
 				if (i == Math.floor(i/1000)*1000 ) console.log(i);
+				
+				if (i==tmpArray.length-3) console.log('length-3: ' + _waardeDataRecord.length);
+				if (i==tmpArray.length-2) console.log('length-3: ' + _waardeDataRecord.length);
+				if (i==tmpArray.length-1) console.log('length-1: ' + _waardeDataRecord.length);
 
 			}
 			console.log(' Total length: ' + tmpArray.length); 

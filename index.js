@@ -221,6 +221,8 @@ module.exports = {
 				cassandra.executeCql(insertQuery, {}, function(err, result) {
 					console.log('Callback cassandra.executeCql Insert observation');
 				});
+				
+				if (i>100) break;
 
 			}
 			
@@ -237,7 +239,7 @@ module.exports = {
 			console.log(' Aantal records: ' + cqlFile.length);
 
 		//	writeFile(tmpFolder, fileName, iso8601 + ' ' + cqlFile);
-			writeFile(tmpFolder, fileName, cqlFile);
+		//	writeFile(tmpFolder, fileName, cqlFile);
 			
 			callback(cqlFile, {}, callback2);
 			

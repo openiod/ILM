@@ -223,14 +223,14 @@ module.exports = {
 					//console.log('Query: ' + insertQuery);
 				});
 				
-				if (i>2500) {
-					console.log(i);
-					break;
-				}	
+			//	if (i>2500) {
+			//		console.log(i);
+			//		break;
+			//	}	
 				if (i == Math.floor(i/1000)*1000 ) console.log(i);
 
 			}
-			
+			console.log(' Total length: ' + tmpArray.length); 
 			return outFile;
 		}
 		

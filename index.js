@@ -9,7 +9,7 @@
 var fs 		= require('fs');
 var request = require('request');
 var sys 	= require('sys');
-var cassandra = require('./openiod-cassandra');
+var cassandra = require('../../openiod-cassandra');
  
 var localModelFolders 	= [];
 var models 				= {};

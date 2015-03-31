@@ -223,8 +223,11 @@ module.exports = {
 					console.log('Query: ' + insertQuery);
 				});
 				
-				if (i>1000) break;
-				console.log(i);
+				if (i>2500) {
+					console.log(i);
+					break;
+				}	
+				if (i == MATH.floor(i/1000)*1000 ) console.log(i);
 
 			}
 			

@@ -220,6 +220,7 @@ module.exports = {
 				
 				cassandra.executeCql(insertQuery, {}, function(err, result) {
 					console.log('Callback cassandra.executeCql Insert observation');
+					console.log('Query: ' + insertQuery);
 				});
 				
 				if (i>1000) break;

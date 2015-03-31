@@ -192,27 +192,27 @@ module.exports = {
 
 				_dataRecord.phenomenonTime 	= _waardeDataRecord[9].substr(0,19);
 				_dataRecord.measureDate 	= "";  // not yet as key/value in measure data
-				_dataRecord.gpsLat 	= _waardeDataRecord[7];
-				_dataRecord.gpsLng 	= _waardeDataRecord[8];
-				_dataRecord.lat 	= convertGPS2LatLng(_waardeDataRecord[7]);
-				_dataRecord.lng 	= convertGPS2LatLng(_waardeDataRecord[8]);
-				_dataRecord.PM1 	= _waardeDataRecord[0];
-				_dataRecord.PM25 	= _waardeDataRecord[1];
-				_dataRecord.PM10 	= _waardeDataRecord[2];
-				_dataRecord.UFP 	= _waardeDataRecord[3];
-				_dataRecord.OZON 	= _waardeDataRecord[4];
-				_dataRecord.HUM 	= _waardeDataRecord[5];
-				_dataRecord.CELC 	= _waardeDataRecord[6];
+				_dataRecord.gpsLat 	= _waardeDataRecord[0];
+				_dataRecord.gpsLng 	= _waardeDataRecord[1];
+				_dataRecord.lat 	= convertGPS2LatLng(_waardeDataRecord[0]);
+				_dataRecord.lng 	= convertGPS2LatLng(_waardeDataRecord[1]);
+				_dataRecord.UFP 	= _waardeDataRecord[2];
+				_dataRecord.OZON 	= _waardeDataRecord[3];
+				_dataRecord.PM10 	= _waardeDataRecord[4];
+				_dataRecord.PM1 	= _waardeDataRecord[5];
+				_dataRecord.PM25 	= _waardeDataRecord[6];
+				_dataRecord.HUM 	= _waardeDataRecord[7];
+				_dataRecord.CELC 	= _waardeDataRecord[8];
 
-				_dataRecord.gpsLatFloat = parseFloat(_waardeDataRecord[7]);
-				_dataRecord.gpsLngFloat	= parseFloat(_waardeDataRecord[8]);
-				_dataRecord.PM1Float 	= parseFloat(_waardeDataRecord[0]);
-				_dataRecord.PM25Float 	= parseFloat(_waardeDataRecord[1]);
-				_dataRecord.PM10Float 	= parseFloat(_waardeDataRecord[2]);
-				_dataRecord.UFPFloat 	= parseFloat(_waardeDataRecord[3]);
-				_dataRecord.OZONFloat 	= parseFloat(_waardeDataRecord[4]);
-				_dataRecord.HUMFloat 	= parseFloat(_waardeDataRecord[5]);
-				_dataRecord.CELCFloat 	= parseFloat(_waardeDataRecord[6]);
+				_dataRecord.gpsLatFloat = parseFloat(_waardeDataRecord[0]);
+				_dataRecord.gpsLngFloat	= parseFloat(_waardeDataRecord[1]);
+				_dataRecord.UFPFloat 	= parseFloat(_waardeDataRecord[2]);
+				_dataRecord.OZONFloat 	= parseFloat(_waardeDataRecord[3]);
+				_dataRecord.PM10Float 	= parseFloat(_waardeDataRecord[4]);
+				_dataRecord.PM1Float 	= parseFloat(_waardeDataRecord[5]);
+				_dataRecord.PM25Float 	= parseFloat(_waardeDataRecord[6]);
+				_dataRecord.HUMFloat 	= parseFloat(_waardeDataRecord[7]);
+				_dataRecord.CELCFloat 	= parseFloat(_waardeDataRecord[8]);
 
 				//dataRecords.push(_dataRecord);	
 				

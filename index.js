@@ -228,10 +228,10 @@ module.exports = {
 			//		console.log(i);
 			//		break;
 			//	}	
-				if (i == Math.floor(i/1000)*1000 ) console.log(i);
+				if (i == Math.floor(i/10000)*10000 ) console.log(i);
 				
 				if ( i == (tmpArray.length-3) ) console.log('length-3: ' + _waardeDataRecord.length);
-				if ( i == (tmpArray.length-2) ) console.log('length-3: ' + _waardeDataRecord.length);
+				if ( i == (tmpArray.length-2) ) console.log('length-2: ' + _waardeDataRecord.length);
 				if ( i == (tmpArray.length-1) ) console.log('length-1: ' + _waardeDataRecord.length);
 
 			}

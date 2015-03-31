@@ -227,7 +227,7 @@ module.exports = {
 					console.log(i);
 					break;
 				}	
-				if (i == MATH.floor(i/1000)*1000 ) console.log(i);
+				if (i == Math.floor(i/1000)*1000 ) console.log(i);
 
 			}
 			

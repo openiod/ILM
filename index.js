@@ -237,7 +237,7 @@ module.exports = {
 			console.log(' Aantal records: ' + cqlFile.length);
 
 		//	writeFile(tmpFolder, fileName, iso8601 + ' ' + cqlFile);
-		//	writeFile(tmpFolder, fileName, cqlFile);
+			writeFile(tmpFolder, fileName, cqlFile);
 			
 			callback(cqlFile, {}, callback2);
 			

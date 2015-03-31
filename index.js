@@ -222,7 +222,7 @@ module.exports = {
 					console.log('Callback cassandra.executeCql Insert observation');
 				});
 				
-				if (i>100) break;
+				if (i>1000) break;
 
 			}
 			

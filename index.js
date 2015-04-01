@@ -264,6 +264,8 @@ module.exports = {
 				var collectionObjectJson = JSON.stringify(collectionObject);
 				
 				collection.insert(collectionObjectJson, function(err, docs) {
+				
+					console.log('mongodb insert err: ' + err);
 
      // 				collection.count(function(err, count) {
      //   				console.log(format("count = %s", count));

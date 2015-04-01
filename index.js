@@ -173,7 +173,8 @@ module.exports = {
 		
 			cassandra.init();
 			
-			var _dataRecord; _dataRecordPrevious={};
+			var _dataRecord; 
+			var _dataRecordPrevious={};
 			
 			var insertQuery;
 			var inpFileString = inpFile.toString();

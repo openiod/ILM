@@ -183,7 +183,7 @@ module.exports = {
 			var tmpArray = inpFileString.split('\n');
 			var outFile = '';
 		
-			for(i=1;i<tmpArray.length-1;i++) {  // start i=1 !!
+			for(var i=1;i<tmpArray.length-1;i++) {  // start i=1 !!
 
 				//inpRecordArray 		= tmpArray[i].split(':(');
 

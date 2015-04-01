@@ -262,6 +262,7 @@ module.exports = {
 				collectionObject.status = _status;
 				
 				
+/*
 				collection.insert({a:2}, function(err, docs) {
 					console.log('mongodb test insert a:2 err: ' + err);
 					
@@ -279,6 +280,7 @@ module.exports = {
         //			db.close();
       	//		});
 			});
+*/
 
 
 //{"systemUuid":"2a1c1d09-c044-447c-9346-1b40692c59e6","systemId":"ILM","foiUuid":"d46a9592-3f38-436c-9e94-4e82d0f798b3","foiId":"25.cal","modelId":"P1-25-10-UOHT","phenomenonTimeChar":"2000-01-01 00:00:00","epsg":"4326","lat":0,"lng":0,"status":"maintenance"}

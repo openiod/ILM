@@ -13,7 +13,7 @@ var fs 		= require('fs');
 var request = require('request');
 var sys 	= require('sys');
 //var cassandra = require('../../openiod-cassandra');
-var MongoClient = require('../../mongodb').MongoClient
+var MongoClient = require('../openiod/node_modules/mongodb').MongoClient
     , format = require('util').format;
 	 
 var localModelFolders 	= [];

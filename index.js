@@ -261,7 +261,7 @@ module.exports = {
 				collectionObject.lng = _dataRecord.lng;
 				collectionObject.status = _status;
 				
-				collectionObjectJson = JSON.stringify(collectionObject);
+				var collectionObjectJson = JSON.stringify(collectionObject);
 				
 				collection.insert(collectionObjectJson, function(err, docs) {
 

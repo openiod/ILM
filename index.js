@@ -190,7 +190,7 @@ module.exports = {
 				_dataRecord			= {};
 				//_dataRecord.airBox	= inpRecordArray[0];
 
-				inpMetingenArray 	= tmpArray[i].split(',');
+				var inpMetingenArray 	= tmpArray[i].split(',');
 		
 				_waardeDataRecord 	= [];
 				for(j=0;j<inpMetingenArray.length;j++) {

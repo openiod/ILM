@@ -192,7 +192,7 @@ module.exports = {
 
 				var inpMetingenArray 	= tmpArray[i].split(',');
 		
-				_waardeDataRecord 	= [];
+				var _waardeDataRecord 	= [];
 				for(j=0;j<inpMetingenArray.length;j++) {
 					_waardeDataRecord[j] = inpMetingenArray[j];// parseFloat(inpMetingenArray[j]);
 				}

@@ -281,6 +281,8 @@ module.exports = {
 				
 				var collectionObjectJson = JSON.stringify(collectionObject);
 				
+				console.log('Collection insert: ' + collectionObjectJson );
+				
 				collection.insert(collectionObjectJson, function(err, docs) {
 				
 					console.log('mongodb insert err: ' + err);

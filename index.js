@@ -261,6 +261,24 @@ module.exports = {
 				collectionObject.lng = _dataRecord.lng;
 				collectionObject.status = _status;
 				
+				
+				collection.insert({a:2}, function(err, docs) {
+					console.log('mongodb test insert a:2 err: ' + err);
+      			//collection.count(function(err, count) {
+        		//	console.log(format("count = %s", count));
+      			//});
+
+				// Locate all the entries using find
+      			//collection.find().toArray(function(err, results) {
+        		//	console.dir(results);
+        	//		// Let's close the db
+        //			db.close();
+      	//		});
+			});
+
+
+
+				
 				var collectionObjectJson = JSON.stringify(collectionObject);
 				
 				collection.insert(collectionObjectJson, function(err, docs) {

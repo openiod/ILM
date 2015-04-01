@@ -12,8 +12,10 @@
 var fs 		= require('fs');
 var request = require('request');
 var sys 	= require('sys');
-var cassandra = require('../../openiod-cassandra');
- 
+//var cassandra = require('../../openiod-cassandra');
+var MongoClient = require('../../mongodb').MongoClient
+    , format = require('util').format;
+	 
 var localModelFolders 	= [];
 var models 				= {};
 
@@ -169,9 +171,9 @@ module.exports = {
 			return result;
 		}
 		
-		function createCql(inpFile) {
+		function createCql(inpFile, collection) {
 		
-			cassandra.init();
+			//cassandra.init();
 			
 			var _dataRecord; 
 			var _dataRecordPrevious={};
@@ -240,12 +242,37 @@ module.exports = {
 				}
 				
 				
-				insertQuery = "INSERT INTO observation ( systemUuid, systemId, foiUuid, foiId, modelId, phenomenonTime, phenomenonTimeChar, epsg, lat, lng, status, sweFieldNames, sweFieldValues, sweFieldUoms, mutationTimeUuid, mutationBy) VALUES( 2a1c1d09-c044-447c-9346-1b40692c59e6, 'ILM', d46a9592-3f38-436c-9e94-4e82d0f798b3, '25.cal', 'P1-25-10-UOHT', minTimeuuid('"+ _dataRecord.phenomenonTime + "'), '" + _dataRecord.phenomenonTime + "', " + "'4326', " + _dataRecord.lat + ", " + _dataRecord.lng + ", '" + _status + "' " + ", ['PM1', 'PM25', 'PM10', 'UFP', 'OZON', 'HUM', 'CELC']" + ", [" +_dataRecord.PM1 + ", " + _dataRecord.PM25 + ", " + _dataRecord.PM10 + ", " + _dataRecord.UFP + ", " + _dataRecord.OZON + ", " + _dataRecord.HUM + ", " + _dataRecord.CELC + "], ['ugm3', 'ugm3', 'ugm3', 'countm3', 'ugm3', 'per', 'cel'], now(), 'system' );\r\n";
+//				insertQuery = "INSERT INTO observation ( systemUuid, systemId, foiUuid, foiId, modelId, phenomenonTime, phenomenonTimeChar, epsg, lat, lng, status, sweFieldNames, sweFieldValues, sweFieldUoms, mutationTimeUuid, mutationBy) VALUES( 2a1c1d09-c044-447c-9346-1b40692c59e6, 'ILM', d46a9592-3f38-436c-9e94-4e82d0f798b3, '25.cal', 'P1-25-10-UOHT', minTimeuuid('"+ _dataRecord.phenomenonTime + "'), '" + _dataRecord.phenomenonTime + "', " + "'4326', " + _dataRecord.lat + ", " + _dataRecord.lng + ", '" + _status + "' " + ", ['PM1', 'PM25', 'PM10', 'UFP', 'OZON', 'HUM', 'CELC']" + ", [" +_dataRecord.PM1 + ", " + _dataRecord.PM25 + ", " + _dataRecord.PM10 + ", " + _dataRecord.UFP + ", " + _dataRecord.OZON + ", " + _dataRecord.HUM + ", " + _dataRecord.CELC + "], ['ugm3', 'ugm3', 'ugm3', 'countm3', 'ugm3', 'per', 'cel'], now(), 'system' );\r\n";
 				
-				cassandra.executeCql(insertQuery, {}, function(err, result) {
-					//console.log('Callback cassandra.executeCql Insert observation');
-					//console.log('Query: ' + insertQuery);
+				//cassandra.executeCql(insertQuery, {}, function(err, result) {
+				//	//console.log('Callback cassandra.executeCql Insert observation');
+				//	//console.log('Query: ' + insertQuery);
+				//});
+				
+				collectionObject = {};
+				collectionObject.systemUuid = '2a1c1d09-c044-447c-9346-1b40692c59e6';
+				collectionObject.systemId = 'ILM';
+				collectionObject.foiUuid = 'd46a9592-3f38-436c-9e94-4e82d0f798b3';
+				collectionObject.foiId = '25.cal';
+				collectionObject.modelId = 'P1-25-10-UOHT';
+				collectionObject.phenomenonTimeChar = _dataRecord.phenomenonTime;
+				
+				collectionObjectJson = JSON.stringify(collectionObject);
+				
+				collection.insert(collectionObjectJson, function(err, docs) {
+
+     // 				collection.count(function(err, count) {
+     //   				console.log(format("count = %s", count));
+     // 				});
+
+					// Locate all the entries using find
+     // 				collection.find().toArray(function(err, results) {
+     //   				console.dir(results);
+     //   				// Let's close the db
+     //   				db.close();
+      				});
 				});
+				
 				
 			//	if (i>2500) {
 			//		console.log(i);
@@ -270,13 +297,42 @@ module.exports = {
 			var currDate = new Date();
 			var iso8601 = currDate.toISOString();
 			
-			var cqlFile = createCql(_wfsResult);			
-			console.log(' Aantal records: ' + cqlFile.length);
 
-		//	writeFile(tmpFolder, fileName, iso8601 + ' ' + cqlFile);
-		//	writeFile(tmpFolder, fileName, cqlFile);
+			MongoClient.connect('mongodb://192.168.0.92:27017/openiod', function(err, db) {
+ 		  	 	if(err) throw err;
+
+				var collection = db.collection('observation');
+				
+				
+				/*
+    			collection.insert({a:2}, function(err, docs) {
+
+      				collection.count(function(err, count) {
+        				console.log(format("count = %s", count));
+      				});
+
+					// Locate all the entries using find
+      				collection.find().toArray(function(err, results) {
+        				console.dir(results);
+        				// Let's close the db
+        				db.close();
+      				});
+				});
+	
+	*/
+	
+				var cqlFile = createCql(_wfsResult, collection);			
+				console.log(' Aantal records: ' + cqlFile.length);
+
+			//	writeFile(tmpFolder, fileName, iso8601 + ' ' + cqlFile);
+			//	writeFile(tmpFolder, fileName, cqlFile);
 			
-			callback(cqlFile, {}, callback2);
+				callback(cqlFile, {}, callback2);
+ 
+			
+			});
+
+
 			
 			
 			})

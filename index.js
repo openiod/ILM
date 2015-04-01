@@ -306,10 +306,10 @@ module.exports = {
 				});
 				
 				
-				if (i>50) {
-					console.log(i);
-					break;
-				}
+		//		if (i>50) {
+		//			console.log(i);
+		//			break;
+		//		}
 					
 				if (i == Math.floor(i/10000)*10000 ) console.log(i);
 				

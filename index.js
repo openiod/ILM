@@ -193,7 +193,7 @@ module.exports = {
 				var inpMetingenArray 	= tmpArray[i].split(',');
 		
 				var _waardeDataRecord 	= [];
-				for(j=0;j<inpMetingenArray.length;j++) {
+				for(var j=0;j<inpMetingenArray.length;j++) {
 					_waardeDataRecord[j] = inpMetingenArray[j];// parseFloat(inpMetingenArray[j]);
 				}
 
@@ -224,7 +224,7 @@ module.exports = {
 				//dataRecords.push(_dataRecord);	
 				
 				_status = 'active';
-				if (gpsLatFloat == 0 || _dataRecord.UFPFloat - _dataRecordPrevious.UFPFloat > 0.1 ) {
+				if (_dataRecord.gpsLatFloat == 0 || _dataRecord.UFPFloat - _dataRecordPrevious.UFPFloat > 0.1 ) {
 					_status = 'maintenance';				
 				} else {
 					if ( _dataRecord.UFPFloat 	== _dataRecordPrevious.UFPFloat &&

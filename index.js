@@ -280,10 +280,11 @@ module.exports = {
 				});
 				
 				
-			//	if (i>2500) {
-			//		console.log(i);
-			//		break;
-			//	}	
+				if (i>50) {
+					console.log(i);
+					break;
+				}
+					
 				if (i == Math.floor(i/10000)*10000 ) console.log(i);
 				
 				if ( i == (tmpArray.length-3) ) console.log('length-3: ' + _waardeDataRecord.length);

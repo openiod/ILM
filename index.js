@@ -6,6 +6,9 @@
  * @return {String}
  */
  
+ "use strict";
+
+ 
 var fs 		= require('fs');
 var request = require('request');
 var sys 	= require('sys');
@@ -170,8 +173,11 @@ module.exports = {
 		
 			cassandra.init();
 			
+			var _dataRecord; _dataRecordPrevious={};
+			
 			var insertQuery;
 			var inpFileString = inpFile.toString();
+			var _status='initial';
 			
 			var tmpArray = inpFileString.split('\n');
 			var outFile = '';
@@ -216,8 +222,24 @@ module.exports = {
 
 				//dataRecords.push(_dataRecord);	
 				
+				_status = 'active';
+				if (gpsLatFloat == 0 || _dataRecord.UFPFloat - _dataRecordPrevious.UFPFloat > 0.1 ) {
+					_status = 'maintenance';				
+				} else {
+					if ( _dataRecord.UFPFloat 	== _dataRecordPrevious.UFPFloat &&
+						_dataRecord.OZONFloat 	== _dataRecordPrevious.OZONFloat &&
+						_dataRecord.PM10Float 	== _dataRecordPrevious.PM10Float &&
+						_dataRecord.PM1Float 	== _dataRecordPrevious.PM1Float &&
+						_dataRecord.PM25Float 	== _dataRecordPrevious.PM25Float &&
+						_dataRecord.HUMFloat 	== _dataRecordPrevious.HUMFloat &&
+						_dataRecord.CELCFloat 	== _dataRecordPrevious.CELCFloat					
+					) {
+						_status = 'blocked';
+					}
+				}
 				
-				insertQuery = "INSERT INTO observation ( systemUuid, systemId, foiUuid, foiId, modelId, phenomenonTime, phenomenonTimeChar, epsg, lat, lng, status, sweFieldNames, sweFieldValues, sweFieldUoms, mutationTimeUuid, mutationBy) VALUES( 2a1c1d09-c044-447c-9346-1b40692c59e6, 'ILM', d46a9592-3f38-436c-9e94-4e82d0f798b3, '25.cal', 'P1-25-10-UOHT', minTimeuuid('"+ _dataRecord.phenomenonTime + "'), '" + _dataRecord.phenomenonTime + "', " + "'4326', " + _dataRecord.lat + ", " + _dataRecord.lng + ", " + " 'active'" + ", ['PM1', 'PM25', 'PM10', 'UFP', 'OZON', 'HUM', 'CELC']" + ", [" +_dataRecord.PM1 + ", " + _dataRecord.PM25 + ", " + _dataRecord.PM10 + ", " + _dataRecord.UFP + ", " + _dataRecord.OZON + ", " + _dataRecord.HUM + ", " + _dataRecord.CELC + "], ['ugm3', 'ugm3', 'ugm3', 'countm3', 'ugm3', 'per', 'cel'], now(), 'system' );\r\n";
+				
+				insertQuery = "INSERT INTO observation ( systemUuid, systemId, foiUuid, foiId, modelId, phenomenonTime, phenomenonTimeChar, epsg, lat, lng, status, sweFieldNames, sweFieldValues, sweFieldUoms, mutationTimeUuid, mutationBy) VALUES( 2a1c1d09-c044-447c-9346-1b40692c59e6, 'ILM', d46a9592-3f38-436c-9e94-4e82d0f798b3, '25.cal', 'P1-25-10-UOHT', minTimeuuid('"+ _dataRecord.phenomenonTime + "'), '" + _dataRecord.phenomenonTime + "', " + "'4326', " + _dataRecord.lat + ", " + _dataRecord.lng + ", '" + _status + "' " + ", ['PM1', 'PM25', 'PM10', 'UFP', 'OZON', 'HUM', 'CELC']" + ", [" +_dataRecord.PM1 + ", " + _dataRecord.PM25 + ", " + _dataRecord.PM10 + ", " + _dataRecord.UFP + ", " + _dataRecord.OZON + ", " + _dataRecord.HUM + ", " + _dataRecord.CELC + "], ['ugm3', 'ugm3', 'ugm3', 'countm3', 'ugm3', 'per', 'cel'], now(), 'system' );\r\n";
 				
 				cassandra.executeCql(insertQuery, {}, function(err, result) {
 					//console.log('Callback cassandra.executeCql Insert observation');
@@ -233,6 +255,8 @@ module.exports = {
 				if ( i == (tmpArray.length-3) ) console.log('length-3: ' + _waardeDataRecord.length);
 				if ( i == (tmpArray.length-2) ) console.log('length-2: ' + _waardeDataRecord.length);
 				if ( i == (tmpArray.length-1) ) console.log('length-1: ' + _waardeDataRecord.length);
+				
+				_dataRecordPrevious = _dataRecord;
 
 			}
 			console.log(' Total length: ' + tmpArray.length); 

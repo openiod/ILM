@@ -310,7 +310,7 @@ module.exports = {
 
 				var collection = db.collection('observation');
 				
-				
+				console.log('Collection: ' + collection);
 				/*
     			collection.insert({a:2}, function(err, docs) {
 

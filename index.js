@@ -224,7 +224,7 @@ module.exports = {
 				//dataRecords.push(_dataRecord);	
 				
 				_status = 'active';
-				if (_dataRecord.gpsLatFloat == 0 || _dataRecord.UFPFloat - _dataRecordPrevious.UFPFloat > 0.1 ) {
+				if (_dataRecord.gpsLatFloat == 0 || _dataRecord.lat - _dataRecordPrevious.lat > 0.1 ) {
 					_status = 'maintenance';				
 				} else {
 					if ( _dataRecord.UFPFloat 	== _dataRecordPrevious.UFPFloat &&

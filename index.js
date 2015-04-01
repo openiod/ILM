@@ -72,7 +72,7 @@ module.exports = {
 
 		airboxCsvFileName 		= '25_cal.csv';
 
-		aireasLocalPathRoot = __dirname + '/../../';
+		var aireasLocalPathRoot = __dirname + '/../../';
 //		fileFolder 			= '';
 //		tmpFolder 			= aireasLocalPathRoot + fileFolder + "/" + 'tmp/';
 		tmpFolder 			= aireasLocalPathRoot;

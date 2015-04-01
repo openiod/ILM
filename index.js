@@ -264,6 +264,10 @@ module.exports = {
 				
 				collection.insert({a:2}, function(err, docs) {
 					console.log('mongodb test insert a:2 err: ' + err);
+					
+					
+					
+					
       			//collection.count(function(err, count) {
         		//	console.log(format("count = %s", count));
       			//});
@@ -277,13 +281,13 @@ module.exports = {
 			});
 
 
-
+//{"systemUuid":"2a1c1d09-c044-447c-9346-1b40692c59e6","systemId":"ILM","foiUuid":"d46a9592-3f38-436c-9e94-4e82d0f798b3","foiId":"25.cal","modelId":"P1-25-10-UOHT","phenomenonTimeChar":"2000-01-01 00:00:00","epsg":"4326","lat":0,"lng":0,"status":"maintenance"}
 				
-				var collectionObjectJson = JSON.stringify(collectionObject);
+				//var collectionObjectJson = JSON.stringify(collectionObject);
 				
-				console.log('Collection insert: ' + collectionObjectJson );
+				console.log('Collection insert: ' + collectionObject );
 				
-				collection.insert(collectionObjectJson, function(err, docs) {
+				collection.insert(collectionObject, function(err, docs) {
 				
 					console.log('mongodb insert err: ' + err);
 

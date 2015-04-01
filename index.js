@@ -270,7 +270,7 @@ module.exports = {
      //   				console.dir(results);
      //   				// Let's close the db
      //   				db.close();
-      				});
+     // 				});
 				});
 				
 				

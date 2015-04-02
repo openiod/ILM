@@ -132,6 +132,8 @@ module.exports = {
 		
 			//cassandra.init();
 			
+			var writeResult;
+			
 			var _dataRecord; 
 			var _dataRecordPrevious={};
 			

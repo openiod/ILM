@@ -209,13 +209,14 @@ module.exports = {
 				//});
 				
 				var collectionObject = {};
-				collectionObject.systemUuid 		= '2a1c1d09-c044-447c-9346-1b40692c59e6';
+				collectionObject._id= {};
+				collectionObject.id.systemUuid 		= '2a1c1d09-c044-447c-9346-1b40692c59e6';
+				collectionObject.id.foiUuid 		= 'd46a9592-3f38-436c-9e94-4e82d0f798b3';
+				collectionObject.id.phenomenonDateTime = new Date(_dataRecord.phenomenonTime);
 				collectionObject.systemId 			= 'ILM';
-				collectionObject.foiUuid 			= 'd46a9592-3f38-436c-9e94-4e82d0f798b3';
 				collectionObject.foiId 				= '25.cal';
 				collectionObject.modelId 			= 'P1-25-10-UOHT';
 				collectionObject.phenomenonTimeChar = _dataRecord.phenomenonTime;
-				collectionObject.phenomenonDateTime = new Date(_dataRecord.phenomenonTime);
 				collectionObject.epsg 				= '4326';
 				collectionObject.lat 				= _dataRecord.lat;
 				collectionObject.lng 				= _dataRecord.lng;
@@ -257,16 +258,14 @@ module.exports = {
 				//console.log('Collection insert: ' + collectionObject );
 				
 				
-				writeResult = collection.insert(collectionObject);
-				console.log(writeResult );
+				collection.save(collectionObject, function(err, docs) {
 				
-				//, function(err, docs) {
-				
-					//console.log('mongodb insert err: ' + err);
-
+					if (err) {
+						console.log('mongodb insert err: ' + err);
+					}
       			//	collection.count(function(err, count) {
         		//		console.log(format("count = %s", count));
-      			//	});
+      			});
 
 					// Locate all the entries using find
      // 				collection.find().toArray(function(err, results) {

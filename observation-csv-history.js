@@ -128,7 +128,7 @@ module.exports = {
 			return result;
 		}
 		
-		function createCql(inpFile, collection) {
+		function createCql(inpFile) {
 		
 			//cassandra.init();
 			
@@ -362,7 +362,7 @@ module.exports = {
 			
 
 	
-				var cqlFile = createCql(_wfsResult, collection);			
+				var cqlFile = createCql(_wfsResult);			
 				console.log(' Aantal records: ' + cqlFile.length);
 
 			//	writeFile(tmpFolder, fileName, iso8601 + ' ' + cqlFile);

@@ -27,7 +27,7 @@ var tmpFolder;
 module.exports = {
 
 	
-	reqCsvHistory: function (options, callback, callback2) {
+	reqCsvHistory: function (options, callback) {
 
 		airboxCsvFileName 		= '25_cal.csv';
 
@@ -41,13 +41,13 @@ module.exports = {
 
 		// 10-minuten reeksen met actuele AiREAS luchtmetingen. Verversing elke 10 minuten.
 	
-		this.streamCsvHistoryFile (csvHistoryUrl + airboxCsvFileName, airboxCsvFileName,	false, 'aireascsvdata', callback, callback2);
+		this.streamCsvHistoryFile (csvHistoryUrl + airboxCsvFileName, airboxCsvFileName,	false, 'aireascsvdata', callback);
 
 		console.log('All retrieve actions are activated.');
 
 	},
 	
-	streamCsvHistoryFile: function (url, fileName, unzip, desc, callback, callback2 ) {
+	streamCsvHistoryFile: function (url, fileName, unzip, desc, callback ) {
 	
 		var _wfsResult=null;
 		console.log("Request start: " + desc + " (" + url + ")");
@@ -295,6 +295,7 @@ module.exports = {
 					if (counter <= 1) {
 						console.log('Counter is ' + counter + ' closing the database.');
 						db.close();
+						callback();
 					}
 
 					if (counter <= 50) {

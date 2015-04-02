@@ -143,6 +143,33 @@ module.exports = {
 			var outFile = '';
 			
 			var counter =0;
+
+
+
+			MongoClient.connect('mongodb://192.168.0.92:27017/openiod', function(err, db) {
+ 		  	 	if(err) throw err;
+
+				var collection = db.collection('observation');
+				
+				console.log('Collection: ' + collection);
+				/*
+    			collection.insert({a:2}, function(err, docs) {
+
+      				collection.count(function(err, count) {
+        				console.log(format("count = %s", count));
+      				});
+
+					// Locate all the entries using find
+      				collection.find().toArray(function(err, results) {
+        				console.dir(results);
+        				// Let's close the db
+        				db.close();
+      				});
+				});
+	
+	*/
+
+
 		
 			for(var i=1;i<tmpArray.length-1;i++) {  // start i=1 !!
 
@@ -317,6 +344,12 @@ module.exports = {
 				*/
 
 			}
+
+				//callback(cqlFile, {}, callback2);
+ 
+			
+			});
+
 			console.log(' Total length: ' + tmpArray.length); 
 			return outFile;
 		}
@@ -328,39 +361,12 @@ module.exports = {
 			var iso8601 = currDate.toISOString();
 			
 
-			MongoClient.connect('mongodb://192.168.0.92:27017/openiod', function(err, db) {
- 		  	 	if(err) throw err;
-
-				var collection = db.collection('observation');
-				
-				console.log('Collection: ' + collection);
-				/*
-    			collection.insert({a:2}, function(err, docs) {
-
-      				collection.count(function(err, count) {
-        				console.log(format("count = %s", count));
-      				});
-
-					// Locate all the entries using find
-      				collection.find().toArray(function(err, results) {
-        				console.dir(results);
-        				// Let's close the db
-        				db.close();
-      				});
-				});
-	
-	*/
 	
 				var cqlFile = createCql(_wfsResult, collection);			
 				console.log(' Aantal records: ' + cqlFile.length);
 
 			//	writeFile(tmpFolder, fileName, iso8601 + ' ' + cqlFile);
 			//	writeFile(tmpFolder, fileName, cqlFile);
-			
-				callback(cqlFile, {}, callback2);
- 
-			
-			});
 
 
 			

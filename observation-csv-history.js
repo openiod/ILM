@@ -271,10 +271,10 @@ module.exports = {
 				});
 				
 				
-		//		if (i>50) {
-		//			console.log(i);
-		//			break;
-		//		}
+				if (i>15000) {
+					console.log(i);
+					break;
+				}
 					
 				if (i == Math.floor(i/10000)*10000 ) console.log(i);
 				
@@ -286,11 +286,28 @@ module.exports = {
 				
 				
 				/*
-				db.observation.aggregate([ {$group: {
-					_id: { "$foiId",
+				db.observation.aggregate([ { $sort : { foiId : -1, year: 1 } }, {$group: {
+					_id: { foiId: "$foiId", year: { $year:"$phenomenonDateTime" }, month: { $month:"$phenomenonDateTime" }, day: { $dayOfMonth:"$phenomenonDateTime" }  },
 					count: { $sum: 1}
 				}}
 				])
+
+				db.observation.aggregate([ {$group: {
+					_id: { foiId: "$foiId", day: { $dayOfMonth:"$phenomenonDateTime" }, month: { $month:"$phenomenonDateTime" }, year: { $year:"$phenomenonDateTime" } },
+					count: { $sum: 1}
+				}}
+				])				
+
+				db.observation.aggregate([ {$group: {
+					_id: { foiId: "$foiId", year: { $year:"$phenomenonDateTime" }, month: { $month:"$phenomenonDateTime" }, status: "$status" },
+					count: { $sum: 1 }
+				}},
+				{ $sort : { "_id.status" : -1 } }
+				])				
+				
+				db.observation.remove({ });
+				
+				
 				*/
 
 			}

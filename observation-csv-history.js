@@ -210,9 +210,9 @@ module.exports = {
 				
 				var collectionObject = {};
 				collectionObject._id= {};
-				collectionObject.id.systemUuid 		= '2a1c1d09-c044-447c-9346-1b40692c59e6';
-				collectionObject.id.foiUuid 		= 'd46a9592-3f38-436c-9e94-4e82d0f798b3';
-				collectionObject.id.phenomenonDateTime = new Date(_dataRecord.phenomenonTime);
+				collectionObject._id.systemUuid 	= '2a1c1d09-c044-447c-9346-1b40692c59e6';
+				collectionObject._id.foiUuid 		= 'd46a9592-3f38-436c-9e94-4e82d0f798b3';
+				collectionObject._id.phenomenonDateTime = new Date(_dataRecord.phenomenonTime);
 				collectionObject.systemId 			= 'ILM';
 				collectionObject.foiId 				= '25.cal';
 				collectionObject.modelId 			= 'P1-25-10-UOHT';

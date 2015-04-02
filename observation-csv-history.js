@@ -292,12 +292,15 @@ module.exports = {
 					}
 					
 					counter--;
-					if (counter <= 5) {
+					if (counter <= 1) {
 						console.log('Counter is ' + counter + ' closing the database.');
 						db.close();
 					}
-					console.log('Counter is ' + counter );
 
+					if (counter <= 50) {
+						console.log('Counter is ' + counter );
+					}
+					
 					
       			//	collection.count(function(err, count) {
         		//		console.log(format("count = %s", count));

@@ -254,13 +254,17 @@ module.exports = {
 				
 				//console.log('Collection insert: ' + collectionObject );
 				
-				collection.insert(collectionObject, function(err, docs) {
+				
+				writeResult = collection.insert(collectionObject);
+				console.log(writeResult );
+				
+				//, function(err, docs) {
 				
 					//console.log('mongodb insert err: ' + err);
 
-      				collection.count(function(err, count) {
-        				console.log(format("count = %s", count));
-      				});
+      			//	collection.count(function(err, count) {
+        		//		console.log(format("count = %s", count));
+      			//	});
 
 					// Locate all the entries using find
      // 				collection.find().toArray(function(err, results) {
@@ -268,10 +272,10 @@ module.exports = {
      //   				// Let's close the db
      //   				db.close();
      // 				});
-				});
+				//});
 				
 				
-				if (i>15000) {
+				if (i>17000) {
 					console.log(i);
 					break;
 				}

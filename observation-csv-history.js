@@ -213,6 +213,7 @@ module.exports = {
 				collectionObject.foiId 				= '25.cal';
 				collectionObject.modelId 			= 'P1-25-10-UOHT';
 				collectionObject.phenomenonTimeChar = _dataRecord.phenomenonTime;
+				collectionObject.phenomenonDateTime = new Date(_dataRecord.phenomenonTime);
 				collectionObject.epsg 				= '4326';
 				collectionObject.lat 				= _dataRecord.lat;
 				collectionObject.lng 				= _dataRecord.lng;
@@ -282,6 +283,15 @@ module.exports = {
 				if ( i == (tmpArray.length-1) ) console.log('length-1: ' + _waardeDataRecord.length);
 				
 				_dataRecordPrevious = _dataRecord;
+				
+				
+				/*
+				db.observation.aggregate([ {$group: {
+					_id: { "$foiId",
+					count: { $sum: 1}
+				}}
+				])
+				*/
 
 			}
 			console.log(' Total length: ' + tmpArray.length); 

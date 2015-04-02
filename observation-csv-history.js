@@ -304,10 +304,10 @@ module.exports = {
 				//});
 				
 				
-				if (i>17000) {
-					console.log(i);
-					break;
-				}
+		//		if (i>17000) {
+		//			console.log(i);
+		//			break;
+		//		}
 					
 				if (i == Math.floor(i/10000)*10000 ) console.log(i);
 				
@@ -346,7 +346,9 @@ module.exports = {
 			}
 
 				//callback(cqlFile, {}, callback2);
- 
+ 				
+				db.close();
+				
 			
 			});
 

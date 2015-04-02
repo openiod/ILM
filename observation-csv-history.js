@@ -219,9 +219,9 @@ module.exports = {
 						_dataRecord.OZONFloat 	== _dataRecordPrevious.OZONFloat &&
 						_dataRecord.PM10Float 	== _dataRecordPrevious.PM10Float &&
 						_dataRecord.PM1Float 	== _dataRecordPrevious.PM1Float &&
-						_dataRecord.PM25Float 	== _dataRecordPrevious.PM25Float &&
-						_dataRecord.HUMFloat 	== _dataRecordPrevious.HUMFloat &&
-						_dataRecord.CELCFloat 	== _dataRecordPrevious.CELCFloat					
+						_dataRecord.PM25Float 	== _dataRecordPrevious.PM25Float //&&
+					//	_dataRecord.HUMFloat 	== _dataRecordPrevious.HUMFloat &&
+					//	_dataRecord.CELCFloat 	== _dataRecordPrevious.CELCFloat					
 					) {
 						_status = 'blocked';
 					}
@@ -331,10 +331,22 @@ module.exports = {
 				
 				
 				/*
-				db.observation.aggregate([ { $sort : { foiId : -1, year: 1 } }, {$group: {
-					_id: { foiId: "$foiId", year: { $year:"$phenomenonDateTime" }, month: { $month:"$phenomenonDateTime" }, day: { $dayOfMonth:"$phenomenonDateTime" }  },
-					count: { $sum: 1}
-				}}
+				
+				
+				db.observation.aggregate([ {$group: {
+					_id: { foiId: "$_id.foiId"
+						, year: { $year:"$_id.phenomenonDateTime" }
+					    , month: { $month:"$_id.phenomenonDateTime" }
+						, dayOfMonth: { $dayOfMonth:"$_id.phenomenonDateTime" }
+						, status: "$status"
+						  }
+					, count: { $sum: 1}
+					, avgUFP: { $avg: "$UFPFloat"}
+					, avgPM1: { $avg: "$PM1Float"}
+					, avgPM25: { $avg: "$PM25Float"}
+					, avgPM10: { $avg: "$PM10Float"}
+				}},
+				{ $sort : { "_id.year" : -1, "_id.month" : -1, "_id.dayOfMonth" : -1, "_id.status": 1 } }
 				])
 
 				db.observation.aggregate([ {$group: {

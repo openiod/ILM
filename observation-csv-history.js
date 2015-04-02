@@ -132,8 +132,6 @@ module.exports = {
 		
 			//cassandra.init();
 			
-			var writeResult;
-			
 			var _dataRecord; 
 			var _dataRecordPrevious={};
 			
@@ -143,6 +141,8 @@ module.exports = {
 			
 			var tmpArray = inpFileString.split('\n');
 			var outFile = '';
+			
+			var counter =0;
 		
 			for(var i=1;i<tmpArray.length-1;i++) {  // start i=1 !!
 
@@ -261,7 +261,8 @@ module.exports = {
 				collection.save(collectionObject, function(err, docs) {
 				
 					if (err) {
-						console.log('mongodb insert err: ' + err);
+						counter++;
+						console.log('mongodb insert err: ' + counter + ' ' + err);
 					}
       			//	collection.count(function(err, count) {
         		//		console.log(format("count = %s", count));

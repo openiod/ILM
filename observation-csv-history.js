@@ -170,7 +170,7 @@ module.exports = {
 	*/
 
 
-		
+			counter = tmpArray.length-1;
 			for(var i=1;i<tmpArray.length-1;i++) {  // start i=1 !!
 
 				//inpRecordArray 		= tmpArray[i].split(':(');
@@ -288,9 +288,17 @@ module.exports = {
 				collection.save(collectionObject, function(err, docs) {
 				
 					if (err) {
-						counter++;
 						console.log('mongodb insert err: ' + counter + ' ' + err);
 					}
+					
+					counter--;
+					if (counter <= 0) {
+						console.log('Counter is ' + counter + ' closing the database.');
+						db.close();
+					}
+
+
+					
       			//	collection.count(function(err, count) {
         		//		console.log(format("count = %s", count));
       			});
@@ -347,8 +355,7 @@ module.exports = {
 
 				//callback(cqlFile, {}, callback2);
  				
-				db.close();
-				
+								
 			
 			});
 

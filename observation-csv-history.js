@@ -240,7 +240,7 @@ module.exports = {
 				
 			}	
 			
-			historyArray.sort(function(a,b){return a.phenomenonTimed.getTime() - b.phenomenonTimed.getTime() });
+			historyArray.sort(function(a,b){return a.phenomenonTime.getTime() - b.phenomenonTime.getTime() });
 				
 
 			counter = historyArray.length;

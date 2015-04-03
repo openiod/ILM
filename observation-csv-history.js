@@ -188,7 +188,8 @@ module.exports = {
 					_waardeDataRecord[j] = inpMetingenArray[j];// parseFloat(inpMetingenArray[j]);
 				}
 
-				_dataRecord.phenomenonTime 	= _waardeDataRecord[9].substr(0,19);
+				_dataRecord.phenomenonDateChar 	= _waardeDataRecord[9].substr(0,19);
+				_dataRecord.phenomenonDate = new Date(_dataRecord.phenomenonDateChar);
 				_dataRecord.measureDate 	= "";  // not yet as key/value in measure data
 				_dataRecord.gpsLat 	= _waardeDataRecord[0];
 				_dataRecord.gpsLng 	= _waardeDataRecord[1];
@@ -240,7 +241,7 @@ module.exports = {
 				
 			}	
 			
-			historyArray.sort(function(a,b){return a.phenomenonTime.getTime() - b.phenomenonTime.getTime() });
+			historyArray.sort(function(a,b){return a.phenomenonDate.getTime() - b.phenomenonDate.getTime() });
 				
 
 			counter = historyArray.length;
@@ -266,7 +267,7 @@ module.exports = {
 				collectionObject.systemId 			= 'ILM';
 				collectionObject.foiId 				= '25.cal';
 				collectionObject.modelId 			= 'P1-25-10-UOHT';
-				collectionObject.phenomenonTimeChar = _dataRecord.phenomenonTime;
+				collectionObject.phenomenonDate 	= _dataRecord.phenomenonDate;
 				collectionObject.epsg 				= '4326';
 				collectionObject.lat 				= _dataRecord.lat;
 				collectionObject.lng 				= _dataRecord.lng;

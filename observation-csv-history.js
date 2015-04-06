@@ -61,6 +61,8 @@ module.exports = {
 
 	createCql: function(inpFile) {
 		
+			var self = this;
+			
 			//cassandra.init();
 			
 			var _dataRecord; 
@@ -124,8 +126,8 @@ module.exports = {
 				_dataRecord.measureDate 	= "";  // not yet as key/value in measure data
 				_dataRecord.gpsLat 	= _waardeDataRecord[0];
 				_dataRecord.gpsLng 	= _waardeDataRecord[1];
-				_dataRecord.lat 	= this.convertGPS2LatLng(_waardeDataRecord[0]);
-				_dataRecord.lng 	= this.convertGPS2LatLng(_waardeDataRecord[1]);
+				_dataRecord.lat 	= self.convertGPS2LatLng(_waardeDataRecord[0]);
+				_dataRecord.lng 	= self.convertGPS2LatLng(_waardeDataRecord[1]);
 				_dataRecord.UFP 	= _waardeDataRecord[2];
 				_dataRecord.OZON 	= _waardeDataRecord[3];
 				_dataRecord.PM10 	= _waardeDataRecord[4];

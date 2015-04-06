@@ -71,19 +71,17 @@ module.exports = {
 		return models;		
 	},
 
-	getFeatureOfInterest: function (featureOfInterest, callback) {
-		var options;
-		openIodConnector_ILM_CsvHistory.reqCsvHistory(featureOfInterest, function() {
+	getFeatureOfInterest: function (featureOfInterest, param, callback) {
+		openIodConnector_ILM_CsvHistory.reqCsvHistory(featureOfInterest, param, function() {
 			console.log('Einde reqCsvHistory');
- 			res.send('Einde reqCsvHistory');
+ 			callback();
 		} );
 	},
 
-	getFeatureOfInterestHistory: function (options, callback) {
-		var options;
-		openIodConnector_ILM_CsvHistory.reqCsvHistory(options, function() {
+	getObservationHistory: function (featureOfInterest, param, callback) {
+		openIodConnector_ILM_CsvHistory.reqCsvHistory(featureOfInterest, param, function() {
 			console.log('Einde reqCsvHistory');
- 			res.send('Einde reqCsvHistory');
+ 			callback();
 		} );
 	}
 	

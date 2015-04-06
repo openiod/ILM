@@ -43,7 +43,7 @@ module.exports = {
 		
 		if (param.query.file != null ) {
 			var observationFile = fs.readFileSync(airboxCsvFileName);
-			createCql(observationFile);
+			this.createCql(observationFile);
 		} else {
 			this.streamCsvHistoryFile (csvHistoryUrl + airboxCsvFileName, airboxCsvFileName,	false, 'aireascsvdata', callback);
 		}

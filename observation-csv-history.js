@@ -316,13 +316,13 @@ module.exports = {
 					}
 					
 					counter--;
-					if (counter <= 1) {
+					if (counter <= 0) {
 						console.log('Counter is ' + counter + ' closing the database.');
 						db.close();
 						callback();
 					}
 
-					if (counter <= 50) {
+					if (counter <= 10) {
 						console.log('Counter is ' + counter );
 					}
 					

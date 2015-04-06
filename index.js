@@ -72,7 +72,7 @@ module.exports = {
 	},
 
 	getFeatureOfInterest: function (featureOfInterest, param, callback) {
-		openIodConnector_ILM_CsvHistory.reqCsvHistory(featureOfInterest, param, function() {
+		openIodConnector_ILM_CsvHistory.getFeatureOfInterest(featureOfInterest, param, function() {
 			console.log('Einde reqCsvHistory');
  			callback();
 		} );

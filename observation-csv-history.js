@@ -27,9 +27,9 @@ var tmpFolder;
 module.exports = {
 
 	
-	reqCsvHistory: function (options, callback) {
+	reqCsvHistory: function (featureOfInterest, param, callback) {
 
-		airboxCsvFileName 		= '25_cal.csv';
+		airboxCsvFileName 		= param.query.file;
 
 		var aireasLocalPathRoot = __dirname + '/../../';
 //		fileFolder 			= '';
@@ -40,95 +40,26 @@ module.exports = {
 //		try {fs.mkdirSync(tmpFolder );} catch (e) {};//console.log('ERROR: no tmp folder found, batch run aborted.'); return } ;
 
 		// 10-minuten reeksen met actuele AiREAS luchtmetingen. Verversing elke 10 minuten.
-	
-		this.streamCsvHistoryFile (csvHistoryUrl + airboxCsvFileName, airboxCsvFileName,	false, 'aireascsvdata', callback);
+		
+		if (param.query.file != null ) {
+			var observationFile = fs.readFileSync(airboxCsvFileName);
+			createCql(observationFile);
+		} else {
+			this.streamCsvHistoryFile (csvHistoryUrl + airboxCsvFileName, airboxCsvFileName,	false, 'aireascsvdata', callback);
+		}
 
 		console.log('All retrieve actions are activated.');
 
 	},
-	
-	streamCsvHistoryFile: function (url, fileName, unzip, desc, callback ) {
-	
-		var _wfsResult=null;
-		console.log("Request start: " + desc + " (" + url + ")");
 
-		var outFile;
+	function convertGPS2LatLng(gpsValue){
+		var degrees = Math.floor(gpsValue /100);
+		var minutes = gpsValue - (degrees*100);
+		var result  = degrees + (minutes /60);
+		return result;
+	},
 
-		function StreamBuffer(req) {
-  			var self = this
-
-  			var buffer = []
-  			var ended  = false
-  			var ondata = null
-  			var onend  = null
-
-  			self.ondata = function(f) {
-    			console.log("self.ondata")
-    			for(var i = 0; i < buffer.length; i++ ) {
-      				f(buffer[i])
-      				console.log(i);
-    			}
-    			console.log(f);
-    			ondata = f
-  			}
-
-  			self.onend = function(f) {
-    			onend = f
-    			if( ended ) {
-      				onend()
-    			}
-  			}
-
-  			req.on('data', function(chunk) {
-    			// console.log("req.on data: ");
-    			if (_wfsResult) {
-      				_wfsResult += chunk;
-    			} else {
-      				_wfsResult = chunk;
-    			}
-
-    			if( ondata ) {
-      				ondata(chunk)
-    			} else {
-      				buffer.push(chunk)
-    			}
-  			})
-
-  			req.on('end', function() {
-    			//console.log("req.on end")
-    			ended = true;
-
-	    		if( onend ) {
-   		   			onend()
-    			}
-  			})        
- 
-  			req.streambuffer = self
-		}
-
-		function writeFile(path, fileName, content) {
-  			fs.writeFile(path + fileName, content, function(err) {
-    			if(err) {
-      				console.log(err);
-    			} else {
-      				console.log("The file is saved! " + tmpFolder + fileName + ' (unzip:' + unzip + ')');
-					if (unzip) {
-						var exec = require('child_process').exec;
-						var puts = function(error, stdout, stderr) { sys.puts(stdout) }
-						exec(" cd " + tmpFolder + " ;  unzip -o " + tmpFolder + fileName + " ", puts);
-					}
-    			}
-  			});	 
-		}
-	
-		function convertGPS2LatLng(gpsValue){
-			var degrees = Math.floor(gpsValue /100);
-			var minutes = gpsValue - (degrees*100);
-			var result  = degrees + (minutes /60);
-			return result;
-		}
-		
-		function createCql(inpFile) {
+	function createCql(inpFile) {
 		
 			//cassandra.init();
 			
@@ -397,7 +328,83 @@ module.exports = {
 
 			console.log(' Total length: ' + tmpArray.length); 
 			return outFile;
+	},
+			
+	streamCsvHistoryFile: function (url, fileName, unzip, desc, callback ) {
+	
+		var _wfsResult=null;
+		console.log("Request start: " + desc + " (" + url + ")");
+
+		var outFile;
+
+		function StreamBuffer(req) {
+  			var self = this
+
+  			var buffer = []
+  			var ended  = false
+  			var ondata = null
+  			var onend  = null
+
+  			self.ondata = function(f) {
+    			console.log("self.ondata")
+    			for(var i = 0; i < buffer.length; i++ ) {
+      				f(buffer[i])
+      				console.log(i);
+    			}
+    			console.log(f);
+    			ondata = f
+  			}
+
+  			self.onend = function(f) {
+    			onend = f
+    			if( ended ) {
+      				onend()
+    			}
+  			}
+
+  			req.on('data', function(chunk) {
+    			// console.log("req.on data: ");
+    			if (_wfsResult) {
+      				_wfsResult += chunk;
+    			} else {
+      				_wfsResult = chunk;
+    			}
+
+    			if( ondata ) {
+      				ondata(chunk)
+    			} else {
+      				buffer.push(chunk)
+    			}
+  			})
+
+  			req.on('end', function() {
+    			//console.log("req.on end")
+    			ended = true;
+
+	    		if( onend ) {
+   		   			onend()
+    			}
+  			})        
+ 
+  			req.streambuffer = self
 		}
+
+		function writeFile(path, fileName, content) {
+  			fs.writeFile(path + fileName, content, function(err) {
+    			if(err) {
+      				console.log(err);
+    			} else {
+      				console.log("The file is saved! " + tmpFolder + fileName + ' (unzip:' + unzip + ')');
+					if (unzip) {
+						var exec = require('child_process').exec;
+						var puts = function(error, stdout, stderr) { sys.puts(stdout) }
+						exec(" cd " + tmpFolder + " ;  unzip -o " + tmpFolder + fileName + " ", puts);
+					}
+    			}
+  			});	 
+		}
+	
+		
 		
 
   		new StreamBuffer(request.get( { url: url }, function(error, response) {

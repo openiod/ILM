@@ -43,7 +43,7 @@ module.exports = {
 		
 		if (param.query.file != null ) {
 			var observationFile = fs.readFileSync(airboxCsvFileName);
-			this.createCql(observationFile);
+			this.createCql(observationFile, callback);
 		} else {
 			this.streamCsvHistoryFile (csvHistoryUrl + airboxCsvFileName, airboxCsvFileName,	false, 'aireascsvdata', callback);
 		}
@@ -59,7 +59,7 @@ module.exports = {
 		return result;
 	},
 
-	createCql: function(inpFile) {
+	createCql: function(inpFile, callback) {
 		
 			var self = this;
 			
@@ -416,7 +416,7 @@ module.exports = {
 			
 
 	
-				var cqlFile = createCql(_wfsResult);			
+				var cqlFile = createCql(_wfsResult, callback);			
 				console.log(' Aantal records: ' + cqlFile.length);
 
 			//	writeFile(tmpFolder, fileName, iso8601 + ' ' + cqlFile);

@@ -51,8 +51,8 @@ module.exports = {
 					console.log('mongodb find err: ' + err);
 				}
 				
-				var results = {};
-				results.
+				//var results = {};
+				//results.
 					
 				console.log('Closing the database.');
 				console.log(' Data: ' + results);

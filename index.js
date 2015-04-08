@@ -87,8 +87,8 @@ module.exports = {
 	},
 	
 	getMongoData: function (featureOfInterest, param, callback) {
-		openIodConnector_ILM_MongoAggregation.getMongoData(featureOfInterest, param, function() {
- 			callback();
+		openIodConnector_ILM_MongoAggregation.getMongoData(featureOfInterest, param, function(data) {
+ 			callback(data);
 		} );
 	}
 

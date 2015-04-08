@@ -45,16 +45,19 @@ module.exports = {
 			console.log('   aggregation: ' + param.aggregation);
 			
 
-			collection.find({}, function(err, data) {
+			collection.find().toArray(function(err, results) {
 				
 				if (err) {
 					console.log('mongodb find err: ' + err);
 				}
+				
+				var results = {};
+				results.
 					
 				console.log('Closing the database.');
-				console.log(' Data: ' + data);
+				console.log(' Data: ' + results);
 				db.close();
-				callback(data);
+				callback(results);
 
       		});
 		});

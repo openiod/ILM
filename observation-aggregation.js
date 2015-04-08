@@ -45,7 +45,7 @@ module.exports = {
 			console.log('   aggregation: ' + param.aggregation);
 			
 
-			collection.find(param.aggregation, function(err, data) {
+			collection.find({}, function(err, data) {
 				
 				if (err) {
 					console.log('mongodb find err: ' + err);

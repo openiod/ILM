@@ -43,10 +43,8 @@ module.exports = {
 			
 			console.log('Collection: ' + collection);
 			console.log('   aggregation: ' + param.aggregation);
-			
-			var aggregation = JSON.parse(param.aggregation);
 
-			collection.aggregate(aggregation).toArray(function(err, results) {
+			collection.aggregate(param.aggregation).toArray(function(err, results) {
 				
 				if (err) {
 					console.log('mongodb find err: ' + err);

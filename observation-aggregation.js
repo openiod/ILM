@@ -27,13 +27,13 @@ module.exports = {
 	
 	getMongoData: function (featureOfInterest, param, callback) {
 		
-		if (param.query.file != null ) {
-			var observationFile = fs.readFileSync(airboxCsvFileName);
-			console.log('Observation from file: ' observationFile.length);
-			this.createCql(observationFile, callback);
-		} else {
-			this.streamCsvHistoryFile (csvHistoryUrl + airboxCsvFileName, airboxCsvFileName,	false, 'aireascsvdata', callback);
-		}
+//		if (param.query.file != null ) {
+//			var observationFile = fs.readFileSync(airboxCsvFileName);
+//			console.log('Observation from file: ' + observationFile.length);
+//			this.createCql(observationFile, callback);
+//		} else {
+//			this.streamCsvHistoryFile (csvHistoryUrl + airboxCsvFileName, airboxCsvFileName,	false, 'aireascsvdata', callback);
+//		}
 
 		console.log('All retrieve actions are activated.');
 		MongoClient.connect('mongodb://192.168.0.92:27017/openiod', function(err, db) {

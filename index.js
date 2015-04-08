@@ -74,14 +74,14 @@ module.exports = {
 
 	getFeatureOfInterest: function (featureOfInterest, param, callback) {
 		//openIodConnector_ILM_CsvHistory.getFeatureOfInterest(featureOfInterest, param, function() {
-			console.log('Einde reqCsvHistory');
+			console.log('End of getFeatureOfInterest');
  			callback();
 		//} );
 	},
 
 	getObservationHistory: function (featureOfInterest, param, callback) {
 		openIodConnector_ILM_CsvHistory.reqCsvHistory(featureOfInterest, param, function() {
-			console.log('Einde reqCsvHistory');
+			console.log('End of getObservationHistory');
  			callback();
 		} );
 	},

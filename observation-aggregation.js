@@ -55,7 +55,7 @@ module.exports = {
 				//results.
 					
 				console.log('Closing the database.');
-				console.log(' Data: ' + results);
+				console.log(' Data: ' + results.length);
 				db.close();
 				callback(results);
 

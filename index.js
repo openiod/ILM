@@ -15,7 +15,8 @@ var sys 	= require('sys');
 //var cassandra = require('../../openiod-cassandra');
 var MongoClient = require('mongodb').MongoClient
     , format = require('util').format;
-var openIodConnector_ILM_CsvHistory	= require('OpenIoD-Connector-ILM/observation-csv-history');	
+var openIodConnector_ILM_CsvHistory			= require('OpenIoD-Connector-ILM/observation-csv-history');	
+var openIodConnector_ILM_MongoAggregation	= require('OpenIoD-Connector-ILM/observation-aggregation');	
 	 
 var localModelFolders 	= [];
 var models 				= {};
@@ -85,7 +86,15 @@ module.exports = {
 		} );
 	}
 	
+	getMongoData: function (featureOfInterest, param, callback) {
+		openIodConnector_ILM_MongoAggregation.getMongoData(featureOfInterest, param, function() {
+ 			callback();
+		} );
+	}
+	
+	
 
+openIodConnector_ILM_MongoAggregation
 
 
 };

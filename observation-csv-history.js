@@ -41,7 +41,7 @@ module.exports = {
 
 		// 10-minuten reeksen met actuele AiREAS luchtmetingen. Verversing elke 10 minuten.
 		
-		if (param.query.file != null ) {
+		if (param.query.file != undefined && param.query.file != null ) {
 			var observationFile = fs.readFileSync(airboxCsvFileName);
 			console.log('Observation from file: ' + observationFile.length);
 			this.createCql(observationFile, callback);

@@ -21,6 +21,7 @@ var models 				= {};
 
 var csvHistoryUrl = 'http://82.201.127.232:8080/csv/';
 var airboxCsvFileName = '25_cal.csv';
+var csvFileName;
 var tmpFolder;
 
 

@@ -20,6 +20,7 @@ var localModelFolders 	= [];
 var models 				= {};
 
 var csvHistoryUrl = 'http://82.201.127.232:8080/csv/';
+var _featureOfInterest;
 var airboxCsvFileName = '25_cal.csv';
 var csvFileName;
 var tmpFolder;
@@ -44,13 +45,14 @@ module.exports = {
 		
 		if (param.query.file != undefined && param.query.file != null ) {
 			airboxCsvFileName 		= param.query.file;
+			_featureOfInterest 		= param.query.featureofinterest;
 			var observationFile 	= fs.readFileSync(airboxCsvFileName);
 			console.log('Observation from file: ' + observationFile.length);
 			this.createCql(observationFile, callback);
 		} else {
-			airboxCsvFileName 		= param.query.featureofinterest;
-			csvFileName				= airboxCsvFileName.replace('.','_') + '.csv';
-			this.streamCsvHistoryFile (csvHistoryUrl + csvFileName, airboxCsvFileName,	false, 'aireascsvdata', callback);
+			_featureOfInterest 		= param.query.featureofinterest;
+			csvFileName				= _featureOfInterest.replace('.','_') + '.csv';
+			this.streamCsvHistoryFile (csvHistoryUrl + csvFileName, _featureOfInterest,	false, 'aireascsvdata', callback);
 		}
 
 		console.log('All retrieve actions are activated. ' + param.query.file);
@@ -205,7 +207,7 @@ module.exports = {
 				collectionObject._id.foiUuid 		= 'd46a9592-3f38-436c-9e94-4e82d0f798b3';
 				collectionObject._id.phenomenonDate = _dataRecord.phenomenonDate;
 				collectionObject.systemId 			= 'ILM';
-				collectionObject.foiId 				= '25.cal';
+				collectionObject.foiId 				= _featureOfInterest;
 				collectionObject.modelId 			= 'P1-25-10-UOHT';
 				collectionObject.phenomenonDateChar = _dataRecord.phenomenonDateChar;
 				collectionObject.epsg 				= '4326';

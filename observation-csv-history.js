@@ -29,7 +29,7 @@ module.exports = {
 	
 	reqCsvHistory: function (featureOfInterest, param, callback) {
 
-		airboxCsvFileName 		= param.query.file;
+		
 
 		var aireasLocalPathRoot = __dirname + '/../../';
 //		fileFolder 			= '';
@@ -42,10 +42,13 @@ module.exports = {
 		// 10-minuten reeksen met actuele AiREAS luchtmetingen. Verversing elke 10 minuten.
 		
 		if (param.query.file != undefined && param.query.file != null ) {
-			var observationFile = fs.readFileSync(airboxCsvFileName);
+			airboxCsvFileName 		= param.query.file;
+			var observationFile 	= fs.readFileSync(airboxCsvFileName);
 			console.log('Observation from file: ' + observationFile.length);
 			this.createCql(observationFile, callback);
 		} else {
+			airboxCsvFileName 		= param.query.featureofinterest;
+			csvFileName				= airboxCsvFileName.replace('.','_') + '.csv';
 			this.streamCsvHistoryFile (csvHistoryUrl + airboxCsvFileName, airboxCsvFileName,	false, 'aireascsvdata', callback);
 		}
 

@@ -49,7 +49,7 @@ module.exports = {
 			this.streamCsvHistoryFile (csvHistoryUrl + airboxCsvFileName, airboxCsvFileName,	false, 'aireascsvdata', callback);
 		}
 
-		console.log('All retrieve actions are activated.');
+		console.log('All retrieve actions are activated. ' + param.query.file);
 
 	},
 

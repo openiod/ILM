@@ -335,6 +335,8 @@ module.exports = {
 			
 	streamCsvHistoryFile: function (url, fileName, unzip, desc, callback ) {
 	
+		var self = this;
+		
 		var _wfsResult=null;
 		console.log("Request start: " + desc + " (" + url + ")");
 
@@ -417,7 +419,7 @@ module.exports = {
 			
 
 	
-				var cqlFile = createCql(_wfsResult, callback);			
+				var cqlFile = self.createCql(_wfsResult, callback);			
 				console.log(' Aantal records: ' + cqlFile.length);
 
 			//	writeFile(tmpFolder, fileName, iso8601 + ' ' + cqlFile);

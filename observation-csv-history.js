@@ -50,7 +50,7 @@ module.exports = {
 		} else {
 			airboxCsvFileName 		= param.query.featureofinterest;
 			csvFileName				= airboxCsvFileName.replace('.','_') + '.csv';
-			this.streamCsvHistoryFile (csvHistoryUrl + airboxCsvFileName, airboxCsvFileName,	false, 'aireascsvdata', callback);
+			this.streamCsvHistoryFile (csvHistoryUrl + csvFileName, airboxCsvFileName,	false, 'aireascsvdata', callback);
 		}
 
 		console.log('All retrieve actions are activated. ' + param.query.file);

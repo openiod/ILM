@@ -39,7 +39,7 @@ module.exports = {
 		MongoClient.connect('mongodb://192.168.0.92:27017/openiod', function(err, db) {
 	  	 	if(err) throw err;
 
-			var collection = db.collection(param.collection);
+			var collection = db.collection(param.collection.toString() );
 			
 			console.log('Collection: ' + collection);
 			console.log('   aggregation: ' + param.aggregation);

@@ -108,6 +108,11 @@ module.exports = {
 						for (var key in doc) {
 							console.log('Feature of interest key: '+ key + ' value: ' + doc[key] );
 						}
+						
+						for (var i=0;i<doc.length;i++) {
+							collectionMerge.save(doc[i]);
+							console.log('Merge/save: ' + doc[i] );
+						}
 //						collectionMerge.save(doc);
 						console.log('Merge save after.');						
 				

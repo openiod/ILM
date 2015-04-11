@@ -98,9 +98,12 @@ module.exports = {
 				
 				console.log('Merge temporary collection: ' + param.collectionTmp);
 //				collectionTmp.find({}).forEach(function(doc) {
-				collectionTmp.find({}, function(err, results) {
+				collectionTmp.find({}, function(err, result) {
 						console.log('Merge save before.');
-						console.log('Merge save record: ' + results.toString() );
+						console.log('Merge save record: ' );
+						for (var key in result) {
+							console.log('Feature of interest key: '+ key + ' value: ' + result[key] );
+						}
 //						collectionMerge.save(doc);
 						console.log('Merge save after.');						
 					 });

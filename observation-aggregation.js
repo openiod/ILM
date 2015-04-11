@@ -100,7 +100,7 @@ module.exports = {
 //				collectionTmp.find({}).forEach(function(doc) {
 				collectionTmp.find({}, function(err, results) {
 						console.log('Merge save before.');
-						console.log('Merge save record: ' + results[0]);
+						console.log('Merge save record: ' + results);
 //						collectionMerge.save(doc);
 						console.log('Merge save after.');						
 					 });

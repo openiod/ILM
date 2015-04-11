@@ -105,9 +105,9 @@ module.exports = {
 						
 						console.log('Merge save before.');
 						console.log('Merge save record: ' );
-					//	for (var key in result) {
-					//		console.log('Feature of interest key: '+ key + ' value: ' + result[key] );
-					//	}
+						for (var key in doc) {
+							console.log('Feature of interest key: '+ key + ' value: ' + doc[key] );
+						}
 //						collectionMerge.save(doc);
 						console.log('Merge save after.');						
 				
@@ -115,7 +115,7 @@ module.exports = {
 						collectionTmp.drop();
 
 						console.log('Closing the database.');
-						console.log(' Data: ' + results.length);
+						console.log(' Data: ' + doc.length);
 						db.close();
 						_callback(doc);
 					 });

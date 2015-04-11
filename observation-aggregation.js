@@ -43,7 +43,7 @@ module.exports = {
 			var collection = db.collection(param.collection );
 			
 			console.log('Collection: ' + param.collection);
-			console.log('   aggregation: ' + param.aggregation.toString());
+			console.log('   aggregation: ' + JSON.stringify(param.aggregation) );
 
 			collection.aggregate(param.aggregation).toArray(function(err, results) {
 				

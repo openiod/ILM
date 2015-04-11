@@ -104,7 +104,7 @@ module.exports = {
 //					 });
 				
 				console.log('Drop temporary collection: ' + param.collectionTmp);
-				//collectionTmp.drop();
+				collectionTmp.drop();
 				
 				//var results = {};
 				//results.

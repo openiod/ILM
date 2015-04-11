@@ -84,17 +84,20 @@ module.exports = {
 			console.log('Collection: ' + param.collection);
 			console.log('   aggregation: ' + JSON.stringify(param.aggregation) );
 
-			collection.aggregate(param.aggregation).toArray(function(err, results) {
+//			collection.aggregate(param.aggregation).toArray(function(err, results) {
+			collection.aggregate(param.aggregation, function(err, results) {
 				
 				if (err) {
 					console.log('mongodb find err: ' + err);
 				}
 				
-				var collectionTmp 	= db.collection(param.collectionTmp );
+				var collectionTmp 	= db.collection(param.collectionTmp );				
 				var collectionMerge = db.collection(param.collectionMerge );
 				
+				console.log('Merge temporary collection: ' + param.collectionTmp);
 				collectionTmp.find().forEach(function(doc){collectionMerge.save(doc)});
 				
+				console.log('Drop temporary collection: ' + param.collectionTmp);
 				collectionTmp.drop();
 				
 				//var results = {};

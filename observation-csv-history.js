@@ -81,6 +81,7 @@ module.exports = {
 			
 			var tmpArray = inpFileString.split('\n');
 			var outFile = '';
+			var _UFPFloat;
 			
 			var counter =0;
 
@@ -147,7 +148,8 @@ module.exports = {
 
 				_dataRecord.gpsLatFloat = parseFloat(_waardeDataRecord[0]);
 				_dataRecord.gpsLngFloat	= parseFloat(_waardeDataRecord[1]);
-				_dataRecord.UFPFloat 	= parseFloat(_waardeDataRecord[2]);
+				_UFPFloat 				= parseFloat(_waardeDataRecord[2]);
+				if (_UFPFloat>0)	_dataRecord.UFPFloat	= _UFPFloat;
 				_dataRecord.OZONFloat 	= parseFloat(_waardeDataRecord[3]);
 				_dataRecord.PM10Float 	= parseFloat(_waardeDataRecord[4]);
 				_dataRecord.PM1Float 	= parseFloat(_waardeDataRecord[5]);

@@ -97,8 +97,8 @@ module.exports = {
 				var collectionMerge = db.collection(param.collectionMerge );
 				
 				console.log('Merge temporary collection: ' + param.collectionTmp);
-//				collectionTmp.find({}).forEach(function(doc) {
-				collectionTmp.find({}, function(err, result) {
+				collectionTmp.find({}).forEach(function(err, doc) {
+//				collectionTmp.find({})., function(err, result) {
 				
 						console.log('Merge save before err: ' + err);
 						

@@ -97,11 +97,11 @@ module.exports = {
 				var collectionMerge = db.collection(param.collectionMerge );
 				
 				console.log('Merge temporary collection: ' + param.collectionTmp);
-//				collectionTmp.find().forEach(function(doc) {
-//						console.log('Merge save before.');
+				collectionTmp.find().forEach(function(doc) {
+						console.log('Merge save before.');
 //						collectionMerge.save(doc);
-//						console.log('Merge save after.');						
-//					 });
+						console.log('Merge save after.');						
+					 });
 				
 				console.log('Drop temporary collection: ' + param.collectionTmp);
 				collectionTmp.drop();

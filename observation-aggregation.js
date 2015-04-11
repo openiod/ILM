@@ -35,14 +35,15 @@ module.exports = {
 //			this.streamCsvHistoryFile (csvHistoryUrl + airboxCsvFileName, airboxCsvFileName,	false, 'aireascsvdata', callback);
 //		}
 
-		console.log('All retrieve actions are activated. getMongoData observation-aggregation');
+		console.log('All retrieve actions are activated. getMongoData observation-aggregation: ' + featureOfInterest );
+		console.log(' Aggregation: ' + param.query );
 		MongoClient.connect('mongodb://192.168.0.92:27017/openiod', function(err, db) {
 	  	 	if(err) throw err;
 
-			var collection = db.collection(param.collection.toString() );
+			var collection = db.collection(param.collection );
 			
-			console.log('Collection: ' + collection);
-			console.log('   aggregation: ' + param.aggregation);
+			console.log('Collection: ' + param.collection);
+			console.log('   aggregation: ' + param.aggregation.toString());
 
 			collection.aggregate(param.aggregation).toArray(function(err, results) {
 				

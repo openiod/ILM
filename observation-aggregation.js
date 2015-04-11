@@ -65,6 +65,8 @@ module.exports = {
 	
 	// Merge db.collection1.find().forEach(function(doc){db.collection2.save(doc)});
 	merge: function (featureOfInterest, param, callback) {
+	
+		var _callback = callback;
 		
 //		if (param.query.file != null ) {
 //			var observationFile = fs.readFileSync(airboxCsvFileName);
@@ -106,7 +108,7 @@ module.exports = {
 				console.log('Closing the database.');
 				console.log(' Data: ' + results.length);
 				db.close();
-				callback(results);
+				_callback(results);
 
       		});
 		});

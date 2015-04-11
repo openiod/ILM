@@ -110,18 +110,20 @@ module.exports = {
 					//	}
 //						collectionMerge.save(doc);
 						console.log('Merge save after.');						
+				
+						console.log('Drop temporary collection: ' + param.collectionTmp);
+						collectionTmp.drop();
+
+						console.log('Closing the database.');
+						console.log(' Data: ' + results.length);
+						db.close();
+						_callback(doc);
 					 });
 				
-				console.log('Drop temporary collection: ' + param.collectionTmp);
-				collectionTmp.drop();
 				
 				//var results = {};
 				//results.
 					
-				console.log('Closing the database.');
-				console.log(' Data: ' + results.length);
-				db.close();
-				_callback(results);
 
       		});
 		});

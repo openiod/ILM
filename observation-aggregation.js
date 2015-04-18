@@ -37,7 +37,8 @@ module.exports = {
 
 		console.log('All retrieve actions are activated. getMongoData observation-aggregation: ' + featureOfInterest );
 		console.log(' Aggregation: ' + param.query );
-		MongoClient.connect('mongodb://192.168.0.92:27017/openiod', function(err, db) {
+//		MongoClient.connect('mongodb://192.168.0.92:27017/openiod', function(err, db) {
+		MongoClient.connect('mongodb://149.210.201.210:27017/openiod', function(err, db) {
 	  	 	if(err) throw err;
 
 			var collection = db.collection(param.collection );
@@ -78,7 +79,8 @@ module.exports = {
 
 		console.log('All retrieve actions are activated. getMongoData observation-aggregation: ' + featureOfInterest );
 		console.log(' Aggregation: ' + param.query );
-		MongoClient.connect('mongodb://192.168.0.92:27017/openiod', function(err, db) {
+//		MongoClient.connect('mongodb://192.168.0.92:27017/openiod', function(err, db) {
+		MongoClient.connect('mongodb://149.210.201.210:27017/openiod', function(err, db) {
 	  	 	if(err) throw err;
 
 			var collection = db.collection(param.collection );

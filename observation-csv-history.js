@@ -88,7 +88,8 @@ module.exports = {
 			var historyArray = [];
 
 
-			MongoClient.connect('mongodb://192.168.0.92:27017/openiod', function(err, db) {
+//			MongoClient.connect('mongodb://192.168.0.92:27017/openiod', function(err, db) {
+			MongoClient.connect('mongodb://149.210.201.210:27017/openiod', function(err, db) {
  		  	 	if(err) throw err;
 
 				var collection = db.collection('observation');

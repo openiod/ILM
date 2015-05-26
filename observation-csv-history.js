@@ -55,7 +55,7 @@ module.exports = {
 			this.streamCsvHistoryFile (csvHistoryUrl + csvFileName, _featureOfInterest,	false, 'aireascsvdata', callback);
 		}
 
-		console.log('All retrieve actions are activated. ' + param.query.file);
+		console.log('All retrieve actions are activated. ');
 
 	},
 
@@ -94,7 +94,7 @@ module.exports = {
 
 				var collection = db.collection('observation');
 				
-				console.log('Collection: ' + collection);
+				console.log('Collection: ' + 'observation');
 				/*
     			collection.insert({a:2}, function(err, docs) {
 
@@ -185,6 +185,7 @@ module.exports = {
 				historyArray.push(_dataRecord);
 				
 			}	
+			console.log(' Aantal records: %s van %s ', historyArray.length, tmpArray.length );
 			
 			historyArray.sort(function(a,b){return a.phenomenonDate.getTime() - b.phenomenonDate.getTime() });
 				
@@ -431,7 +432,7 @@ module.exports = {
 
 	
 				var cqlFile = self.createCql(_wfsResult, callback);			
-				console.log(' Aantal records: ' + cqlFile.length);
+				
 
 			//	writeFile(tmpFolder, fileName, iso8601 + ' ' + cqlFile);
 			//	writeFile(tmpFolder, fileName, cqlFile);

@@ -107,9 +107,9 @@ module.exports = {
 						
 						console.log('Merge save before.');
 						console.log('Merge save record: ' );
-						for (var key in doc) {
-							console.log('Feature of interest key: '+ key + ' value: ' + doc[key] );
-						}
+						//for (var key in doc) {
+						//	console.log('Feature of interest key: '+ key + ' value: ' + doc[key] );
+						//}
 						
 						for (var i=0;i<doc.length;i++) {
 							collectionMerge.save(doc[i]);

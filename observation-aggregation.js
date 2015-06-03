@@ -79,60 +79,60 @@ module.exports = {
 
 		console.log('All retrieve actions are activated. getMongoData observation-aggregation: ' + featureOfInterest );
 		console.log(' Aggregation: ' + param.query );
-//		MongoClient.connect('mongodb://192.168.0.92:27017/openiod', function(err, db) {
-		MongoClient.connect('mongodb://149.210.201.210:27017/openiod', function(err, db) {
-	  	 	if(err) throw err;
 
+		MongoClient.connect('mongodb://149.210.201.210:27017/openiod', function(err, db) {
+	  	 	if (err) {
+				console.log('mongodb connection error: ' + err);
+				db.close();
+			} else {
+			
 			var collection = db.collection(param.collection );
 			
 			console.log('Collection: ' + param.collection);
 			console.log('   aggregation: ' + JSON.stringify(param.aggregation) );
 
-//			collection.aggregate(param.aggregation).toArray(function(err, results) {
 			collection.aggregate(param.aggregation, function(err, results) {
-				
 				if (err) {
-					console.log('mongodb find err: ' + err);
-				}
+					console.log('mongodb aggregate error: ' + err);
+					db.close();
+				} else {
 				
-				var collectionTmp 	= db.collection(param.collectionTmp );				
-				var collectionMerge = db.collection(param.collectionMerge );
+					var collectionTmp 	= db.collection(param.collectionTmp );   // contains aggregated results				
+					var collectionMerge = db.collection(param.collectionMerge ); // this is the destination collection
 				
-				console.log('Merge temporary collection: ' + param.collectionTmp);
-				collectionTmp.find({}).toArray(function(err, doc) {
-//				collectionTmp.find({}).forEach(function(err, doc) {
-//				collectionTmp.find({})., function(err, result) {
-				
-						console.log('Merge save before err: ' + err);
-						
-						console.log('Merge save before.');
-						console.log('Merge save record: ' );
-						//for (var key in doc) {
-						//	console.log('Feature of interest key: '+ key + ' value: ' + doc[key] );
-						//}
-						
-						for (var i=0;i<doc.length;i++) {
-							collectionMerge.save(doc[i]);
-							//console.log('Merge/save: ' + doc[i] );
-						}
-//						collectionMerge.save(doc);
-						console.log('Merge save after.');						
-				
-						console.log('Drop temporary collection: ' + param.collectionTmp);
-						collectionTmp.drop();
-
-						console.log('Closing the database.');
-						console.log(' Data: ' + doc.length);
-						db.close();
-						_callback(doc);
-					 });
-				
-				
-				//var results = {};
-				//results.
+					console.log('End of aggregate function into collection: ' + param.collectionTmp);
 					
+					collectionMerge.remove({"_id.foiId":param.query.featureofinterest}, function(err, results) {
+						console.log('mongodb removed old values %s %s', err, results);
+					
+						collectionTmp.find({}).toArray(function(err, doc) {
+							if(err) {
+								console.log('mongodb find for tmp collection error: ' + err);
+								db.close();
+							} else {
+								console.log('Insert new records: ' );
+						
+								for (var i=0;i<doc.length;i++) {
+									collectionMerge.save(doc[i], function(err, result) {
+										console.log('Record saved');
+									});
+								}
+								console.log('Inserted %s records', doc.length );						
+					
+								console.log('Drop temporary collection: ' + param.collectionTmp);
+								collectionTmp.drop();
+	
+								console.log('Closing the database.');
+								console.log(' Data: ' + doc.length);
+								db.close();
+								_callback(doc);
+							}	
+						 });
+					 });
+				} 
 
       		});
+			};
 		});
 	}	
 	

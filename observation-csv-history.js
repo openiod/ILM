@@ -49,10 +49,17 @@ module.exports = {
 			_featureOfInterest 		= param.query.featureofinterest;
 			var observationFile 	= fs.readFileSync(airboxCsvFileName);
 			console.log('Observation from file: ' + observationFile.length);
-			this.createCql(observationFile, callback);
+			this.createCql(observationFile, _featureOfInterest, param, callback);
 		} else {
+			param.callback = callback;
 			param.featureOfInterestArray = param.query.featureofinterest.split(',');
-			this.getHistoryCsv(featureOfInterest, param, callback);
+			if (param.featureOfInterestArray.length>0){
+				
+			} else {
+				param.featureOfInterestArray=[];
+				param.featureOfInterestArray.push(param.query.featureofinterest);
+			}
+			this.getHistoryCsv(featureOfInterest, param);
 
 		}
 
@@ -61,29 +68,32 @@ module.exports = {
 	},
 
 
-	getHistoryCsv: function(featureOfInterest, param, callback) {
+	getHistoryCsv: function(featureOfInterest, param) {
 
 //		_featureOfInterestArray = _featureOfInterest.split(',');
 		console.log('foi: %s %s', param.featureOfInterestArray, param.featureOfInterestArray.length );
-		if (param.featureOfInterestArray.length>0) {
-			_featureOfInterest 		= param.featureOfInterestArray[0];
-			param.query.featureofinterest = param.featureOfInterestArray[0];	
-			console.log('getHistory started for bulk 1: %s', _featureOfInterest);
-		} else {
-			_featureOfInterest 		= param.query.featureofinterest;
-			console.log('getHistory started for single: %s', _featureOfInterest);
-		}
 		
-//		if (_featureOfInterestArray.length>1){
-			
-//		}
 		
-		csvFileName				= _featureOfInterest.replace('.','_') + '.csv';
-		this.streamCsvHistoryFile (csvHistoryUrl + csvFileName, _featureOfInterest,	false, 'aireascsvdata', callback);
+		this.retrieveAirboxCsv(featureOfInterest, param);
+		
 		return ;
 	},
 
+	retrieveAirboxCsv: function(featureOfInterest, param) {
 
+		if (param.featureOfInterestArray.length>0) {
+			_featureOfInterest 		= param.featureOfInterestArray[0];
+			param.featureOfInterestArray.shift();
+			param.query.featureofinterest = _featureOfInterest;	
+			console.log('getHistory started for bulk 1: %s', _featureOfInterest);
+			csvFileName				= _featureOfInterest.replace('.','_') + '.csv';
+			this.streamCsvHistoryFile (csvHistoryUrl + csvFileName, _featureOfInterest,	false, 'aireascsvdata', retrieveAirboxCsv);
+
+		} else {
+			param.callback();  // return to root process.
+		}
+
+	},
 
 	convertGPS2LatLng: function(gpsValue) {
 		var degrees = Math.floor(gpsValue /100);
@@ -92,7 +102,7 @@ module.exports = {
 		return result;
 	},
 
-	createCql: function(inpFile, callback) {
+	createCql: function(inpFile, featureOfInterest, param, callback) {
 		
 			var self = this;
 			
@@ -291,10 +301,10 @@ module.exports = {
 					if (counter <= 0) {
 						console.log('Counter is ' + counter + ' closing the database.');
 						db.close();
-						callback();
+						callback(featureOfInterest, param);
 					}
 
-					if (counter <= 10) {
+					if (counter <= 3) {
 						console.log('Counter is ' + counter );
 					}
 					
@@ -457,7 +467,7 @@ module.exports = {
 			
 
 	
-				var cqlFile = self.createCql(_wfsResult, callback);			
+				var cqlFile = self.createCql(_wfsResult, featureOfInterest, param, callback);			
 				
 
 			//	writeFile(tmpFolder, fileName, iso8601 + ' ' + cqlFile);

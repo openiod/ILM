@@ -26,6 +26,8 @@ var airboxCsvFileName = '25_cal.csv';
 var csvFileName;
 var tmpFolder;
 
+var strea
+
 
 module.exports = {
 
@@ -77,24 +79,6 @@ module.exports = {
 		this.retrieveAirboxCsv(featureOfInterest, param);
 		
 		return ;
-	},
-
-	retrieveAirboxCsv: function(featureOfInterest, param) {
-	
-		var self = this;
-
-		if (param.featureOfInterestArray.length>0) {
-			_featureOfInterest 		= param.featureOfInterestArray[0];
-			param.featureOfInterestArray.shift();
-			param.query.featureofinterest = _featureOfInterest;	
-			console.log('getHistory started for bulk 1: %s', _featureOfInterest);
-			csvFileName				= _featureOfInterest.replace('.','_') + '.csv';
-			self.streamCsvHistoryFile (csvHistoryUrl + csvFileName, _featureOfInterest, _featureOfInterest, param,	false, 'aireascsvdata', self.retrieveAirboxCsv);
-
-		} else {
-			param.callback();  // return to root process.
-		}
-
 	},
 
 	convertGPS2LatLng: function(gpsValue) {
@@ -381,9 +365,32 @@ module.exports = {
 
 			console.log(' Total length: ' + tmpArray.length); 
 			return outFile;
-	},
+	}	
+
+
+
+};
+
+
+var retrieveAirboxCsv = function(featureOfInterest, param) {
+	
+		//var self = this;
+
+		if (param.featureOfInterestArray.length>0) {
+			_featureOfInterest 		= param.featureOfInterestArray[0];
+			param.featureOfInterestArray.shift();
+			param.query.featureofinterest = _featureOfInterest;	
+			console.log('getHistory started for bulk 1: %s', _featureOfInterest);
+			csvFileName				= _featureOfInterest.replace('.','_') + '.csv';
+			streamCsvHistoryFile (csvHistoryUrl + csvFileName, _featureOfInterest, _featureOfInterest, param,	false, 'aireascsvdata', retrieveAirboxCsv);
+
+		} else {
+			param.callback();  // return to root process.
+		}
+
+	};
 			
-	streamCsvHistoryFile: function (url, fileName, featureOfInterest,  param, unzip, desc, callback ) {
+var	streamCsvHistoryFile = function (url, fileName, featureOfInterest,  param, unzip, desc, callback ) {
 	
 		var self = this;
 		
@@ -467,9 +474,7 @@ module.exports = {
 			var currDate = new Date();
 			var iso8601 = currDate.toISOString();
 			
-
-	
-				var cqlFile = self.createCql(_wfsResult, featureOfInterest, param, callback);			
+			var cqlFile = self.createCql(_wfsResult, featureOfInterest, param, callback);			
 				
 
 			//	writeFile(tmpFolder, fileName, iso8601 + ' ' + cqlFile);
@@ -482,11 +487,7 @@ module.exports = {
   		);
 
 	} // end of reqFile	
-	
 
-
-
-};
 
 
 

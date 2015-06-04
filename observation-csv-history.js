@@ -51,7 +51,7 @@ module.exports = {
 			_featureOfInterest 		= param.query.featureofinterest;
 			var observationFile 	= fs.readFileSync(airboxCsvFileName);
 			console.log('Observation from file: ' + observationFile.length);
-			this.createCql(observationFile, _featureOfInterest, param, callback);
+			createCql(observationFile, _featureOfInterest, param, callback);
 		} else {
 			param.callback = callback;
 			param.featureOfInterestArray = param.query.featureofinterest.split(',');
@@ -86,9 +86,13 @@ module.exports = {
 		var minutes = gpsValue - (degrees*100);
 		var result  = degrees + (minutes /60);
 		return result;
-	},
+	}
 
-	createCql: function(inpFile, featureOfInterest, param, callback) {
+};
+
+
+
+var createCql = function(inpFile, featureOfInterest, param, callback) {
 		
 			var self = this;
 			
@@ -365,11 +369,9 @@ module.exports = {
 
 			console.log(' Total length: ' + tmpArray.length); 
 			return outFile;
-	}	
+	};
 
 
-
-};
 
 
 var retrieveAirboxCsv = function(featureOfInterest, param) {

@@ -474,7 +474,7 @@ var	streamCsvHistoryFile = function (url, fileName, featureOfInterest,  param, u
 			var currDate = new Date();
 			var iso8601 = currDate.toISOString();
 			
-			var cqlFile = self.createCql(_wfsResult, featureOfInterest, param, callback);			
+			var cqlFile = createCql(_wfsResult, featureOfInterest, param, callback);			
 				
 
 			//	writeFile(tmpFolder, fileName, iso8601 + ' ' + cqlFile);

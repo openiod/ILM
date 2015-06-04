@@ -80,6 +80,8 @@ module.exports = {
 	},
 
 	retrieveAirboxCsv: function(featureOfInterest, param) {
+	
+		self = this;
 
 		if (param.featureOfInterestArray.length>0) {
 			_featureOfInterest 		= param.featureOfInterestArray[0];
@@ -87,7 +89,7 @@ module.exports = {
 			param.query.featureofinterest = _featureOfInterest;	
 			console.log('getHistory started for bulk 1: %s', _featureOfInterest);
 			csvFileName				= _featureOfInterest.replace('.','_') + '.csv';
-			this.streamCsvHistoryFile (csvHistoryUrl + csvFileName, _featureOfInterest, _featureOfInterest, param,	false, 'aireascsvdata', this.retrieveAirboxCsv);
+			self.streamCsvHistoryFile (csvHistoryUrl + csvFileName, _featureOfInterest, _featureOfInterest, param,	false, 'aireascsvdata', this.retrieveAirboxCsv);
 
 		} else {
 			param.callback();  // return to root process.

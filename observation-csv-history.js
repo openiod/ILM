@@ -52,9 +52,6 @@ module.exports = {
 		} else {
 			param.featureOfInterestArray = param.query.featureofinterest.split(',');
 			getHistoryCsv(featureOfInterest, param, callback);
-		
-
-
 
 		}
 
@@ -65,15 +62,18 @@ module.exports = {
 
 	getHistoryCsv: function(featureOfInterest, param, callback) {
 	
+
+//		_featureOfInterestArray = _featureOfInterest.split(',');
+
 		if (param.featureOfInterestArray.length>1) {
-			_featureOfInterest 		= param.featureOfInterestArray[0];		
+			_featureOfInterest 		= param.featureOfInterestArray[0];
+			param.query.featureofinterest = param.featureOfInterestArray[0];	
 			console.log('getHistory started for bulk 1: %s', _featureOfInterest);
 		} else {
 			_featureOfInterest 		= param.query.featureofinterest;
 			console.log('getHistory started for single: %s', _featureOfInterest);
 		}
 		
-		_featureOfInterestArray = _featureOfInterest.split(',');
 		if (_featureOfInterestArray.length>1){
 			
 		}

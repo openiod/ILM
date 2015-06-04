@@ -20,7 +20,8 @@ var localModelFolders 	= [];
 var models 				= {};
 
 var csvHistoryUrl = 'http://82.201.127.232:8080/csv/';
-var _featureOfInterest;
+var _featureOfInterest,
+	_featureOfInterestArray;
 var airboxCsvFileName = '25_cal.csv';
 var csvFileName;
 var tmpFolder;
@@ -61,7 +62,6 @@ module.exports = {
 
 
 	getHistoryCsv: function(featureOfInterest, param, callback) {
-	
 
 //		_featureOfInterestArray = _featureOfInterest.split(',');
 		console.log('foi: %s %s', param.featureOfInterestArray, param.featureOfInterestArray.length );
@@ -74,9 +74,9 @@ module.exports = {
 			console.log('getHistory started for single: %s', _featureOfInterest);
 		}
 		
-		if (_featureOfInterestArray.length>1){
+//		if (_featureOfInterestArray.length>1){
 			
-		}
+//		}
 		
 		csvFileName				= _featureOfInterest.replace('.','_') + '.csv';
 		this.streamCsvHistoryFile (csvHistoryUrl + csvFileName, _featureOfInterest,	false, 'aireascsvdata', callback);

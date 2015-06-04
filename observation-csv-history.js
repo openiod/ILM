@@ -64,8 +64,8 @@ module.exports = {
 	
 
 //		_featureOfInterestArray = _featureOfInterest.split(',');
-
-		if (param.featureOfInterestArray.length>1) {
+		console.log('foi: %s %s', param.featureOfInterestArray, param.featureOfInterestArray.length );
+		if (param.featureOfInterestArray.length>0) {
 			_featureOfInterest 		= param.featureOfInterestArray[0];
 			param.query.featureofinterest = param.featureOfInterestArray[0];	
 			console.log('getHistory started for bulk 1: %s', _featureOfInterest);

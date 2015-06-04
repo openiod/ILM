@@ -51,7 +51,7 @@ module.exports = {
 			this.createCql(observationFile, callback);
 		} else {
 			param.featureOfInterestArray = param.query.featureofinterest.split(',');
-			getHistoryCsv(featureOfInterest, param, callback);
+			this.getHistoryCsv(featureOfInterest, param, callback);
 
 		}
 

@@ -43,21 +43,47 @@ module.exports = {
 
 		// 10-minuten reeksen met actuele AiREAS luchtmetingen. Verversing elke 10 minuten.
 		
-		if (param.query.file != undefined && param.query.file != null ) {
+		if (param.query.file != undefined ) {
 			airboxCsvFileName 		= param.query.file;
 			_featureOfInterest 		= param.query.featureofinterest;
 			var observationFile 	= fs.readFileSync(airboxCsvFileName);
 			console.log('Observation from file: ' + observationFile.length);
 			this.createCql(observationFile, callback);
 		} else {
-			_featureOfInterest 		= param.query.featureofinterest;
-			csvFileName				= _featureOfInterest.replace('.','_') + '.csv';
-			this.streamCsvHistoryFile (csvHistoryUrl + csvFileName, _featureOfInterest,	false, 'aireascsvdata', callback);
+			param.featureOfInterestArray = param.query.featureofinterest.split(',');
+			getHistoryCsv(featureOfInterest, param, callback);
+		
+
+
+
 		}
 
 		console.log('All retrieve actions are activated. ');
 
 	},
+
+
+	getHistoryCsv: function(featureOfInterest, param, callback) {
+	
+		if (param.featureOfInterestArray.length>1) {
+			_featureOfInterest 		= param.featureOfInterestArray[0];		
+			console.log('getHistory started for bulk 1: %s', _featureOfInterest);
+		} else {
+			_featureOfInterest 		= param.query.featureofinterest;
+			console.log('getHistory started for single: %s', _featureOfInterest);
+		}
+		
+		_featureOfInterestArray = _featureOfInterest.split(',');
+		if (_featureOfInterestArray.length>1){
+			
+		}
+		
+		csvFileName				= _featureOfInterest.replace('.','_') + '.csv';
+		this.streamCsvHistoryFile (csvHistoryUrl + csvFileName, _featureOfInterest,	false, 'aireascsvdata', callback);
+		return ;
+	},
+
+
 
 	convertGPS2LatLng: function(gpsValue) {
 		var degrees = Math.floor(gpsValue /100);

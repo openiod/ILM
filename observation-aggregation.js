@@ -77,7 +77,7 @@ module.exports = {
 //			this.streamCsvHistoryFile (csvHistoryUrl + airboxCsvFileName, airboxCsvFileName,	false, 'aireascsvdata', callback);
 //		}
 
-		console.log('All retrieve actions are activated. getMongoData observation-aggregation: ' + featureOfInterest );
+		console.log('All retrieve actions are activated. getMongoData observation-aggregation: ' + param.query.featureofinterest );
 		console.log(' Aggregation: ' + param.query );
 
 		MongoClient.connect('mongodb://149.210.201.210:27017/openiod', function(err, db) {
@@ -101,7 +101,7 @@ module.exports = {
 					var collectionMerge = db.collection(param.collectionMerge ); // this is the destination collection
 				
 					console.log('End of aggregate function into collection: ' + param.collectionTmp);
-					console.log('Start removing old values in collection: %s %s', param.collectionTmp, param.query.featureOfInterest);
+					console.log('Start removing old values in collection: %s %s', param.collectionTmp, param.query.featureofinterest);
 					
 					collectionMerge.remove({"_id.foiId":param.query.featureofinterest}, function(err, results) {
 						console.log('mongodb removed old values %s %s', err, results);
@@ -111,14 +111,14 @@ module.exports = {
 								console.log('mongodb find for tmp collection error: ' + err);
 								db.close();
 							} else {
-								console.log('Insert new records in bulk for %s', param.query.featureOfInterest );
+								console.log('Insert new records in bulk for %s', param.query.featureofinterest );
 								
 								var batch = collectionMerge.initializeUnorderedBulkOp({useLegacyOps: true});
 						
 								for (var i=0;i<doc.length;i++) {
 									batch.insert(doc[i]);
 //									collectionMerge.save(doc[i], function(err, result) {
-										console.log('Record inserted into batch');
+										//console.log('Record inserted into batch');
 //									});
 								}
 								batch.execute(function(err, result) {

@@ -81,7 +81,7 @@ module.exports = {
 
 	retrieveAirboxCsv: function(featureOfInterest, param) {
 	
-		self = this;
+		var self = this;
 
 		if (param.featureOfInterestArray.length>0) {
 			_featureOfInterest 		= param.featureOfInterestArray[0];

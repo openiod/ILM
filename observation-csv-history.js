@@ -76,7 +76,7 @@ module.exports = {
 		console.log('foi: %s %s', param.featureOfInterestArray, param.featureOfInterestArray.length );
 		
 		
-		this.retrieveAirboxCsv(featureOfInterest, param);
+		retrieveAirboxCsv(featureOfInterest, param);
 		
 		return ;
 	},

@@ -79,18 +79,17 @@ module.exports = {
 		retrieveAirboxCsv(featureOfInterest, param);
 		
 		return ;
-	},
-
-	convertGPS2LatLng: function(gpsValue) {
-		var degrees = Math.floor(gpsValue /100);
-		var minutes = gpsValue - (degrees*100);
-		var result  = degrees + (minutes /60);
-		return result;
 	}
 
 };
 
 
+var convertGPS2LatLng = function(gpsValue) {
+		var degrees = Math.floor(gpsValue /100);
+		var minutes = gpsValue - (degrees*100);
+		var result  = degrees + (minutes /60);
+		return result;
+	};
 
 var createCql = function(inpFile, featureOfInterest, param, callback) {
 		
@@ -163,8 +162,8 @@ var createCql = function(inpFile, featureOfInterest, param, callback) {
 				_dataRecord.measureDate 	= "";  // not yet as key/value in measure data
 				_dataRecord.gpsLat 	= _waardeDataRecord[0];
 				_dataRecord.gpsLng 	= _waardeDataRecord[1];
-				_dataRecord.lat 	= self.convertGPS2LatLng(_waardeDataRecord[0]);
-				_dataRecord.lng 	= self.convertGPS2LatLng(_waardeDataRecord[1]);
+				_dataRecord.lat 	= convertGPS2LatLng(_waardeDataRecord[0]);
+				_dataRecord.lng 	= convertGPS2LatLng(_waardeDataRecord[1]);
 				_dataRecord.UFP 	= _waardeDataRecord[2];
 				_dataRecord.OZON 	= _waardeDataRecord[3];
 				_dataRecord.PM10 	= _waardeDataRecord[4];

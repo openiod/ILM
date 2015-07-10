@@ -57,11 +57,11 @@ module.exports = {
 		if (options.source != 'mongodb') {
 			// PostgreSql
 			//console.log(options);
-			sqlConnString = options.systemParameter.databaseType + '://' + 
-				options.systemParameter.databaseAccount + ':' + 
-				options.systemParameter.databasePassword + '@' + 
-				options.systemParameter.databaseServer + '/' +
-				options.systemCode + '_' + options.systemParameter.databaseName;
+			sqlConnString = options.param.systemParameter.databaseType + '://' + 
+				options.param.systemParameter.databaseAccount + ':' + 
+				options.param.systemParameter.databasePassword + '@' + 
+				options.param.systemParameter.databaseServer + '/' +
+				options.param.systemCode + '_' + options.param.systemParameter.databaseName;
 		}
 	},
 	
@@ -70,7 +70,7 @@ module.exports = {
 		if (param.query.source != 'mongodb') {
 		
 			if (sqlConnString == null) {
-				this.initDbConnection({source:'postgresql', systemParameter: param.systemParameter});
+				this.initDbConnection({source:'postgresql', config: param });
 			}
 			this.getAireasHistInfo(featureOfInterest, param, callback);		
 			return;

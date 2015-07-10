@@ -71,7 +71,7 @@ module.exports = {
 			if (sqlConnString == null) {
 				this.initDbConnection({source:'postgresql', systemParameter: param.systemParameter});
 			}
-			getAireasHistInfo(featureOfInterest, param, callback);		
+			this.getAireasHistInfo(featureOfInterest, param, callback);		
 			return;
 		}
 		

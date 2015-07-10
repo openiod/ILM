@@ -53,7 +53,7 @@ function executeSql (query, callback) {
 
 module.exports = {
 
-	init: function (options) {
+	initDbConnection: function (options) {
 		if (options.source != 'mongodb') {
 			// PostgreSql
 			sqlConnString = options.configParameter.databaseType + '://' + 

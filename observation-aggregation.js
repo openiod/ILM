@@ -56,11 +56,12 @@ module.exports = {
 	initDbConnection: function (options) {
 		if (options.source != 'mongodb') {
 			// PostgreSql
+			//console.log(options);
 			sqlConnString = options.systemParameter.databaseType + '://' + 
 				options.systemParameter.databaseAccount + ':' + 
 				options.systemParameter.databasePassword + '@' + 
 				options.systemParameter.databaseServer + '/' +
-				options.systemCode + '_' + options.systemParameter.databaseName;
+				options.systemParameter.systemCode + '_' + options.systemParameter.databaseName;
 		}
 	},
 	

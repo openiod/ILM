@@ -67,6 +67,10 @@ module.exports = {
 	getData: function (featureOfInterest, param, callback) {
 	
 		if (param.query.source != 'mongodb') {
+		
+			if (sqlConnString == null) {
+				this.initDbConnection({source:'postgresql'});
+			}
 			getAireasHistInfo(featureOfInterest, param, callback);		
 			return;
 		}

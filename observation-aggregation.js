@@ -213,7 +213,9 @@ module.exports = {
 			if (param.query.avgType != undefined && param.query.avgType != 'all') {
 				queryWhere += " and a.avg_type = '" + param.query.avgType + "' ";
 			}
-			queryWhere += " and a.hist_year = " + param.query.hist_year + " ";
+			if (param.query.histYear != undefined && param.query.avgType != 'all') {
+				queryWhere += " and a.hist_year = " + param.query.histYear + " ";
+			}
 			queryWhere += " and a.hist_month is null ";
 
 		var queryGroupBy = ""; // group by grid.gm_code, grid.gm_naam, grid.cell_geom"; //, grid.centroid_geom ";

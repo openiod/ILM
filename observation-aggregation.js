@@ -61,7 +61,7 @@ module.exports = {
 				options.systemParameter.databaseAccount + ':' + 
 				options.systemParameter.databasePassword + '@' + 
 				options.systemParameter.databaseServer + '/' +
-				options.systemParameter.systemCode + '_' + options.systemParameter.databaseName;
+				options.systemCode + '_' + options.systemParameter.databaseName;
 		}
 	},
 	

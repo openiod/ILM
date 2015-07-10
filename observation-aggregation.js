@@ -56,11 +56,11 @@ module.exports = {
 	initDbConnection: function (options) {
 		if (options.source != 'mongodb') {
 			// PostgreSql
-			sqlConnString = options.configParameter.databaseType + '://' + 
-				options.configParameter.databaseAccount + ':' + 
-				options.configParameter.databasePassword + '@' + 
-				options.configParameter.databaseServer + '/' +
-				options.systemCode + '_' + options.configParameter.databaseName;
+			sqlConnString = options.systemParameter.databaseType + '://' + 
+				options.systemParameter.databaseAccount + ':' + 
+				options.systemParameter.databasePassword + '@' + 
+				options.systemParameter.databaseServer + '/' +
+				options.systemCode + '_' + options.systemParameter.databaseName;
 		}
 	},
 	
@@ -69,7 +69,7 @@ module.exports = {
 		if (param.query.source != 'mongodb') {
 		
 			if (sqlConnString == null) {
-				this.initDbConnection({source:'postgresql'});
+				this.initDbConnection({source:'postgresql', systemParameter: param.systemParameter});
 			}
 			getAireasHistInfo(featureOfInterest, param, callback);		
 			return;

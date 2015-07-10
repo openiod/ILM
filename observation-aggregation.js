@@ -70,7 +70,7 @@ module.exports = {
 		if (param.query.source != 'mongodb') {
 		
 			if (sqlConnString == null) {
-				this.initDbConnection({source:'postgresql', config: param });
+				this.initDbConnection({source:'postgresql', param: param });
 			}
 			this.getAireasHistInfo(featureOfInterest, param, callback);		
 			return;

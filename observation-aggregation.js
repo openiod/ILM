@@ -44,7 +44,7 @@ function executeSql (query, callback) {
 				return;
     		}
     		//console.log('sql result: ' + result);
-			callback(result, err);
+			callback(result.rows, err);
     		client.end();
   		});
 	});

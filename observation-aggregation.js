@@ -203,6 +203,12 @@ module.exports = {
 		if (param.query.avgType == undefined) {
 			param.query.avgType = 'SPMI';
 		}
+		
+		//console.log(param.query.histYear);
+		if (param.query.histYear == undefined) {
+			var currentDate = new Date();
+			param.query.histYear = currentDate.getFullYear().toString();
+		}
 
 		var querySelect = " select a.airbox, a.hist_year, a.hist_month, a.hist_day, a.hist_count, a.last_measuredate, \
 			a.avg_type, a.avg_avg ";
@@ -210,10 +216,14 @@ module.exports = {
 
 		var queryFrom = " from aireas_hist_avg a ";
 		var queryWhere = " where 1=1  ";
+		
 			if (param.query.avgType != undefined && param.query.avgType != 'all') {
 				queryWhere += " and a.avg_type = '" + param.query.avgType + "' ";
 			}
 			if (param.query.histYear != undefined && param.query.avgType != 'all') {
+				queryWhere += " and a.hist_year = " + param.query.histYear + " ";
+			}
+			if (param.query.histMonth != undefined && param.query.avgType != 'all') {
 				queryWhere += " and a.hist_year = " + param.query.histYear + " ";
 			}
 			queryWhere += " and a.hist_month is null ";
@@ -231,6 +241,7 @@ module.exports = {
 
 
 		
+	// not yet in use
 	getGridGemAireasHistInfo: function (param, req_query, callback) {
 		var _airbox = "";
 		

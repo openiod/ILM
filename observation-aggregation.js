@@ -236,7 +236,7 @@ module.exports = {
 		var queryWhere = " where 1=1  ";
 		
 
-			if (param.query.featureofinterest != undefined && param.query.avgType != 'all') {
+			if (param.query.featureofinterest != undefined && param.query.featureofinterest != 'all') {
 				queryWhere += " and a.airbox = '" + param.query.featureofinterest + "' ";
 			}
 

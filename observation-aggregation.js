@@ -200,6 +200,10 @@ module.exports = {
 	getAireasHistInfo: function (featureofinterest, param, callback) {
 		var _airbox = "";
 		var currentDate = new Date();
+
+		if (param.query.featureofinterest == undefined || param.query.featureofinterest == '') {
+			param.query.featureofinterest = 'all';
+		}
 		
 		if (param.query.avgType == undefined || param.query.avgType == '') {
 			param.query.avgType = 'PM10';
@@ -231,6 +235,11 @@ module.exports = {
 		var queryFrom = " from aireas_hist_avg a ";
 		var queryWhere = " where 1=1  ";
 		
+
+			if (param.query.featureofinterest != undefined && param.query.avgType != 'all') {
+				queryWhere += " and a.airbox = '" + param.query.featureofinterest + "' ";
+			}
+
 			if (param.query.avgType != undefined && param.query.avgType != 'all') {
 				queryWhere += " and a.avg_type = '" + param.query.avgType + "' ";
 			}

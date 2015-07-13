@@ -258,8 +258,8 @@ module.exports = {
 			}	
 
 		var queryGroupBy = ""; // group by grid.gm_code, grid.gm_naam, grid.cell_geom"; //, grid.centroid_geom ";
-		var queryOrderBy = ""; //" order by bu_naam ; ";
-
+		var queryOrderBy = " ORDER BY airbox, hist_year, hist_month, hist_day "; 
+		
 		console.log('Postgres sql start execute');
 		var query = querySelect + queryFrom + queryWhere + queryGroupBy + queryOrderBy;
 		console.log('Query: ' + query);

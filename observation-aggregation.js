@@ -199,16 +199,30 @@ module.exports = {
 
 	getAireasHistInfo: function (featureofinterest, param, callback) {
 		var _airbox = "";
+		var currentDate = new Date();
 		
-		if (param.query.avgType == undefined) {
-			param.query.avgType = 'SPMI';
+		if (param.query.avgType == undefined || param.query.avgType == '') {
+			param.query.avgType = 'PM10';
 		}
 		
-		//console.log(param.query.histYear);
-		if (param.query.histYear == undefined) {
-			var currentDate = new Date();
+		if (param.query.histYear == undefined || param.query.histYear == '') {
 			param.query.histYear = currentDate.getFullYear().toString();
 		}
+
+		if (param.query.histMonth == undefined || param.query.histMonth == '') {
+			param.query.histMonth = undefined;
+			param.query.histDay = undefined;  // overrule parameter when no month given
+		} // else {
+			// month nr or 'all'
+		//}
+
+		if (param.query.histDay == undefined || param.query.histDay == '') {
+			param.query.histDay = undefined;
+		} //else {	
+			// day nr or 'all'
+		//}
+
+
 
 		var querySelect = " select a.airbox, a.hist_year, a.hist_month, a.hist_day, a.hist_count, a.last_measuredate, \
 			a.avg_type, a.avg_avg ";
@@ -220,13 +234,28 @@ module.exports = {
 			if (param.query.avgType != undefined && param.query.avgType != 'all') {
 				queryWhere += " and a.avg_type = '" + param.query.avgType + "' ";
 			}
-			if (param.query.histYear != undefined && param.query.avgType != 'all') {
+			if (param.query.histYear != undefined && param.query.histYear != 'all') {
 				queryWhere += " and a.hist_year = " + param.query.histYear + " ";
 			}
-			if (param.query.histMonth != undefined && param.query.avgType != 'all') {
-				queryWhere += " and a.hist_year = " + param.query.histYear + " ";
-			}
-			queryWhere += " and a.hist_month is null ";
+			if (param.query.histMonth == undefined) {
+				queryWhere += " and a.hist_month is null ";
+				queryWhere += " and a.hist_day is null ";
+			} else {
+				if (param.query.histMonth == 'all') {
+					queryWhere += " and a.hist_month is not null ";
+				} else {
+					queryWhere += " and a.hist_month = " + param.query.histMonth + " ";
+				}
+				if (param.query.histDay == undefined) {
+					queryWhere += " and a.hist_day is null ";
+				} else {
+					if (param.query.histDay == 'all') {
+						queryWhere += " and a.hist_day is not null ";
+					} else {	
+						queryWhere += " and a.hist_day = " + param.query.histDay + " ";
+					}
+				}
+			}	
 
 		var queryGroupBy = ""; // group by grid.gm_code, grid.gm_naam, grid.cell_geom"; //, grid.centroid_geom ";
 		var queryOrderBy = ""; //" order by bu_naam ; ";

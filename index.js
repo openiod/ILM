@@ -90,6 +90,11 @@ module.exports = {
 		openIodConnector_ILM_MongoAggregation.getData(featureOfInterest, param, callback);
 	},
 
+	getAireasHistQ: function (param, callback) {
+		openIodConnector_ILM_MongoAggregation.getAireasHistQ(param, callback);
+	},
+
+
 	merge: function (featureOfInterest, param, callback) {
 		openIodConnector_ILM_MongoAggregation.merge(featureOfInterest, param, callback);
 	}

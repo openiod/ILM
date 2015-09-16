@@ -226,6 +226,18 @@ module.exports = {
 			// day nr or 'all'
 		//}
 
+		if (param.query.histYearFrom == undefined || param.query.histYearFrom == '') {
+			param.query.histYearFrom = undefined;
+		} 
+		if (param.query.histYearTo == undefined || param.query.histYearTo == '') {
+			param.query.histYearTo = undefined;
+		} 
+		if (param.query.histMonthFrom == undefined || param.query.histMonthFrom == '') {
+			param.query.histMonthFrom = undefined;
+		} 
+		if (param.query.histMonthTo == undefined || param.query.histMonthTo == '') {
+			param.query.histMonthTo = undefined;
+		} 
 
 
 		var querySelect = " select a.airbox, a.hist_year, a.hist_month, a.hist_day, a.hist_count, a.last_measuredate, \
@@ -264,7 +276,22 @@ module.exports = {
 						queryWhere += " and a.hist_day = " + param.query.histDay + " ";
 					}
 				}
-			}	
+			}
+			
+			if (param.query.histYearFrom!=undefined) {
+				queryWhere += " and a.hist_year >= " + param.query.histYearFrom + " ";
+			}
+			if (param.query.histYearTo!=undefined) {
+				queryWhere += " and a.hist_year <= " + param.query.histYearTo + " ";
+			}
+			if (param.query.histMonthFrom!=undefined) {
+				queryWhere += " and a.hist_month >= " + param.query.histMonthFrom + " ";
+			}
+			if (param.query.histMonthTo!=undefined) {
+				queryWhere += " and a.hist_month <= " + param.query.histMonthTo + " ";
+			}
+
+
 
 		var queryGroupBy = ""; // group by grid.gm_code, grid.gm_naam, grid.cell_geom"; //, grid.centroid_geom ";
 		var queryOrderBy = " ORDER BY airbox, hist_year, hist_month, hist_day "; 

@@ -253,7 +253,13 @@ module.exports = {
 			}
 
 			if (param.query.avgType != undefined && param.query.avgType != 'all') {
-				queryWhere += " and a.avg_type = '" + param.query.avgType + "' ";
+				var _tmpAvgTypeArray = param.query.avgType.split(","); 
+				if (_tmpAvgTypeArray.length>1) {
+					var _inAvgType = "'" + param.query.avgType.replace(/\,/g,"','") + '"';
+					queryWhere += " and a.avg_type in (" + param.query.avgType + ") ";
+				} else {
+					queryWhere += " and a.avg_type = '" + param.query.avgType + "' ";
+				}			
 			}
 			if (param.query.histYear != undefined && param.query.histYear != 'all') {
 				queryWhere += " and a.hist_year = " + param.query.histYear + " ";

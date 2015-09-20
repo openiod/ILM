@@ -249,8 +249,6 @@ module.exports = {
 		
 
 			if (param.query.featureofinterest != undefined && param.query.featureofinterest != 'all') {
-				queryWhere += " and a.airbox = '" + param.query.featureofinterest + "' ";
-
 				var _tmpAirboxArray = param.query.featureofinterest.split(","); 
 				if (_tmpAirboxArray.length>1) {
 					var _inAirbox = "'" + param.query.featureofinterest.replace(/\,/g,"','") + '"';

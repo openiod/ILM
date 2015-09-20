@@ -251,9 +251,9 @@ module.exports = {
 			if (param.query.featureofinterest != undefined && param.query.featureofinterest != 'all') {
 				queryWhere += " and a.airbox = '" + param.query.featureofinterest + "' ";
 
-				var _tmpAirboxArray = param.query.airbox.split(","); 
+				var _tmpAirboxArray = param.query.featureofinterest.split(","); 
 				if (_tmpAirboxArray.length>1) {
-					var _inAirbox = "'" + param.query.airbox.replace(/\,/g,"','") + '"';
+					var _inAirbox = "'" + param.query.featureofinterest.replace(/\,/g,"','") + '"';
 					queryWhere += " and a.airbox in (" + _inAirbox + ") ";
 				} else {
 					queryWhere += " and a.airbox = '" + param.query.featureofinterest + "' ";

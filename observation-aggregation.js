@@ -251,7 +251,7 @@ module.exports = {
 			if (param.query.featureofinterest != undefined && param.query.featureofinterest != 'all') {
 				var _tmpAirboxArray = param.query.featureofinterest.split(","); 
 				if (_tmpAirboxArray.length>1) {
-					var _inAirbox = "'" + param.query.featureofinterest.replace(/\,/g,"','") + '"';
+					var _inAirbox = "'" + param.query.featureofinterest.replace(/\,/g,"','") + "'";
 					queryWhere += " and a.airbox in (" + _inAirbox + ") ";
 				} else {
 					queryWhere += " and a.airbox = '" + param.query.featureofinterest + "' ";
@@ -260,7 +260,7 @@ module.exports = {
 			if (param.query.avgType != undefined && param.query.avgType != 'all') {
 				var _tmpAvgTypeArray = param.query.avgType.split(","); 
 				if (_tmpAvgTypeArray.length>1) {
-					var _inAvgType = "'" + param.query.avgType.replace(/\,/g,"','") + '"';
+					var _inAvgType = "'" + param.query.avgType.replace(/\,/g,"','") + "'";
 					queryWhere += " and a.avg_type in (" + _inAvgType + ") ";
 				} else {
 					queryWhere += " and a.avg_type = '" + param.query.avgType + "' ";

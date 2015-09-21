@@ -255,8 +255,8 @@ module.exports = {
 		}
 		
 
-		var querySelect = " select " + _selectAirbox + "max(a.hist_year) hist_year, max(a.hist_month) hist_month, max(a.hist_day) hist_day, " + 
-			" sum(a.hist_count) hist_count" + 
+		var querySelect = " select " + _selectAirbox + " max(a.hist_year) hist_year, max(a.hist_month) hist_month, max(a.hist_day) hist_day, " + 
+			" sum(a.hist_count) hist_count, " + 
 // , a.last_measuredate, 
 			"max(a.avg_type) avg_type, sum(a.avg_avg*a.hist_count)/sum(a.hist_count) avg_avg ";
 //  		ST_AsGeoJSON(ST_Transform(a.geom, 4326)) geom, \

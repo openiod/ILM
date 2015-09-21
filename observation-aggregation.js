@@ -323,7 +323,7 @@ module.exports = {
 		var queryOrderBy = "";
 		if (param.query.airboxCumulate == 'Y') {
 			queryGroupBy = " group by hist_year, hist_month ";
-			queryOrderBy = " ORDER BY airbox, hist_year, hist_month ";
+			queryOrderBy = " ORDER BY hist_year, hist_month ";
 		} else {
 			queryOrderBy = " ORDER BY airbox, hist_year, hist_month, hist_day ";
 		}

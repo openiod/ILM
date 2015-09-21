@@ -213,12 +213,19 @@ module.exports = {
 			param.query.histYear = currentDate.getFullYear().toString();
 		}
 
-		if (param.query.histMonth == undefined || param.query.histMonth == '') {
-			param.query.histMonth = undefined;
+		if (param.query.histMonth == undefined) {
 			param.query.histDay = undefined;  // overrule parameter when no month given
-		} // else {
-			// month nr or 'all'
-		//}
+		} 
+		if (param.query.histMonth == '') {
+			param.query.histMonth 		= undefined;
+			param.query.histYearFrom 	= undefined;
+			param.query.histYearTo 		= undefined;
+			param.query.histMonthFrom 	= undefined;
+			param.query.histMonthTo 	= undefined;
+			param.query.histDay 		= undefined;  // overrule parameter when no month given
+		} 
+
+
 
 		if (param.query.histDay == undefined || param.query.histDay == '') {
 			param.query.histDay = undefined;
@@ -239,14 +246,22 @@ module.exports = {
 			param.query.histMonthTo = undefined;
 		} 
 
+		if (param.query.airboxCumulate == 'Y') {
+			_selectAirbox = '';
+		} else {
+			_selectAirbox = 'a.airbox, ';
+ 
+		}
+		
 
-		var querySelect = " select a.airbox, a.hist_year, a.hist_month, a.hist_day, a.hist_count, a.last_measuredate, \
-			a.avg_type, a.avg_avg ";
+		var querySelect = " select " + _selectAirbox + "max(a.hist_year) hist_year, max(a.hist_month) hist_month, max(a.hist_day) hist_day, " + 
+			" sum(a.hist_count) hist_count" + 
+// , a.last_measuredate, 
+			"max(a.avg_type) avg_type, sum(a.avg_avg*a.hist_count)/sum(a.hist_count) avg_avg ";
 //  		ST_AsGeoJSON(ST_Transform(a.geom, 4326)) geom, \
 
 		var queryFrom = " from aireas_hist_avg a ";
 		var queryWhere = " where 1=1  ";
-		
 
 			if (param.query.featureofinterest != undefined && param.query.featureofinterest != 'all') {
 				var _tmpAirboxArray = param.query.featureofinterest.split(","); 
@@ -303,10 +318,15 @@ module.exports = {
 			}
 
 
-
 		var queryGroupBy = ""; // group by grid.gm_code, grid.gm_naam, grid.cell_geom"; //, grid.centroid_geom ";
-		var queryOrderBy = " ORDER BY airbox, hist_year, hist_month, hist_day "; 
-		
+		var queryOrderBy = "";
+		if (param.query.airboxCumulate == 'Y') {
+			queryGroupBy = " group by hist_year, hist_month ";
+			queryOrderBy = " ORDER BY airbox, hist_year, hist_month ";
+		} else {
+			queryOrderBy = " ORDER BY airbox, hist_year, hist_month, hist_day ";
+		}
+				
 		console.log('Postgres sql start execute');
 		var query = querySelect + queryFrom + queryWhere + queryGroupBy + queryOrderBy;
 		console.log('Query: ' + query);

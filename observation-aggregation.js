@@ -199,6 +199,7 @@ module.exports = {
 
 	getAireasHistInfo: function (featureofinterest, param, callback) {
 		var _airbox = "";
+		var _selectAirbox;
 		var currentDate = new Date();
 
 		if (param.query.featureofinterest == undefined || param.query.featureofinterest == '') {

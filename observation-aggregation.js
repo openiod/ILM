@@ -250,7 +250,7 @@ module.exports = {
 		if (param.query.airboxCumulate == 'Y') {
 			_selectAirbox = '';
 		} else {
-			_selectAirbox = 'a.airbox, ';
+			_selectAirbox = 'max(a.airbox) airbox, ';
  
 		}
 		

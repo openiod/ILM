@@ -217,6 +217,7 @@ module.exports = {
 		if (param.query.histMonth == undefined) {
 			param.query.histDay = undefined;  // overrule parameter when no month given
 		} 
+		
 		if (param.query.histMonth == '') {
 			param.query.histMonth 		= undefined;
 			param.query.histYearFrom 	= undefined;
@@ -225,8 +226,6 @@ module.exports = {
 			param.query.histMonthTo 	= undefined;
 			param.query.histDay 		= undefined;  // overrule parameter when no month given
 		} 
-
-
 
 		if (param.query.histDay == undefined || param.query.histDay == '') {
 			param.query.histDay = undefined;
@@ -250,7 +249,7 @@ module.exports = {
 		if (param.query.airboxCumulate == 'Y') {
 			_selectAirbox = '';
 		} else {
-			_selectAirbox = 'max(a.airbox) airbox, ';
+			_selectAirbox = ' a.airbox, ';
  
 		}
 		
@@ -325,7 +324,13 @@ module.exports = {
 			queryGroupBy = " group by hist_year, hist_month ";
 			queryOrderBy = " ORDER BY hist_year, hist_month ";
 		} else {
-			queryOrderBy = " ORDER BY airbox, hist_year, hist_month, hist_day ";
+			if (param.query.histDay == undefined) {
+				queryGroupBy = " group by airbox, hist_year, hist_month ";
+				queryOrderBy = " ORDER BY airbox, hist_year, hist_month";
+			} else {
+				queryGroupBy = " group by airbox, hist_year, hist_month, hist_day ";
+				queryOrderBy = " ORDER BY airbox, hist_year, hist_month, hist_day ";
+			}
 		}
 				
 		console.log('Postgres sql start execute');

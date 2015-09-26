@@ -321,8 +321,13 @@ module.exports = {
 		var queryGroupBy = ""; // group by grid.gm_code, grid.gm_naam, grid.cell_geom"; //, grid.centroid_geom ";
 		var queryOrderBy = "";
 		if (param.query.airboxCumulate == 'Y') {
-			queryGroupBy = " group by hist_year, hist_month ";
-			queryOrderBy = " ORDER BY hist_year, hist_month ";
+			if (param.query.histDay == undefined) {
+				queryGroupBy = " group by hist_year, hist_month ";
+				queryOrderBy = " ORDER BY hist_year, hist_month ";
+			} else {
+				queryGroupBy = " group by hist_year, hist_month, hist_day ";
+				queryOrderBy = " ORDER BY hist_year, hist_month, hist_day ";
+			}
 		} else {
 			if (param.query.histDay == undefined) {
 				queryGroupBy = " group by airbox, hist_year, hist_month ";

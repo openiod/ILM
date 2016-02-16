@@ -220,8 +220,8 @@ module.exports = {
 		
 		if (param.query.histMonth == '') {
 			param.query.histMonth 		= undefined;
-			param.query.histYearFrom 	= undefined;
-			param.query.histYearTo 		= undefined;
+			//param.query.histYearFrom 	= undefined;
+			//param.query.histYearTo 		= undefined;
 			param.query.histMonthFrom 	= undefined;
 			param.query.histMonthTo 	= undefined;
 			param.query.histDay 		= undefined;  // overrule parameter when no month given

@@ -487,7 +487,9 @@ var	streamCsvHistoryFile = function (url, fileName, featureOfInterest,  param, u
 			})
   		);
 
-	} // end of reqFile	
+	} 
+	
+// end of reqFile	
 
 
 

@@ -17,6 +17,7 @@ var MongoClient = require('mongodb').MongoClient
     , format = require('util').format;
 var openIodConnector_ILM_CsvHistory			= require('OpenIoD-Connector-ILM/observation-csv-history');	
 var openIodConnector_ILM_MongoAggregation	= require('OpenIoD-Connector-ILM/observation-aggregation');	
+var openIodConnector_ILM_Airbox				= require('OpenIoD-Connector-ILM/airbox');	
 	 
 var localModelFolders 	= [];
 var models 				= {};
@@ -92,6 +93,10 @@ module.exports = {
 
 	getAireasHistQ: function (param, callback) {
 		openIodConnector_ILM_MongoAggregation.getAireasHistQ(param, callback);
+	},
+
+	getAirboxData: function (featureOfInterest, param, callback) {
+		openIodConnector_ILM_Airbox.getData(featureOfInterest, param, callback);
 	},
 
 

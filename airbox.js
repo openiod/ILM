@@ -74,8 +74,8 @@ module.exports = {
 		//var _orderBy	= _groupBy;
 		var _orderBy = ' airbox ';
 		
-		var query = 'select ' + _attribute + ' from ' + _from + //' where ' + _where + ' group by ' + _groupBy + ' order by ' + 
-		_orderBy + ' ;';
+		var query = 'select ' + _attribute + ' from ' + _from + //' where ' + _where + ' group by ' + _groupBy + 
+		' order by ' + _orderBy + ' ;';
 		
 		console.log('Postgres sql start execute: ' + query);
 		executeSql(query, callback);

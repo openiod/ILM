@@ -99,6 +99,10 @@ module.exports = {
 		openIodConnector_ILM_Airbox.getData(featureOfInterest, param, callback);
 	},
 
+	getAireasEcnHistoryData: function (featureOfInterest, param, callback) {
+		openIodConnector_ILM_Airbox.getData(featureOfInterest, param, callback);
+	},
+
 
 	merge: function (featureOfInterest, param, callback) {
 		openIodConnector_ILM_MongoAggregation.merge(featureOfInterest, param, callback);

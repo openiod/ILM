@@ -57,12 +57,16 @@ module.exports = {
 		if (sqlConnString == null) {
 			this.initDbConnection({source:'postgresql', param: param });
 		}
-		
+
+		if (param.action=='EcnHistoryYearAvg') {
+			this.getAireasEcnHistoryYearAvgAllAirboxes(param, callback);
+			return;
+		}		
+
 		if (featureOfInterest ==  'all') {
 			this.getAirboxDataAllAirboxes(param, callback);
 		}	
 	},
-	
 
 	
 	getAirboxDataAllAirboxes: function (param, callback) {
@@ -81,12 +85,47 @@ module.exports = {
 		executeSql(query, callback);
 
         return;
+    },
+	
 
+	getAireasEcnHistoryYearAvgAllAirboxes: function (param, callback) {
+		var _attribute, _and;
+		var _attribute 	= " extract(year from (tick_date - interval '1 hour')) hist_year, to_number(airbox, '99') airbox, avg(pm1) pm1, avg(pm25) pm25, avg(pm10) pm10, avg(ufp) ufp, avg(ozone) ozone, avg(rhumext) rhumext, avg(tempext) tempext, avg(no2) no2 ";
+		var _from 		= " aireas_histecn a ";
+		var _where 		= " 1=1 ";
+		var _groupBy	= " hist_year, airbox  ";
+		var _orderBy	= _groupBy;
+		
+		var query = 'select ' + _attribute + ' from ' + _from + ' where ' + _where + 
+		' group by ' + _groupBy + 
+		' order by ' + _orderBy + ' ;';
+		
+		console.log('Postgres sql start execute: ' + query);
+		executeSql(query, callback);
+
+        return;
     }	
+	
+/*
+-- jaar gemiddelde
+SELECT extract(year from (tick_date - interval '1 hour')) jaar, to_number(airbox, '99') airbox, avg(pm1) pm1, avg(pm25) pm25, avg(pm10) pm10, avg(ufp) ufp, avg(ozone) ozone, avg(rhumext) rhumext, avg(tempext) tempext, avg(no2) no2
+FROM public.aireas_histecn
+group by jaar, airbox
+order by jaar, airbox
+;
+
+-- maand gemiddelde
+SELECT extract(year from (tick_date - interval '1 hour')) jaar, extract(month from (tick_date - interval '1 hour')) maand, to_number(airbox, '99') airbox, avg(pm1) pm1, avg(pm25) pm25, avg(pm10) pm10, avg(ufp) ufp, avg(ozone) ozone, avg(rhumext) rhumext, avg(tempext) tempext, avg(no2) no2
+FROM public.aireas_histecn
+group by jaar, maand, airbox
+order by jaar, maand, airbox
+;
+*/
+
+
+
 
 
 };
-
-
 
 

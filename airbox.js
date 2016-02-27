@@ -92,7 +92,7 @@ module.exports = {
 		var _attribute, _and;
 		var _attribute 	= " extract(year from (tick_date - interval '1 hour')) hist_year, to_number(airbox, '99') airbox, avg(pm1) pm1, avg(pm25) pm25, avg(pm10) pm10, avg(ufp) ufp, avg(ozone) ozone, avg(rhumext) rhumext, avg(tempext) tempext, avg(no2) no2 ";
 		var _from 		= " aireas_histecn a ";
-		var _where 		= " 1=1 ";
+		var _where 		= " 1=1 and airbox = '21' ";
 		var _groupBy	= " hist_year, airbox  ";
 		var _orderBy	= _groupBy;
 		

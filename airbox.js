@@ -90,10 +90,10 @@ module.exports = {
 
 	getAireasEcnHistoryYearAvgAllAirboxes: function (param, callback) {
 		var _attribute, _and;
-		var _attribute 	= " extract(year from (tick_date - interval '1 hour')) hist_year, to_number(airbox, '99') airbox, avg(pm1) pm1, avg(pm25) pm25, avg(pm10) pm10, avg(ufp) ufp, avg(ozone) ozone, avg(rhumext) rhumext, avg(tempext) tempext, avg(no2) no2 ";
-		var _from 		= " aireas_histecn a ";
-		var _where 		= " 1=1 ";
-		var _groupBy	= " hist_year, airbox  ";
+		var _attribute 	= " a.lat, a.lng, extract(year from (ae.tick_date - interval '1 hour')) hist_year, to_number(a.airbox, '99') airbox, avg(ae.pm1) pm1, avg(ae.pm25) pm25, avg(ae.pm10) pm10, avg(ae.ufp) ufp, avg(ae.ozone) ozone, avg(ae.rhumext) rhumext, avg(ae.tempext) tempext, avg(ae.no2) no2 ";
+		var _from 		= " aireas_histecn ae, airbox a ";
+		var _where 		= " 1=1 and ae.airbox || '.cal' = a.airbox ";
+		var _groupBy	= " ae.hist_year, a.airbox  ";
 		var _orderBy	= _groupBy;
 		
 		var query = 'select ' + _attribute + ' from ' + _from + ' where ' + _where + 

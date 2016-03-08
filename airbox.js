@@ -90,10 +90,19 @@ module.exports = {
 
 	getAireasEcnHistoryYearAvgAllAirboxes: function (param, callback) {
 		var _attribute, _and;
+/*
+<<<<<<< HEAD
 		var _attribute 	= " extract(year from (tick_date - interval '1 hour')) hist_year, to_number(airbox, '99') airbox, max(region), avg(pm1) pm1, avg(pm25) pm25, avg(pm10) pm10, avg(ufp) ufp, avg(ozone) ozone, avg(rhumext) rhumext, avg(tempext) tempext, avg(no2) no2 ";
 		var _from 		= " aireas_histecn a ";
 		var _where 		= " 1=1 ";
 		var _groupBy	= " hist_year, airbox  ";
+=======
+*/
+		var _attribute 	= " max(a.lat) lat, max(a.lng) lng, extract(year from (ae.tick_date - interval '1 hour')) hist_year, to_number(a.airbox, '99') airbox, round(CAST(avg(ae.pm1) AS numeric),2) pm1, round(CAST(avg(ae.pm25) AS numeric),2) pm25, round(CAST(avg(ae.pm10) AS numeric),2) pm10, round(CAST(avg(ae.ufp) AS numeric),2) ufp, round(CAST(avg(ae.ozone) AS numeric),2) ozone, round(CAST(avg(ae.rhumext) AS numeric),2) rhumext, round(CAST(avg(ae.tempext) AS numeric),2) tempext, round(CAST(avg(ae.no2) AS numeric),2) no2 ";
+		var _from 		= " aireas_histecn ae, airbox a ";
+		var _where 		= " 1=1 and ae.airbox || '.cal' = a.airbox ";
+		var _groupBy	= " hist_year, a.airbox  ";
+//>>>>>>> a0a82b1e189ae3ad256cfb77484c9956ab8bda05
 		var _orderBy	= _groupBy;
 		
 		var query = 'select ' + _attribute + ' from ' + _from + ' where ' + _where + 

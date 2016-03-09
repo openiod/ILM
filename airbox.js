@@ -106,7 +106,7 @@ module.exports = {
 		executeSql(query, callback);
 
         return;
-    }	
+    },	
 
 	getAireasEcnHistoryYearAvgAllAirboxesBewaar: function (param, callback) {
 		var _attribute, _and;

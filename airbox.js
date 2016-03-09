@@ -93,7 +93,7 @@ module.exports = {
 
 		var _attribute 	= " a.lat lat, a.lng lng, a.region region, ae.tick_date, to_number(a.airbox, '99') airbox, ae.pm1, ae.pm25, ae.pm10, ae.ufp, ae.ozone, ae.rhumext, ae.tempext, ae.no2 ";
 		var _from 		= " aireas_histecn ae, airbox a ";
-		var _where 		= " 1=1 and ae.airbox || '.cal' = a.airbox and extract(year from (ae.tick_date - interval '1 hour')) = 2015 ";
+		var _where 		= " 1=1 and ae.airbox || '.cal' = a.airbox and extract(year from (ae.tick_date - interval '1 hour')) = 2015 and extract(month from (ae.tick_date - interval '1 hour')) = 01 ";
 	//	var _groupBy	= " hist_year, a.airbox  ";
 	//	var _orderBy	= _groupBy;
 		

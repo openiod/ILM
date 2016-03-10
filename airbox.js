@@ -16,6 +16,7 @@
 var pg = require('pg');
 var QueryStream = require('pg-query-stream');
 var JSONStream = require('JSONStream');
+var map = require('map-stream');
 var sqlConnString;
 
 function executeSql (query, callback) {
@@ -58,9 +59,10 @@ function executeSqlStream (query, callback) {
 //  		stream.pipe(JSONStream.stringify()).pipe(process.stdout);
 //  		stream.pipe(JSONStream.stringify()).pipe(process.stdout);
 var teller=0;
-  		stream.pipe(JSONStream.stringify()).mapSync(function(data){
+  		stream.pipe(JSONStream.stringify()).map(function(data, callback){
 			teller+=1;
 			console.log(teller);
+			callback(null, data);
 		});
 		
 /*

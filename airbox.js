@@ -56,7 +56,12 @@ function executeSqlStream (query, callback) {
   		//release the client when the stream is finished
   		stream.on('end', callback);
 //  		stream.pipe(JSONStream.stringify()).pipe(process.stdout);
-  		stream.pipe(JSONStream.stringify()).pipe(process.stdout);
+//  		stream.pipe(JSONStream.stringify()).pipe(process.stdout);
+var teller=0;
+  		stream.pipe(JSONStream.stringify()).mapSync(function(data){
+			teller+=1;
+			console.log(teller);
+		});
 		
 /*
   		client.query(query, function(err, result) {

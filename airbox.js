@@ -61,7 +61,7 @@ function executeSqlStream (query, callback) {
 var teller=0;
   		stream.pipe(map(function(data, callback){
 			teller+=1;
-			console.log(teller + ' ' + data);
+			console.log(teller + ' ' + data.airbox);
 			callback(null, data);
 		}));
 		

@@ -14,6 +14,8 @@
 // var sys 		= require('sys');
  
 var pg = require('pg');
+var QueryStream = require('pg-query-stream');
+var JSONStream = require('JSONStream');
 var sqlConnString;
 
 function executeSql (query, callback) {
@@ -37,6 +39,50 @@ function executeSql (query, callback) {
   		});
 	});
 };
+
+
+function executeSqlStream (query, callback) {
+	console.log('sql stream start: ');
+	var client = new pg.Client(sqlConnString);
+	client.connect(function(err, callback) {
+  		if(err) {
+    		console.error('could not connect to postgres', err);
+			callback(result, err);
+			return;
+  		}
+		
+		var queryStream = new QueryStream(query)
+  		var stream = client.query(queryStream)
+  		//release the client when the stream is finished
+  		stream.on('end', callback);
+  		stream.pipe(JSONStream.stringify()).pipe(process.stdout);
+		
+/*
+  		client.query(query, function(err, result) {
+    		if(err) {
+      			console.error('error running query', err);
+				callback(result, err);
+				return;
+    		}
+    		//console.log('sql result: ' + result);
+			callback(result.rows, err);
+    		client.end();
+  		});
+*/
+	});
+};
+
+
+//pipe 1,000,000 rows to stdout without blowing up your memory usage
+pg.connect(function(err, client, done) {
+  if(err) throw err;
+  var query = new QueryStream('SELECT * FROM generate_series(0, $1) num', [1000000])
+  var stream = client.query(query)
+  //release the client when the stream is finished
+  stream.on('end', done)
+  stream.pipe(JSONStream.stringify()).pipe(process.stdout)
+})
+
 
 
 module.exports = {

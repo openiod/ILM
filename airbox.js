@@ -45,6 +45,10 @@ function executeSql (query, callback) {
 function executeSqlStream (query, callback) {
 	console.log('sql stream start: ');
 	var client = new pg.Client(sqlConnString);
+	
+	var mapCallback = function(x, data) {
+		console.log('map callback');
+	}
 	client.connect(function(err) {
   		if(err) {
     		console.error('could not connect to postgres', err);
@@ -59,7 +63,7 @@ function executeSqlStream (query, callback) {
 //  		stream.pipe(JSONStream.stringify()).pipe(process.stdout);
 //  		stream.pipe(JSONStream.stringify()).pipe(process.stdout);
 var teller=0;
-  		stream.pipe(map(function(data, callback){
+  		stream.pipe(map(function(data, mapCallback){
 			teller+=1;
 			console.log(teller + ' ' + data.airbox);
 			console.log(callback);

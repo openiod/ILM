@@ -62,6 +62,7 @@ var teller=0;
   		stream.pipe(map(function(data, callback){
 			teller+=1;
 			console.log(teller + ' ' + data.airbox);
+			console.log(callback);
 			callback(null, data);
 		}));
 		

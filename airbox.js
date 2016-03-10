@@ -44,15 +44,15 @@ function executeSql (query, callback) {
 function executeSqlStream (query, callback) {
 	console.log('sql stream start: ');
 	var client = new pg.Client(sqlConnString);
-	client.connect(function(err, callback) {
+	client.connect(function(err) {
   		if(err) {
     		console.error('could not connect to postgres', err);
 			callback(result, err);
 			return;
   		}
 		
-		var queryStream = new QueryStream(query)
-  		var stream = client.query(queryStream)
+		var queryStream = new QueryStream(query);
+  		var stream = client.query(queryStream);
   		//release the client when the stream is finished
   		stream.on('end', callback);
   		stream.pipe(JSONStream.stringify()).pipe(process.stdout);

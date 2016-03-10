@@ -59,7 +59,7 @@ function executeSqlStream (query, callback) {
 //  		stream.pipe(JSONStream.stringify()).pipe(process.stdout);
 //  		stream.pipe(JSONStream.stringify()).pipe(process.stdout);
 var teller=0;
-  		stream.pipe(JSONStream.stringify()).map(function(data, callback){
+  		stream.pipe(map(function(data, callback){
 			teller+=1;
 			console.log(teller);
 			callback(null, data);

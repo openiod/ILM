@@ -63,7 +63,7 @@ var teller=0;
 			teller+=1;
 			console.log(teller);
 			callback(null, data);
-		});
+		}));
 		
 /*
   		client.query(query, function(err, result) {

@@ -72,7 +72,7 @@ function executeSqlStream (query, callback) {
 	});
 };
 
-
+/*
 //pipe 1,000,000 rows to stdout without blowing up your memory usage
 pg.connect(function(err, client, done) {
   if(err) throw err;
@@ -83,7 +83,7 @@ pg.connect(function(err, client, done) {
   stream.pipe(JSONStream.stringify()).pipe(process.stdout)
 })
 
-
+*/
 
 module.exports = {
 
@@ -149,7 +149,7 @@ module.exports = {
 		';' ;
 		
 		console.log('Postgres sql start execute: ' + query);
-		executeSql(query, callback);
+		executeSqlStream(query, callback);
 
         return;
     },	

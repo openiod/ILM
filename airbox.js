@@ -55,7 +55,8 @@ function executeSqlStream (query, callback) {
   		var stream = client.query(queryStream);
   		//release the client when the stream is finished
   		stream.on('end', callback);
-  		stream.pipe(JSONStream.stringify()).pipe(process.stdout);
+//  		stream.pipe(JSONStream.stringify()).pipe(process.stdout);
+  		stream.pipe(JSONStream).pipe(process.stdout);
 		
 /*
   		client.query(query, function(err, result) {

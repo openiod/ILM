@@ -47,7 +47,7 @@ function executeSqlStream (query, callback) {
 	var client = new pg.Client(sqlConnString);
 	var self = this;
 	
-	var mapCallBackTest = function(x, data) {
+	var mapCallBackTest = function(data) {
 		console.log('map callback test');
 		callback(x, data);
 	}
@@ -73,10 +73,10 @@ var teller=0;
 
 			var mapCallBackTest2 = function (data2) {
 				console.log('test2');
-				this.mapCallBackTest(x,data2);
+				this.mapCallBackTest(data2);
 			}
 	//		console.log(setTimeout);
-			setTimeout(mapCallBackTest2, 1, data);
+			setTimeout(mapCallBackTest2, 100, data);
 			mapCallBack(null, data);
 			//var myFunction = function callback(null, data);
 		}));

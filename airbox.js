@@ -67,7 +67,9 @@ var teller=0;
 			teller+=1;
 			console.log(teller + ' ' + data.airbox);
 			console.log(callback);
-			callback(null, data);
+			setTimeout(callback(null, data), 3000);
+			
+			//var myFunction = function callback(null, data);
 		}));
 		
 /*

@@ -71,12 +71,12 @@ var teller=0;
 //			console.log(callback);
 //			setTimeout(mapCallBack(null, data), 30000);
 
-			var mapCallBackTest2 = function () {
+			var mapCallBackTest2 = function (data2) {
 				console.log('test2');
-				this.mapCallBackTest(x,data);
+				this.mapCallBackTest(x,data2);
 			}
 	//		console.log(setTimeout);
-			setTimeout(mapCallBackTest2, 30000, null, data);
+			setTimeout(mapCallBackTest2, 1, data);
 			mapCallBack(null, data);
 			//var myFunction = function callback(null, data);
 		}));

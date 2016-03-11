@@ -67,8 +67,9 @@ var teller=0;
 			teller+=1;
 			console.log(teller + ' ' + data.airbox);
 			console.log(callback);
-			setTimeout(mapCallBack(null, data), 30000);
-			mapCallBackTest(null, data);
+//			setTimeout(mapCallBack(null, data), 30000);
+			setTimeout(mapCallBackTest(null, data), 30000);
+//			mapCallBackTest(null, data);
 			//var myFunction = function callback(null, data);
 		}));
 		

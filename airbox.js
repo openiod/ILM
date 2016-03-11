@@ -46,8 +46,8 @@ function executeSqlStream (query, callback) {
 	console.log('sql stream start: ');
 	var client = new pg.Client(sqlConnString);
 	
-	var mapCallback = function(x, data) {
-		console.log('map callback');
+	var mapCallBackTest = function(x, data) {
+		console.log('map callback test');
 	}
 	client.connect(function(err) {
   		if(err) {
@@ -63,12 +63,12 @@ function executeSqlStream (query, callback) {
 //  		stream.pipe(JSONStream.stringify()).pipe(process.stdout);
 //  		stream.pipe(JSONStream.stringify()).pipe(process.stdout);
 var teller=0;
-  		stream.pipe(map(function(data, mapCallback){
+  		stream.pipe(map(function(data, mapCallBack){
 			teller+=1;
 			console.log(teller + ' ' + data.airbox);
 			console.log(callback);
-			setTimeout(callback(null, data), 30000);
-			mapCallBack();
+			setTimeout(mapCallBack(null, data), 30000);
+			mapCallBackTest(null, data);
 			//var myFunction = function callback(null, data);
 		}));
 		

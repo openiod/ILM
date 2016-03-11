@@ -48,6 +48,7 @@ function executeSqlStream (query, callback) {
 	
 	var mapCallBackTest = function(x, data) {
 		console.log('map callback test');
+		callback(x, data);
 	}
 	client.connect(function(err) {
   		if(err) {
@@ -66,10 +67,10 @@ var teller=0;
   		stream.pipe(map(function(data, mapCallBack){
 			teller+=1;
 			console.log(teller + ' ' + data.airbox);
-			console.log(callback);
+//			console.log(callback);
 //			setTimeout(mapCallBack(null, data), 30000);
 			setTimeout(mapCallBackTest(null, data), 30000);
-//			mapCallBackTest(null, data);
+			mapCallBack(null, data);
 			//var myFunction = function callback(null, data);
 		}));
 		

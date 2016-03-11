@@ -49,7 +49,7 @@ function executeSqlStream (query, callback) {
 	
 	var mapCallBackTest = function(data) {
 		console.log('map callback test');
-		callback(x, data);
+		callback(data);
 	}
 	client.connect(function(err) {
   		if(err) {

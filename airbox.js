@@ -69,7 +69,11 @@ var teller=0;
 			console.log(teller + ' ' + data.airbox);
 //			console.log(callback);
 //			setTimeout(mapCallBack(null, data), 30000);
-			setTimeout(mapCallBackTest(null, data), 30000);
+
+			var mapCallBackTest2 = function (x, data) {
+				mapCallBackTest(x,data);
+			}
+			setTimeout(mapCallBackTest2, 30000);
 			mapCallBack(null, data);
 			//var myFunction = function callback(null, data);
 		}));

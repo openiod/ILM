@@ -73,11 +73,13 @@ var teller=0;
 
 			var mapCallBackTest2 = function (data2) {
 				console.log('test2');
-				mapCallBackTest(data2);
+				//mapCallBackTest(data2);
+				setTimeout(mapCallBackTest, 1000, data2);
 			//	mapCallBack2(null, data2);
 			}
 	//		console.log(setTimeout);
-			setTimeout(mapCallBackTest2, 1000, data);
+			mapCallBackTest2(data);
+			//setTimeout(mapCallBackTest2, 1000, data);
 			mapCallBack(null, data);
 			//var myFunction = function callback(null, data);
 		}));

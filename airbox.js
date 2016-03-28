@@ -144,12 +144,12 @@ module.exports = {
 	
 	getAirboxDataAllAirboxes: function (param, callback) {
 		var _attribute, _and;
-		var _attribute 	= " airbox, airbox_type, airbox_location, airbox_location_desc, region, airbox_location_type, airbox_postcode, airbox_x, airbox_y, lat, lng ";
+		var _attribute 	= " identifier, airbox, airbox_type, airbox_location, airbox_location_desc, region, airbox_location_type, airbox_postcode, airbox_x, airbox_y, lat, lng ";
 		var _from 		= " airbox a ";
 		//var _where 		= " 1=1 ";
 		//var _groupBy	= "  ";
 		//var _orderBy	= _groupBy;
-		var _orderBy = ' airbox ';
+		var _orderBy = ' identifier ';
 		
 		var query = 'select ' + _attribute + ' from ' + _from + //' where ' + _where + ' group by ' + _groupBy + 
 		' order by ' + _orderBy + ' ;';

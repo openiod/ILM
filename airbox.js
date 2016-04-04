@@ -179,7 +179,8 @@ module.exports = {
 		';' ;
 		
 		console.log('Postgres sql start execute: ' + query);
-		executeSqlStream(query, callback);
+//		executeSqlStream(query, callback);
+		executeSql(query, callback);
 
         return;
     },	

@@ -71,6 +71,7 @@ var teller=0;
 //			console.log(callback);
 //			setTimeout(mapCallBack(null, data), 30000);
 
+/*
 			var mapCallBackTest2 = function (data2) {
 				console.log('test2');
 				//mapCallBackTest(data2);
@@ -80,6 +81,7 @@ var teller=0;
 	//		console.log(setTimeout);
 			mapCallBackTest2(data);
 			//setTimeout(mapCallBackTest2, 1000, data);
+*/
 			mapCallBack(null, data);
 			//var myFunction = function callback(null, data);
 		}));

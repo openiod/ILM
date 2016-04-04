@@ -173,6 +173,7 @@ module.exports = {
 		var query = 'select ' + _attribute + ' from ' + _from + ' where ' + _where + 
 		//' group by ' + _groupBy + 
 		//' order by ' + _orderBy + 
+		' limit 10 ' +
 		';' ;
 		
 		console.log('Postgres sql start execute: ' + query);

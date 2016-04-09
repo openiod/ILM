@@ -108,6 +108,11 @@ module.exports = {
 	},
 
 
+	getCbsBuurtProjectEHVAirport: function (param, callback) {
+		openIodConnector_ILM_Airbox.getCbsBuurtProjectEHVAirport(param, callback);
+	},
+
+
 	merge: function (featureOfInterest, param, callback) {
 		openIodConnector_ILM_MongoAggregation.merge(featureOfInterest, param, callback);
 	}

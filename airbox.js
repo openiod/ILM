@@ -20,7 +20,7 @@ var map = require('map-stream');
 var sqlConnString;
 
 function executeSql (query, callback) {
-	console.log('sql start: ');
+	console.log('sql start: '+sqlConnString);
 	var client = new pg.Client(sqlConnString);
 	client.connect(function(err) {
   		if(err) {

@@ -103,6 +103,10 @@ module.exports = {
 		openIodConnector_ILM_Airbox.getData(featureOfInterest, param, callback);
 	},
 
+	getCbsBuurtFromPoint: function (param, callback) {
+		openIodConnector_ILM_Airbox.getCbsBuurtFromPoint(param, callback);
+	},
+
 
 	merge: function (featureOfInterest, param, callback) {
 		openIodConnector_ILM_MongoAggregation.merge(featureOfInterest, param, callback);

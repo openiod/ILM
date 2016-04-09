@@ -202,7 +202,18 @@ module.exports = {
 		executeSql(query, callback);
 
         return;
-    }	
+    },
+
+
+	getCbsBuurtFromPoint: function (param, callback) {
+		var query = 'select * from get_cbs_buurt_from_point(' + param.lng + ',' + param.lat + ');';
+	
+		console.log('Postgres sql start execute: ' + query);
+		executeSql(query, callback);
+
+        return;
+    }
+
 
 
 	

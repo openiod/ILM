@@ -217,6 +217,10 @@ module.exports = {
 	
 	
 	getCbsBuurtProjectEHVAirport: function (param, callback) {
+		if (sqlConnString == null) {
+			this.initDbConnection({source:'postgresql', param: param });
+		};
+	
 		var query = 'select gm_naam, bu_naam, ST_AsGeoJSON(geom4326) from cbsbuurt2012 where bu_code in (' + "\
 	'BU08200000', 'BU08200001', 'BU08200002', 'BU08200003', 'BU08200008', 'BU08200009', 'BU08200100', 'BU08200109', 'BU08200200', 'BU08200209', \
 	'BU17710000', 'BU17710001', 'BU17710002', 'BU17710003', 'BU17710004', 'BU17710005', 'BU17710006', 'BU17710007', 'BU17710009', 'BU17710100', 'BU17710109', 'BU17240300', 'BU17240301', 'BU17240309', \

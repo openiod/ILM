@@ -222,7 +222,7 @@ module.exports = {
 			this.initDbConnection({source:'postgresql', param: param });
 		};
 		
-		if (param.objectId == 'geoLocationArea'') {
+		if (param.objectId == 'geoLocationArea') {
 			query = 'select gm_code, gm_naam, bu_code, bu_naam, ST_AsGeoJSON(geom4326) geojson from cbsbuurt2012 where from get_cbs_buurt_from_point(' + param.lng + ',' + param.lat + ');';
 		} else {
 			query = 'select gm_naam, bu_naam, ST_AsGeoJSON(geom4326) geojson from cbsbuurt2012 where bu_code in (' + "\

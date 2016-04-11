@@ -223,7 +223,7 @@ module.exports = {
 		};
 		
 		if (param.objectId == 'geoLocationArea') {
-			query = 'select gm_code, gm_naam, bu_code, bu_naam, ST_AsGeoJSON(geom4326) geojson from cbsbuurt2012 where from get_cbs_buurt_from_point(' + param.lng + ',' + param.lat + ');';
+			query = 'select gm_code, gm_naam, bu_code, bu_naam, ST_AsGeoJSON(geom4326) geojson from get_cbs_buurt_from_point(' + param.lng + ',' + param.lat + ');';
 		} else {
 			query = 'select gm_naam, bu_naam, ST_AsGeoJSON(geom4326) geojson from cbsbuurt2012 where bu_code in (' + "\
 	'BU08200000', 'BU08200001', 'BU08200002', 'BU08200003', 'BU08200008', 'BU08200009', 'BU08200100', 'BU08200109', 'BU08200200', 'BU08200209', \

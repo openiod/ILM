@@ -222,16 +222,22 @@ module.exports = {
 			this.initDbConnection({source:'postgresql', param: param });
 		};
 		
+		
+		
 		if (param.objectId == 'geoLocationArea') {
 			query = 'select gm_code, gm_naam, bu_code, bu_naam, ST_AsGeoJSON(geom4326) geojson from get_cbs_buurt_from_point(' + param.lng + ',' + param.lat + ');';
 		} else {
-			query = 'select gm_naam, bu_naam, ST_AsGeoJSON(geom4326) geojson from cbsbuurt2012 where bu_code in (' + "\
+		
+			if (param.neighborhood == undefined) {
+				param.neighborhood	= "\
 	'BU08200000', 'BU08200001', 'BU08200002', 'BU08200003', 'BU08200008', 'BU08200009', 'BU08200100', 'BU08200109', 'BU08200200', 'BU08200209', \
 	'BU17710000', 'BU17710001', 'BU17710002', 'BU17710003', 'BU17710004', 'BU17710005', 'BU17710006', 'BU17710007', 'BU17710009', 'BU17710100', 'BU17710109', 'BU17240300', 'BU17240301', 'BU17240309', \
 	'BU07721633', 'BU07721634', 'BU07721635', 'BU07721639', 'BU07721640',\
 	'BU07530001', 'BU07530002', 'BU07530003', 'BU07530004', 'BU07530005', 'BU07530006', 'BU07530007', 'BU07530008', 'BU07530009', 'BU07530010', 'BU07530011', 'BU07530012', 'BU07530013', 'BU07530014', 'BU07530015', 'BU07530016', 'BU07530017'" +
-	",'BU04390402','BU03630668'" + //gors-noord en nieuwendam voor testen 
-	   ');';
+	",'BU04390402','BU03630668'";  //gors-noord en nieuwendam voor testen 
+			}
+			
+			query = 'select bu_code, gm_code, gm_naam, bu_naam, ST_AsGeoJSON(geom4326) geojson from cbsbuurt2012 where bu_code in (' + param.neighborhood + ');';
 		}
 	      
 		console.log('Postgres sql start execute: ' + query);

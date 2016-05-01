@@ -225,7 +225,7 @@ module.exports = {
 		
 		
 		if (param.objectId == 'geoLocationArea') {
-			query = 'select gm_code, gm_naam, bu_code, bu_naam, ST_AsGeoJSON(geom4326) geojson from get_cbs_buurt_from_point(' + param.lng + ',' + param.lat + ');';
+			query = 'select gm_code, gm_naam, bu_code, bu_naam, ST_AsGeoJSON(ST_Simplify(geom4326,0.0125)) geojson from get_cbs_buurt_from_point(' + param.lng + ',' + param.lat + ');';
 		} else {
 		
 			if (param.neighborhood == undefined) {
@@ -237,7 +237,7 @@ module.exports = {
 	",'BU04390402','BU03630668'";  //gors-noord en nieuwendam voor testen 
 			}
 			
-			query = 'select bu_code, gm_code, gm_naam, bu_naam, ST_AsGeoJSON(geom4326) geojson from cbsbuurt2012 where bu_code in (' + param.neighborhood + ');';
+			query = 'select bu_code, gm_code, gm_naam, bu_naam, ST_AsGeoJSON(ST_Simplify(geom4326,0.0125)) geojson from cbsbuurt2012 where bu_code in (' + param.neighborhood + ');';
 		}
 	      
 		console.log('Postgres sql start execute: ' + query);

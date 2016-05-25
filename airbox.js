@@ -213,9 +213,27 @@ module.exports = {
 
         return;
     },
+
+
+	getCbsBuurtNearestAirboxes: function (param, callback) {
+		var query = "select ca.airbox, round(avg(ca.factor_distance)) avg_distance, max(airbox_location) airbox_location, ST_AsGeoJSON(ST_Simplify(max(geom),0.0001)) geojson \
+			from grid_gem_cell c\
+			, grid_gem_cell_airbox ca\
+			, airbox ab \
+			where 1=1 \
+			and c.gid = ca.grid_gem_cell_gid \
+			and c.bu_code = '" + param.bu_code + "' \
+			and ca.airbox = ab.airbox \
+			group by airbox \
+			order by airbox";
 	
+		console.log('Postgres sql start execute: ' + query);
+		executeSql(query, callback);
+
+        return;
+    },
 	
-	
+		
 	getCbsBuurtProjectEHVAirport: function (param, callback) {
 		var query = '';
 		if (sqlConnString == null) {

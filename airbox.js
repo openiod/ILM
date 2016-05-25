@@ -216,6 +216,9 @@ module.exports = {
 
 
 	getCbsBuurtNearestAirboxes: function (param, callback) {
+		if (sqlConnString == null) {
+			this.initDbConnection({source:'postgresql', param: param });
+		};
 		var query = "select ca.airbox, round(avg(ca.factor_distance)) avg_distance, max(airbox_location) airbox_location, ST_AsGeoJSON(ST_Simplify(max(geom),0.0001)) geojson \
 			from grid_gem_cell c\
 			, grid_gem_cell_airbox ca\

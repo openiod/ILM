@@ -227,8 +227,8 @@ module.exports = {
 			and c.gid = ca.grid_gem_cell_gid \
 			and c.bu_code = '" + param.bu_code + "' \
 			and ca.airbox = ab.airbox \
-			group by airbox \
-			order by airbox";
+			group by ca.airbox \
+			order by ca.airbox";
 	
 		console.log('Postgres sql start execute: ' + query);
 		executeSql(query, callback);

@@ -305,7 +305,7 @@ order by date
 ;	
 		
 */		
-		var query = "select foi_code foi, to_char(event_date zat time zone 'UTC', 'YYYY-MM-DD""T""HH24:MI:SS""Z""') as date, null sensorvalue, event_desc as event, event_remarks remarks, null observations, lat, lng \
+		var query = "select foi_code foi, to_char(event_date at time zone 'UTC', 'YYYY-MM-DD"""T"""HH24:MI:SS"""Z"""') as date, null sensorvalue, event_desc as event, event_remarks remarks, null observations, lat, lng \
 from aera_import_event aee \
 --where aee.foi_code = 'ww148e' \
 order by date";

@@ -377,14 +377,14 @@ order by date";
 
 		query	+=  queryEvent; // always filled, default is dummy select for column labels needed for UNION
 		if (queryJose != '') {
-			query += ' UNION ' + queryJose; 
+			query += '\n UNION ' + queryJose; 
 		}
 		
 		if (queryAera != '') {
-			query += ' UNION ' + queryAera; 
+			query += '\n UNION ' + queryAera; 
 		}
 		
-		query += ' ) result order by date; ';
+		query += '\n ) result order by date; ';
 			
 					
 		console.log('Postgres sql start execute: ' + query);

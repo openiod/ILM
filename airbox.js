@@ -281,7 +281,7 @@ module.exports = {
 		if (param.query.source) {
 			var _source = param.query.source.split(',');
 			for (var i=0;i<_source.length;i++) {
-				if (source[i]=='event') {
+				if (_source[i]=='event') {
 					queryEvent = "select foi_code foi, to_char(event_date \
 		, 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') as date, null sensorvalue, event_desc as event, event_remarks remarks, null observations, lat, lng \
 from aera_import_event aee \
@@ -289,7 +289,7 @@ from aera_import_event aee \
 order by date";
 				}
 
-				if (source[i]=='jose') {
+				if (_source[i]=='jose') {
 					queryEvent = "select device_id, measurement_date, sensor_value, sensor_label,sensor_unit || ' avg per hour', sample_count, lat,lng \
 from intemo_import ii \
 where 1=1 \
@@ -299,7 +299,7 @@ and sensor_name = 'noiseavg' \
 and device_id = '43'"; 
 				}
 
-				if (source[i]=='aera') {
+				if (_source[i]=='aera') {
 					queryEvent = "select foi_code, date_trunc('hour', measurement_date), round(avg(n)), 'UFP(H)','particles/cm^3 avg per hour', count(*), max(lat), max(lng)  \
 from aera_import ae \
 where ae.foi_code = 'ww148e' \

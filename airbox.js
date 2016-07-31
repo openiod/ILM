@@ -282,14 +282,14 @@ module.exports = {
 			var _source = param.query.source.split(',');
 			for (var i=0;i<_source.length;i++) {
 				if (_source[i]=='event') {
-					queryEvent = "select foi_code foi, to_char(event_date \
-		, 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') as date, null sensorvalue, event_desc as event, event_remarks remarks, null observations, lat, lng \
+					queryEvent = "select foi_code foi, to_char(event_date, 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') as date \
+		, null sensorvalue, event_desc as event, event_remarks remarks, null observations, lat, lng \
 from aera_import_event aee \
 --where aee.foi_code = 'ww148e' ";
 				}
 
 				if (_source[i]=='jose') {
-					queryJose = "select device_id, measurement_date, sensor_value, sensor_label,sensor_unit || ' avg per hour', sample_count, lat,lng \
+					queryJose = "select device_id, to_char(measurement_date, 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), sensor_value, sensor_label,sensor_unit || ' avg per hour', sample_count, lat,lng \
 from intemo_import ii \
 where 1=1 \
 and measurement_date >= '2016-06-22 15:00:00+02' \
@@ -299,7 +299,7 @@ and device_id = '43' ";
 				}
 
 				if (_source[i]=='aera') {
-					queryAera = "select foi_code, date_trunc('hour', measurement_date), round(avg(n)), 'UFP(H)','particles/cm^3 avg per hour', count(*), max(lat), max(lng)  \
+					queryAera = "select foi_code, to_char(date_trunc('hour', measurement_date), 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), round(avg(n)), 'UFP(H)','particles/cm^3 avg per hour', count(*), max(lat), max(lng)  \
 from aera_import ae \
 where ae.foi_code = 'ww148e' \
 and measurement_date >= '2016-06-22 15:00:00+02' \

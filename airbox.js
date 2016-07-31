@@ -289,7 +289,7 @@ from aera_import_event aee \
 				}
 
 				if (_source[i]=='jose') {
-					queryEvent = "select device_id, measurement_date, sensor_value, sensor_label,sensor_unit || ' avg per hour', sample_count, lat,lng \
+					queryJose = "select device_id, measurement_date, sensor_value, sensor_label,sensor_unit || ' avg per hour', sample_count, lat,lng \
 from intemo_import ii \
 where 1=1 \
 and measurement_date >= '2016-06-22 15:00:00+02' \
@@ -299,7 +299,7 @@ and device_id = '43' ";
 				}
 
 				if (_source[i]=='aera') {
-					queryEvent = "select foi_code, date_trunc('hour', measurement_date), round(avg(n)), 'UFP(H)','particles/cm^3 avg per hour', count(*), max(lat), max(lng)  \
+					queryArea = "select foi_code, date_trunc('hour', measurement_date), round(avg(n)), 'UFP(H)','particles/cm^3 avg per hour', count(*), max(lat), max(lng)  \
 from aera_import ae \
 where ae.foi_code = 'ww148e' \
 and measurement_date >= '2016-06-22 15:00:00+02' \

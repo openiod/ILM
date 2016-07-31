@@ -285,8 +285,7 @@ module.exports = {
 					queryEvent = "select foi_code foi, to_char(event_date \
 		, 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') as date, null sensorvalue, event_desc as event, event_remarks remarks, null observations, lat, lng \
 from aera_import_event aee \
---where aee.foi_code = 'ww148e' \
-order by date";
+--where aee.foi_code = 'ww148e' ";
 				}
 
 				if (_source[i]=='jose') {
@@ -296,7 +295,7 @@ where 1=1 \
 and measurement_date >= '2016-06-22 15:00:00+02' \
 and measurement_date <= '2016-06-26 23:00:00+02' \
 and sensor_name = 'noiseavg' \
-and device_id = '43'"; 
+and device_id = '43' "; 
 				}
 
 				if (_source[i]=='aera') {
@@ -305,7 +304,7 @@ from aera_import ae \
 where ae.foi_code = 'ww148e' \
 and measurement_date >= '2016-06-22 15:00:00+02' \
 and measurement_date <= '2016-06-26 23:00:00+02' \
-group by foi_code, date_trunc('hour', measurement_date)";
+group by foi_code, date_trunc('hour', measurement_date) ";
 				}
 
 
@@ -376,7 +375,7 @@ order by date";
 */
 
 
-		query	=  queryEvent; // always filled, default is dummy select for column labels needed for UNION
+		query	+=  queryEvent; // always filled, default is dummy select for column labels needed for UNION
 		if (queryJose != '') {
 			query += ' UNION ' + queryJose; 
 		}

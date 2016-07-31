@@ -265,6 +265,68 @@ module.exports = {
 		executeSql(query, callback);
 
         return;
+    },
+
+
+	getProjectAirportData: function (param, callback) {
+		if (sqlConnString == null) {
+			this.initDbConnection({source:'postgresql', param: param });
+		};
+		
+/*		
+	select * from 
+( select foi_code foi, event_date date, null sensorvalue, event_desc as event, event_remarks remarks, null observations, lat, lng 
+from aera_import_event aee
+where aee.foi_code = 'ww148e'
+UNION 
+select foi_code, date_trunc('hour', measurement_date), round(avg(n)), 'UFP(H)','particles/cm^3 avg per hour', count(*), max(lat), max(lng)  
+from aera_import ae
+where ae.foi_code = 'ww148e'
+and measurement_date >= '2016-06-22 15:00:00+02'
+and measurement_date <= '2016-06-26 23:00:00+02'
+group by foi_code, date_trunc('hour', measurement_date)
+UNION 
+select foi_code, date_trunc('minute', measurement_date), round(avg(n)), 'UFP(M)','particles/cm^3 avg per minute', count(*), max(lat), max(lng)  
+from aera_import ae
+where ae.foi_code = 'ww148e'
+and measurement_date >= '2016-06-22 15:00:00+02'
+and measurement_date <= '2016-06-26 23:00:00+02'
+group by foi_code, date_trunc('minute', measurement_date)
+UNION
+select device_id, measurement_date, sensor_value, sensor_label,sensor_unit || ' avg per hour', sample_count, lat,lng 
+from intemo_import ii
+where 1=1
+and measurement_date >= '2016-06-22 15:00:00+02'
+and measurement_date <= '2016-06-26 23:00:00+02'
+and sensor_name = 'noiseavg'
+and device_id = '43'
+) tt
+order by date
+;	
+		
+*/		
+		var query = "select foi_code foi, event_date date, null sensorvalue, event_desc as event, event_remarks remarks, null observations, lat, lng \
+from aera_import_event aee \
+--where aee.foi_code = 'ww148e' \
+order by date";
+		
+/*
+		var query = "select ca.airbox, round(avg(ca.factor_distance)) avg_distance, max(airbox_location) airbox_location, ST_AsGeoJSON(ST_Simplify(max(geom),0.0001)) geojson \
+			from grid_gem_cell c\
+			, grid_gem_cell_airbox ca\
+			, airbox ab \
+			where 1=1 \
+			and c.gid = ca.grid_gem_cell_gid \
+			and c.bu_code = '" + param.bu_code + "' \
+			and ca.airbox = ab.airbox \
+			group by ca.airbox \
+			order by ca.airbox";
+*/
+	
+		console.log('Postgres sql start execute: ' + query);
+		executeSql(query, callback);
+
+        return;
     }
 
 

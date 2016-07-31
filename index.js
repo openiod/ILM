@@ -119,6 +119,10 @@ module.exports = {
 		openIodConnector_ILM_MongoAggregation.merge(featureOfInterest, param, callback);
 	}
 
+	getProjectAirportData: function (param, callback) {
+		openIodConnector_ILM_Airbox.getProjectAirportData(param, callback);
+	},
+
 
 };
 

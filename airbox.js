@@ -299,7 +299,7 @@ and device_id = '43' ";
 				}
 
 				if (_source[i]=='aera') {
-					queryArea = "select foi_code, date_trunc('hour', measurement_date), round(avg(n)), 'UFP(H)','particles/cm^3 avg per hour', count(*), max(lat), max(lng)  \
+					queryAera = "select foi_code, date_trunc('hour', measurement_date), round(avg(n)), 'UFP(H)','particles/cm^3 avg per hour', count(*), max(lat), max(lng)  \
 from aera_import ae \
 where ae.foi_code = 'ww148e' \
 and measurement_date >= '2016-06-22 15:00:00+02' \

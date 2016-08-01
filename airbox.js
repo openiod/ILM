@@ -297,8 +297,8 @@ module.exports = {
 		, null sensorvalue, event_desc as event, event_remarks remarks, null observations, lat, lng \
 from aera_import_event aee \
 where 1=1 \
-and event_date >= " + _startDate + " \
-and event_date <= " + _endDate + " \
+and event_date >= '" + _startDate + "' \
+and event_date <= '" + _endDate + "' \
 --where aee.foi_code = 'ww148e' ";
 				}
 
@@ -306,8 +306,8 @@ and event_date <= " + _endDate + " \
 					queryJose = "select device_id, to_char(measurement_date AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), sensor_value, sensor_label,sensor_unit || ' avg per hour', sample_count, lat,lng \
 from intemo_import ii \
 where 1=1 \
-and measurement_date >= " + _startDate + " \
-and measurement_date <= " + _endDate + " \
+and measurement_date >= '" + _startDate + "' \
+and measurement_date <= '" + _endDate + "' \
 and sensor_name = 'noiseavg' \
 and device_id = '43' "; 
 				}
@@ -316,8 +316,8 @@ and device_id = '43' ";
 					queryAera = "select foi_code, to_char(date_trunc('hour', measurement_date AT TIME ZONE 'UTC'), 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), round(avg(n)), 'UFP(H)','particles/cm^3 avg per hour', count(*), max(lat), max(lng)  \
 from aera_import ae \
 where ae.foi_code = 'ww148e' \
-and measurement_date >= " + _startDate + " \
-and measurement_date <= " + _endDate + " \
+and measurement_date >= '" + _startDate + "' \
+and measurement_date <= '" + _endDate + "' \
 group by foi_code, date_trunc('hour', measurement_date AT TIME ZONE 'UTC') ";
 				}
 

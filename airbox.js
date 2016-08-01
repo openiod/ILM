@@ -317,7 +317,7 @@ group by foi_code, date_trunc('hour', measurement_date) ";
 			queryEvent = "select foi_code foi, to_char(event_date \
 		, 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') as date, null sensorvalue, event_desc as event, event_remarks remarks, null observations, lat, lng \
 from aera_import_event aee \
-where 1=2' ";
+where 1=2 ";
 		}
 		
 		

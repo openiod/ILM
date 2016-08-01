@@ -304,7 +304,7 @@ from aera_import ae \
 where ae.foi_code = 'ww148e' \
 and measurement_date >= '2016-06-22 15:00:00+02' \
 and measurement_date <= '2016-06-26 23:00:00+02' \
-group by foi_code, date_trunc('hour', measurement_date) ";
+group by foi_code, date_trunc('hour', measurement_date AT TIME ZONE 'UTC') ";
 				}
 
 

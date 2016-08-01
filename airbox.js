@@ -273,6 +273,17 @@ module.exports = {
 			this.initDbConnection({source:'postgresql', param: param });
 		};
 		
+		var _startDate	= '2016-06-22';
+		var _endDate	= '2016-06-26';
+		
+		if (param.query.startdate) {
+			_startDate = param.query.startdate;
+		}
+		if (param.query.enddate) {
+			_endDate = param.query.enddate;
+		}
+		
+		
 		var query 		= 'select * from (';
 		var queryEvent	= '';
 		var queryJose	= '';
@@ -285,6 +296,9 @@ module.exports = {
 					queryEvent = "select foi_code foi, to_char(event_date AT TIME ZONE 'UTC' , 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') as date \
 		, null sensorvalue, event_desc as event, event_remarks remarks, null observations, lat, lng \
 from aera_import_event aee \
+where 1=1 \
+and event_date >= " + _startdate + " \
+and event_date <= " + _enddate + " \
 --where aee.foi_code = 'ww148e' ";
 				}
 
@@ -292,8 +306,8 @@ from aera_import_event aee \
 					queryJose = "select device_id, to_char(measurement_date AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), sensor_value, sensor_label,sensor_unit || ' avg per hour', sample_count, lat,lng \
 from intemo_import ii \
 where 1=1 \
-and measurement_date >= '2016-06-22 15:00:00+02' \
-and measurement_date <= '2016-06-26 23:00:00+02' \
+and measurement_date >= " + _startdate + " \
+and measurement_date <= " + _enddate + " \
 and sensor_name = 'noiseavg' \
 and device_id = '43' "; 
 				}
@@ -302,8 +316,8 @@ and device_id = '43' ";
 					queryAera = "select foi_code, to_char(date_trunc('hour', measurement_date AT TIME ZONE 'UTC'), 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), round(avg(n)), 'UFP(H)','particles/cm^3 avg per hour', count(*), max(lat), max(lng)  \
 from aera_import ae \
 where ae.foi_code = 'ww148e' \
-and measurement_date >= '2016-06-22 15:00:00+02' \
-and measurement_date <= '2016-06-26 23:00:00+02' \
+and measurement_date >= " + _startdate + " \
+and measurement_date <= " + _enddate + " \
 group by foi_code, date_trunc('hour', measurement_date AT TIME ZONE 'UTC') ";
 				}
 

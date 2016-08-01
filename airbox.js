@@ -334,6 +334,16 @@ _andFoiCodes +
 " group by foi_code, date_trunc('hour', measurement_date AT TIME ZONE 'UTC') ";
 				}
 
+				if (_source[i]=='aeraM') {
+					queryAera = "select foi_code, to_char(date_trunc('minute', measurement_date AT TIME ZONE 'UTC'), 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), round(avg(n)), 'UFP(M)','particles/cm^3 avg per minute', count(*), max(lat), max(lng)  \
+from aera_import ae \
+where 1=1 \
+and measurement_date >= '" + _startDate + "' \
+and measurement_date <= '" + _endDate + "' "  +
+_andFoiCodes + 
+" group by foi_code, date_trunc('minute', measurement_date AT TIME ZONE 'UTC') ";
+				}
+
 
 
 			}

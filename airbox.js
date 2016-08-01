@@ -274,14 +274,25 @@ module.exports = {
 		};
 		
 		var _startDate	= '2016-06-22';
-		var _endDate	= '2016-06-26';
-		
+		var _endDate	= '2016-06-27';
 		if (param.query.startdate) {
 			_startDate = param.query.startdate;
 		}
 		if (param.query.enddate) {
 			_endDate = param.query.enddate;
 		}
+		
+		var _foiCode		= '';
+		var _andDeviceIds	= '';
+		var _andFoiCodes	= '';		
+		if (param.query.foicode) {
+			_foiCode = param.query.foicode;
+			_andDeviceIds	= ' and device_id in (' +  _foiCode + ') '; 
+			_andFoiCodes	= ' and foi_code in (' +  _foiCode + ') '; 
+		}
+		
+		var _deviceIds = _foiCode
+		
 		
 		
 		var query 		= 'select * from (';
@@ -298,8 +309,9 @@ module.exports = {
 from aera_import_event aee \
 where 1=1 \
 and event_date >= '" + _startDate + "' \
-and event_date <= '" + _endDate + "' \
---where aee.foi_code = 'ww148e' ";
+and event_date <= '" + _endDate + "' " +
+_andFoiCodes + 
+" --where aee.foi_code = 'ww148e' ";
 				}
 
 				if (_source[i]=='jose') {
@@ -308,17 +320,18 @@ from intemo_import ii \
 where 1=1 \
 and measurement_date >= '" + _startDate + "' \
 and measurement_date <= '" + _endDate + "' \
-and sensor_name = 'noiseavg' \
-and device_id = '43' "; 
+and sensor_name = 'noiseavg' " +
+_andDeviceIds; 
 				}
 
 				if (_source[i]=='aera') {
 					queryAera = "select foi_code, to_char(date_trunc('hour', measurement_date AT TIME ZONE 'UTC'), 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), round(avg(n)), 'UFP(H)','particles/cm^3 avg per hour', count(*), max(lat), max(lng)  \
 from aera_import ae \
-where ae.foi_code = 'ww148e' \
+where 1=1 \
 and measurement_date >= '" + _startDate + "' \
-and measurement_date <= '" + _endDate + "' \
-group by foi_code, date_trunc('hour', measurement_date AT TIME ZONE 'UTC') ";
+and measurement_date <= '" + _endDate + "' "  +
+_andFoiCodes + 
+" group by foi_code, date_trunc('hour', measurement_date AT TIME ZONE 'UTC') ";
 				}
 
 

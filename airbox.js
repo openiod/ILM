@@ -273,8 +273,8 @@ module.exports = {
 			this.initDbConnection({source:'postgresql', param: param });
 		};
 		
-		var _startDate	= '2016-06-22';
-		var _endDate	= '2016-06-27';
+		var _startDate	= '2016-06-01';
+		var _endDate	= '2016-07-31';
 		if (param.query.startdate) {
 			_startDate = param.query.startdate;
 		}

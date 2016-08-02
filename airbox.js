@@ -313,7 +313,7 @@ module.exports = {
 			for (var i=0;i<_source.length;i++) {
 				if (_source[i]=='event') {
 					queryEvent = "select foi_code foi, to_char(event_date AT TIME ZONE 'UTC' , 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') as date \
-		, null sensorvalue, event_desc as event, event_remarks remarks, null observations, lat, lng \
+		, null sensorvalue, event_desc as event, event_remarks remarks, null observations, lat, lng, null z \
 from aera_import_event aee \
 where 1=1 \
 and event_date >= '" + _startDate + "' \
@@ -323,7 +323,7 @@ _andFoiCodes +
 				}
 
 				if (_source[i]=='jose') {
-					queryJose = "select device_id, to_char(measurement_date AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), sensor_value, sensor_label,sensor_unit || ' avg per hour', sample_count, lat,lng \
+					queryJose = "select device_id, to_char(measurement_date AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), sensor_value, sensor_label,sensor_unit || ' avg per hour', sample_count, lat,lng, altitude \
 from intemo_import ii \
 where 1=1 \
 and measurement_date >= '" + _startDate + "' \
@@ -333,7 +333,7 @@ _andDeviceIds;
 				}
 
 				if (_source[i]=='aera') {
-					queryAera = "select foi_code, to_char(date_trunc('hour', measurement_date AT TIME ZONE 'UTC'), 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), round(avg(n)), 'UFP(H)','particles/cm^3 avg per hour', count(*), max(lat), max(lng)  \
+					queryAera = "select foi_code, to_char(date_trunc('hour', measurement_date AT TIME ZONE 'UTC'), 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), round(avg(n)), 'UFP(H)','particles/cm^3 avg per hour', count(*), max(lat), max(lng), null  \
 from aera_import ae \
 where 1=1 \
 and measurement_date >= '" + _startDate + "' \
@@ -343,7 +343,7 @@ _andFoiCodes +
 				}
 
 				if (_source[i]=='aeraM') {
-					queryAera = "select foi_code, to_char(date_trunc('minute', measurement_date AT TIME ZONE 'UTC'), 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), round(avg(n)), 'UFP(M)','particles/cm^3 avg per minute', count(*), max(lat), max(lng)  \
+					queryAera = "select foi_code, to_char(date_trunc('minute', measurement_date AT TIME ZONE 'UTC'), 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), round(avg(n)), 'UFP(M)','particles/cm^3 avg per minute', count(*), max(lat), max(lng), null  \
 from aera_import ae \
 where 1=1 \
 and measurement_date >= '" + _startDate + "' \
@@ -360,7 +360,7 @@ _andFoiCodes +
 		// to be sure the columns contain the correct labels (first select in UNION)
 		if (queryEvent == '') {  
 			queryEvent = "select foi_code foi, to_char(event_date AT TIME ZONE 'UTC' \
-		, 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') as date, null sensorvalue, event_desc as event, event_remarks remarks, null observations, lat, lng \
+		, 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') as date, null sensorvalue, event_desc as event, event_remarks remarks, null observations, lat, lng, null z \
 from aera_import_event aee \
 where 1=2 ";
 		}

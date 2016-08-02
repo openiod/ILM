@@ -290,6 +290,14 @@ module.exports = {
 			_andDeviceIds	= ' and device_id in (' +  _foiCode + ') '; 
 			_andFoiCodes	= ' and foi_code in (' +  _foiCode + ') '; 
 		}
+
+		var _sensorName		= '';
+		var _andSensorNames	= '';
+		if (param.query.sensorname) {
+			_sensorName = param.query.sensorname;
+			_andSensorNames	= ' and sensor_name in (' +  _sensorName + ') '; 
+		}
+
 		
 		var _deviceIds = _foiCode
 		
@@ -319,8 +327,8 @@ _andFoiCodes +
 from intemo_import ii \
 where 1=1 \
 and measurement_date >= '" + _startDate + "' \
-and measurement_date <= '" + _endDate + "' \
-and sensor_name = 'noiseavg' " +
+and measurement_date <= '" + _endDate + "' " +
+_andSensorNames +
 _andDeviceIds; 
 				}
 

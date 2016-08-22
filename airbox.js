@@ -353,7 +353,7 @@ _andFoiCodes +
 				}
 
 				if (_source[i]=='aera') {
-					queryAera = "select foi_code, to_char(measurement_date AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), 'UFP','particles/cm^3 per 10 sec', 1, lat, lng, null  \
+					queryAera = "select foi_code, to_char(measurement_date AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), n, 'UFP','particles/cm^3 per 10 sec', 1, lat, lng, null  \
 from aera_import ae \
 where 1=1 \
 and measurement_date >= '" + _startDate + "' \

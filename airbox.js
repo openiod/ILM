@@ -332,7 +332,7 @@ _andSensorNames +
 _andDeviceIds; 
 				}
 
-				if (_source[i]=='aera') {
+				if (_source[i]=='aeraH') {
 					queryAera = "select foi_code, to_char(date_trunc('hour', measurement_date AT TIME ZONE 'UTC'), 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), round(avg(n)), 'UFP(H)','particles/cm^3 avg per hour', count(*), max(lat), max(lng), null  \
 from aera_import ae \
 where 1=1 \
@@ -350,6 +350,16 @@ and measurement_date >= '" + _startDate + "' \
 and measurement_date <= '" + _endDate + "' "  +
 _andFoiCodes + 
 " group by foi_code, date_trunc('minute', measurement_date AT TIME ZONE 'UTC') ";
+				}
+
+				if (_source[i]=='aera') {
+					queryAera = "select foi_code, to_char(measurement_date AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), 'UFP','particles/cm^3 per 10 sec', 1, lat, lng, null  \
+from aera_import ae \
+where 1=1 \
+and measurement_date >= '" + _startDate + "' \
+and measurement_date <= '" + _endDate + "' "  +
+_andFoiCodes + 
+" ";
 				}
 
 

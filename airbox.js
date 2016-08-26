@@ -332,6 +332,84 @@ _andSensorNames +
 _andDeviceIds; 
 				}
 
+				if (_source[i]=='josene-detail') {
+					queryJose = "select device_id, to_char(measurement_date AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), v_audio_9, 'v_audio_9','v_audio_9 avg during base timer interval', 1, null,null,null \
+from intemo_detail_import ii \
+where 1=1 \
+and measurement_date >= '" + _startDate + "' \
+and measurement_date <= '" + _endDate + "' " +
+_andSensorNames +
+_andDeviceIds; 
+
+					queryJose += "UNION select device_id, to_char(measurement_date AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), v_audio_8, 'v_audio_8','v_audio_8 avg during base timer interval', 1, null,null,null \
+from intemo_detail_import ii \
+where 1=1 \
+and measurement_date >= '" + _startDate + "' \
+and measurement_date <= '" + _endDate + "' " +
+_andSensorNames +
+_andDeviceIds; 
+					queryJose += "UNION select device_id, to_char(measurement_date AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), v_audio_7, 'v_audio_7','v_audio_7 avg during base timer interval', 1, null,null,null \
+from intemo_detail_import ii \
+where 1=1 \
+and measurement_date >= '" + _startDate + "' \
+and measurement_date <= '" + _endDate + "' " +
+_andSensorNames +
+_andDeviceIds; 
+					queryJose += "UNION select device_id, to_char(measurement_date AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), v_audio_6, 'v_audio_6','v_audio_6 avg during base timer interval', 1, null,null,null \
+from intemo_detail_import ii \
+where 1=1 \
+and measurement_date >= '" + _startDate + "' \
+and measurement_date <= '" + _endDate + "' " +
+_andSensorNames +
+_andDeviceIds; 
+					queryJose += "UNION select device_id, to_char(measurement_date AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), v_audio_5, 'v_audio_5','v_audio_5 avg during base timer interval', 1, null,null,null \
+from intemo_detail_import ii \
+where 1=1 \
+and measurement_date >= '" + _startDate + "' \
+and measurement_date <= '" + _endDate + "' " +
+_andSensorNames +
+_andDeviceIds; 
+					queryJose += "UNION select device_id, to_char(measurement_date AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), v_audio_4, 'v_audio_4','v_audio_4 avg during base timer interval', 1, null,null,null \
+from intemo_detail_import ii \
+where 1=1 \
+and measurement_date >= '" + _startDate + "' \
+and measurement_date <= '" + _endDate + "' " +
+_andSensorNames +
+_andDeviceIds; 
+					queryJose += "UNION select device_id, to_char(measurement_date AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), v_audio_3, 'v_audio_3','v_audio_3 avg during base timer interval', 1, null,null,null \
+from intemo_detail_import ii \
+where 1=1 \
+and measurement_date >= '" + _startDate + "' \
+and measurement_date <= '" + _endDate + "' " +
+_andSensorNames +
+_andDeviceIds; 
+					queryJose += "UNION select device_id, to_char(measurement_date AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), v_audio_2, 'v_audio_2','v_audio_2 avg during base timer interval', 1, null,null,null \
+from intemo_detail_import ii \
+where 1=1 \
+and measurement_date >= '" + _startDate + "' \
+and measurement_date <= '" + _endDate + "' " +
+_andSensorNames +
+_andDeviceIds; 
+
+					queryJose += "UNION select device_id, to_char(measurement_date AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), v_audio_1, 'v_audio_1','v_audio_1 avg during base timer interval', 1, null,null,null \
+from intemo_detail_import ii \
+where 1=1 \
+and measurement_date >= '" + _startDate + "' \
+and measurement_date <= '" + _endDate + "' " +
+_andSensorNames +
+_andDeviceIds; 
+
+					queryJose += "UNION select device_id, to_char(measurement_date AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), v_audio_0, 'v_audio_0','v_audio_0 avg during base timer interval', 1, null,null,null \
+from intemo_detail_import ii \
+where 1=1 \
+and measurement_date >= '" + _startDate + "' \
+and measurement_date <= '" + _endDate + "' " +
+_andSensorNames +
+_andDeviceIds; 
+
+				}
+
+
 				if (_source[i]=='aeraH') {
 					queryAera = "select foi_code, to_char(date_trunc('hour', measurement_date AT TIME ZONE 'UTC'), 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), round(avg(n)), 'UFP(H)','particles/cm^3 avg per hour', count(*), max(lat), max(lng), null  \
 from aera_import ae \

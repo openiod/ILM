@@ -333,89 +333,99 @@ _andDeviceIds;
 				}
 
 				if (_source[i]=='josene-detail') {
-					queryJose = "select device_id, to_char(measurement_date AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), v_audio_9, 'v_audio_9','v_audio_9 avg during base timer interval', 1, null,null,null \
+					queryJose = "select device_id, to_char(date_trunc('minute', measurement_date AT TIME ZONE 'UTC'), 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), round(avg(v_audio_9)), 'v_audio_9','v_audio_9 avg during base timer interval', count(*), null,null,null \
 from intemo_detail_import ii \
 where 1=1 \
 and v_audio_9 is not null \
 and measurement_date >= '" + _startDate + "' \
 and measurement_date <= '" + _endDate + "' " +
 _andSensorNames +
-_andDeviceIds; 
+_andDeviceIds+
+" group by device_id, date_trunc('minute', measurement_date AT TIME ZONE 'UTC') "; 
 
-					queryJose += "UNION select device_id, to_char(measurement_date AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), v_audio_8, 'v_audio_8','v_audio_8 avg during base timer interval', 1, null,null,null \
+					queryJose += "UNION select device_id, to_char(date_trunc('minute', measurement_date AT TIME ZONE 'UTC'), 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), round(avg(v_audio_8)), 'v_audio_8','v_audio_8 avg during base timer interval', count(*), null,null,null \
 from intemo_detail_import ii \
 where 1=1 \
 and v_audio_8 is not null \
 and measurement_date >= '" + _startDate + "' \
 and measurement_date <= '" + _endDate + "' " +
 _andSensorNames +
-_andDeviceIds; 
-					queryJose += "UNION select device_id, to_char(measurement_date AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), v_audio_7, 'v_audio_7','v_audio_7 avg during base timer interval', 1, null,null,null \
+_andDeviceIds+
+" group by device_id, date_trunc('minute', measurement_date AT TIME ZONE 'UTC') "; 
+					queryJose += "UNION select device_id, to_char(date_trunc('minute', measurement_date AT TIME ZONE 'UTC'), 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), round(avg(v_audio_7)), 'v_audio_7','v_audio_7 avg during base timer interval', count(*), null,null,null \
 from intemo_detail_import ii \
 where 1=1 \
 and v_audio_7 is not null \
 and measurement_date >= '" + _startDate + "' \
 and measurement_date <= '" + _endDate + "' " +
 _andSensorNames +
-_andDeviceIds; 
-					queryJose += "UNION select device_id, to_char(measurement_date AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), v_audio_6, 'v_audio_6','v_audio_6 avg during base timer interval', 1, null,null,null \
+_andDeviceIds+
+" group by device_id, date_trunc('minute', measurement_date AT TIME ZONE 'UTC') "; 
+					queryJose += "UNION select device_id, to_char(date_trunc('minute', measurement_date AT TIME ZONE 'UTC'), 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), round(avg(v_audio_6)), 'v_audio_6','v_audio_6 avg during base timer interval', count(*), null,null,null \
 from intemo_detail_import ii \
 where 1=1 \
 and v_audio_6 is not null \
 and measurement_date >= '" + _startDate + "' \
 and measurement_date <= '" + _endDate + "' " +
 _andSensorNames +
-_andDeviceIds; 
-					queryJose += "UNION select device_id, to_char(measurement_date AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), v_audio_5, 'v_audio_5','v_audio_5 avg during base timer interval', 1, null,null,null \
+_andDeviceIds+
+" group by device_id, date_trunc('minute', measurement_date AT TIME ZONE 'UTC') "; 
+					queryJose += "UNION select device_id, to_char(date_trunc('minute', measurement_date AT TIME ZONE 'UTC'), 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), round(avg(v_audio_5)), 'v_audio_5','v_audio_5 avg during base timer interval', count(*), null,null,null \
 from intemo_detail_import ii \
 where 1=1 \
 and v_audio_5 is not null \
 and measurement_date >= '" + _startDate + "' \
 and measurement_date <= '" + _endDate + "' " +
 _andSensorNames +
-_andDeviceIds; 
-					queryJose += "UNION select device_id, to_char(measurement_date AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), v_audio_4, 'v_audio_4','v_audio_4 avg during base timer interval', 1, null,null,null \
+_andDeviceIds+
+" group by device_id, date_trunc('minute', measurement_date AT TIME ZONE 'UTC') "; 
+					queryJose += "UNION select device_id, to_char(date_trunc('minute', measurement_date AT TIME ZONE 'UTC'), 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), round(avg(v_audio_4)), 'v_audio_4','v_audio_4 avg during base timer interval', count(*), null,null,null \
 from intemo_detail_import ii \
 where 1=1 \
 and v_audio_4 is not null \
 and measurement_date >= '" + _startDate + "' \
 and measurement_date <= '" + _endDate + "' " +
 _andSensorNames +
-_andDeviceIds; 
-					queryJose += "UNION select device_id, to_char(measurement_date AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), v_audio_3, 'v_audio_3','v_audio_3 avg during base timer interval', 1, null,null,null \
+_andDeviceIds+
+" group by device_id, date_trunc('minute', measurement_date AT TIME ZONE 'UTC') "; 
+					queryJose += "UNION select device_id, to_char(date_trunc('minute', measurement_date AT TIME ZONE 'UTC'), 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), round(avg(v_audio_3)), 'v_audio_3','v_audio_3 avg during base timer interval', count(*), null,null,null \
 from intemo_detail_import ii \
 where 1=1 \
 and v_audio_3 is not null \
 and measurement_date >= '" + _startDate + "' \
 and measurement_date <= '" + _endDate + "' " +
 _andSensorNames +
-_andDeviceIds; 
-					queryJose += "UNION select device_id, to_char(measurement_date AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), v_audio_2, 'v_audio_2','v_audio_2 avg during base timer interval', 1, null,null,null \
+_andDeviceIds+
+" group by device_id, date_trunc('minute', measurement_date AT TIME ZONE 'UTC') "; 
+					queryJose += "UNION select device_id, to_char(date_trunc('minute', measurement_date AT TIME ZONE 'UTC'), 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), round(avg(v_audio_2)), 'v_audio_2','v_audio_2 avg during base timer interval', count(*), null,null,null \
 from intemo_detail_import ii \
 where 1=1 \
 and v_audio_2 is not null \
 and measurement_date >= '" + _startDate + "' \
 and measurement_date <= '" + _endDate + "' " +
 _andSensorNames +
-_andDeviceIds; 
+_andDeviceIds+
+" group by device_id, date_trunc('minute', measurement_date AT TIME ZONE 'UTC') "; 
 
-					queryJose += "UNION select device_id, to_char(measurement_date AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), v_audio_1, 'v_audio_1','v_audio_1 avg during base timer interval', 1, null,null,null \
+					queryJose += "UNION select device_id, to_char(date_trunc('minute', measurement_date AT TIME ZONE 'UTC'), 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), round(avg(v_audio_1)), 'v_audio_1','v_audio_1 avg during base timer interval', count(*), null,null,null \
 from intemo_detail_import ii \
 where 1=1 \
 and v_audio_1 is not null \
 and measurement_date >= '" + _startDate + "' \
 and measurement_date <= '" + _endDate + "' " +
 _andSensorNames +
-_andDeviceIds; 
+_andDeviceIds+
+" group by device_id, date_trunc('minute', measurement_date AT TIME ZONE 'UTC') "; 
 
-					queryJose += "UNION select device_id, to_char(measurement_date AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), v_audio_0, 'v_audio_0','v_audio_0 avg during base timer interval', 1, null,null,null \
+					queryJose += "UNION select device_id, to_char(date_trunc('minute', measurement_date AT TIME ZONE 'UTC'), 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"'), round(avg(v_audio_0)), 'v_audio_0','v_audio_0 avg during base timer interval', count(*), null,null,null \
 from intemo_detail_import ii \
 where 1=1 \
 and v_audio_0 is not null \
 and measurement_date >= '" + _startDate + "' \
 and measurement_date <= '" + _endDate + "' " +
 _andSensorNames +
-_andDeviceIds; 
+_andDeviceIds +
+" group by device_id, date_trunc('minute', measurement_date AT TIME ZONE 'UTC') "; 
 
 				}
 

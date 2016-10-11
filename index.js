@@ -91,6 +91,10 @@ module.exports = {
 		openIodConnector_ILM_MongoAggregation.getData(featureOfInterest, param, callback);
 	},
 
+	getAireasAqi: function (param, callback) {
+		openIodConnector_ILM_Airbox.getAireasAqi(param, callback);
+	},
+
 	getAireasHistQ: function (param, callback) {
 		openIodConnector_ILM_MongoAggregation.getAireasHistQ(param, callback);
 	},

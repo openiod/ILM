@@ -143,6 +143,43 @@ module.exports = {
 		}	
 	},
 
+
+
+	getAireasAqi: function (param, callback) {
+		
+		var _attribute, _and1, _and2, _and3;
+		var _attribute 	= " min(actual.retrieveddate), avg_type, aqi.retrieveddate,max(avg_aqi) aqi ";
+		
+		var _from 		= " public.grid_gem_foi_aqi aqi ";
+		var _from2 		= " (select grid_code, avg_period, max(retrieveddate) retrieveddate from public.grid_gem_foi_aqi where date_part(\'minute\', retrieveddate) = 1 group by grid_code, avg_period) actual ";
+		
+		if (param.featureofinterest & param.featureofinterest != 'overall') {
+			 _and1 		= " and feature_of_interest <> 'overall' ";
+		} else {
+			 _and1 		= " and feature_of_interest = 'overall' ";
+		}
+
+		_and2 = ' and date_part(\'minute\', aqi.retrieveddate) = 1\
+and aqi.avg_period = \'1hr\'\
+and actual.grid_code = aqi.grid_code\
+and actual.avg_period = aqi.avg_period ';
+
+		_and3 = ' and aqi.grid_code = param.gridCode;
+
+		var _groupBy	= " avg_type, aqi.retrieveddate ";
+		var _orderBy	= _groupBy;
+		
+		var query = 'select ' + _attribute + ' from ' + _from + ', ' + _from2 + ' where 1=1 ' + _and1 + _and2 + _and3 +' group by ' + _groupBy + 
+		' order by ' + _orderBy + ' ;';
+		
+		
+		console.log('Postgres sql start execute: ' + query);
+		executeSql(query, callback);
+
+        return;
+    },
+
+
 	
 	getAirboxDataAllAirboxes: function (param, callback) {
 		var _attribute, _and;

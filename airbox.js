@@ -152,7 +152,7 @@ module.exports = {
 		}
 		
 		var _attribute, _and1, _and2, _and3;
-		var _attribute 	= " avg_type, aqi.retrieveddate datetime,max(avg_aqi) aqi ";
+		var _attribute 	= " avg_type type, aqi.retrieveddate datetime,max(avg_aqi) aqi ";
 		
 		var _from 		= " public.grid_gem_foi_aqi aqi ";
 		var _from2 		= " (select grid_code, avg_period, max(retrieveddate) retrieveddate from public.grid_gem_foi_aqi where date_part(\'minute\', retrieveddate) = 1 group by grid_code, avg_period) actual ";

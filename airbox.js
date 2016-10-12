@@ -22,7 +22,7 @@ var sqlConnString;
 function executeSql (query, callback) {
 	console.log('sql start: ');
 	var client = new pg.Client(sqlConnString);
-	client.connect(function(err) {
+	client.connect(function(err,result) {
   		if(err) {
     		console.error('could not connect to postgres', err);
 			callback(result, err);
@@ -119,7 +119,7 @@ module.exports = {
 	initDbConnection: function (options) {
 		if (options.source != 'mongodb') {
 			// PostgreSql
-			//console.log(options);
+			console.log(options);
 			sqlConnString = options.param.systemParameter.databaseType + '://' + 
 				options.param.systemParameter.databaseAccount + ':' + 
 				options.param.systemParameter.databasePassword + '@' + 

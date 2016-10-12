@@ -158,7 +158,7 @@ module.exports = {
 		var _from2 		= " (select grid_code, avg_period, max(retrieveddate) retrieveddate from public.grid_gem_foi_aqi where date_part(\'minute\', retrieveddate) = 1 group by grid_code, avg_period) actual ";
 		
 
-		if (param.featureofinterest & param.featureofinterest != 'overall') {
+		if (param.featureofinterest && param.featureofinterest != 'overall') {
 			if (param.featureofinterest == 'all') {
 				_and1 		= " ";
 			} else {
@@ -169,6 +169,7 @@ module.exports = {
 		}
 
 		console.log(param);
+		console.log(_and1);
 
 		_and2 = ' and date_part(\'minute\', aqi.retrieveddate) = 1 \
  and aqi.avg_period = \'1hr\' \

@@ -162,7 +162,7 @@ module.exports = {
 			if (param.featureofinterest == 'all') {
 				_and1 		= " ";
 			} else {
-				_and1 		= " and feature_of_interest = '" + featureofinterest + "' ";
+				_and1 		= " and feature_of_interest = '" + param.featureofinterest + "' ";
 			} 
 		} else {
 			 _and1 		= " and feature_of_interest = 'overall' ";

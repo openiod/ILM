@@ -147,6 +147,10 @@ module.exports = {
 
 	getAireasAqi: function (param, callback) {
 		
+		if (sqlConnString == null) {
+			this.initDbConnection({source:'postgresql', param: param });
+		}
+		
 		var _attribute, _and1, _and2, _and3;
 		var _attribute 	= " min(actual.retrieveddate), avg_type, aqi.retrieveddate,max(avg_aqi) aqi ";
 		

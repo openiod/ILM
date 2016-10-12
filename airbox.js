@@ -119,7 +119,7 @@ module.exports = {
 	initDbConnection: function (options) {
 		if (options.source != 'mongodb') {
 			// PostgreSql
-			console.log(options);
+			//console.log(options);
 			sqlConnString = options.param.systemParameter.databaseType + '://' + 
 				options.param.systemParameter.databaseAccount + ':' + 
 				options.param.systemParameter.databasePassword + '@' + 
@@ -163,10 +163,10 @@ module.exports = {
 			 _and1 		= " and feature_of_interest = 'overall' ";
 		}
 
-		_and2 = ' and date_part(\'minute\', aqi.retrieveddate) = 1\
-and aqi.avg_period = \'1hr\'\
-and actual.grid_code = aqi.grid_code\
-and actual.avg_period = aqi.avg_period ';
+		_and2 = ' and date_part(\'minute\', aqi.retrieveddate) = 1 \
+ and aqi.avg_period = \'1hr\' \
+ and actual.grid_code = aqi.grid_code \
+ and actual.avg_period = aqi.avg_period ';
 
 		_and3 = ' and aqi.grid_code = param.gridCode ';
 

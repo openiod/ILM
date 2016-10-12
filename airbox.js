@@ -188,7 +188,7 @@ module.exports = {
 
 		_and4 = ' and aqi.grid_code = \'' + param.gridCode + '\' ';
 
-		var _groupBy	= " avg_type, aqi.retrieveddate ";
+		var _groupBy	= " feature_of_interest, avg_type, aqi.retrieveddate ";
 		var _orderBy	= _groupBy;
 		
 		var query = 'select ' + _attribute + ' from ' + _from + ', ' + _from2 + ' where 1=1 ' + _and1 + _and2 + _and3 + _and4 +' group by ' + _groupBy + 

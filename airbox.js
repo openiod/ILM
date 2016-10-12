@@ -168,6 +168,8 @@ module.exports = {
 			 _and1 		= " and feature_of_interest = 'overall' ";
 		}
 
+		console.log(param);
+
 		_and2 = ' and date_part(\'minute\', aqi.retrieveddate) = 1 \
  and aqi.avg_period = \'1hr\' \
  and actual.grid_code = aqi.grid_code \

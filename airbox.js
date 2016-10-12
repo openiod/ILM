@@ -151,7 +151,7 @@ module.exports = {
 			this.initDbConnection({source:'postgresql', param: param });
 		}
 		
-		var _attribute, _and1, _and2, _and3;
+		var _attribute, _and1, _and2, _and3, _and4;
 		var _attribute 	= " avg_type foi, to_char(aqi.retrieveddate AT TIME ZONE 'UTC' , 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') as isodatetime  , aqi.retrieveddate datetime,max(avg_aqi) aqi ";
 		
 		var _from 		= " public.grid_gem_foi_aqi aqi ";
@@ -168,20 +168,30 @@ module.exports = {
 			 _and1 		= " and feature_of_interest = 'overall' ";
 		}
 
-		console.log(param);
-		console.log(_and1);
+		if (param.sensortype && param.sensortype != 'overall') {
+			if (param.sensortype == 'all') {
+				_and2 		= " ";
+			} else {
+				_and2 		= " and avg_type = '" + param.sensortype + "' ";
+			} 
+		} else {
+			 _and2 		= " and avg_type = 'overall' ";
+		}
 
-		_and2 = ' and date_part(\'minute\', aqi.retrieveddate) = 1 \
+//		console.log(param);
+//		console.log(_and1);
+
+		_and3 = ' and date_part(\'minute\', aqi.retrieveddate) = 1 \
  and aqi.avg_period = \'1hr\' \
  and actual.grid_code = aqi.grid_code \
  and actual.avg_period = aqi.avg_period ';
 
-		_and3 = ' and aqi.grid_code = \'' + param.gridCode + '\' ';
+		_and4 = ' and aqi.grid_code = \'' + param.gridCode + '\' ';
 
 		var _groupBy	= " avg_type, aqi.retrieveddate ";
 		var _orderBy	= _groupBy;
 		
-		var query = 'select ' + _attribute + ' from ' + _from + ', ' + _from2 + ' where 1=1 ' + _and1 + _and2 + _and3 +' group by ' + _groupBy + 
+		var query = 'select ' + _attribute + ' from ' + _from + ', ' + _from2 + ' where 1=1 ' + _and1 + _and2 + _and3 + _and4 +' group by ' + _groupBy + 
 		' order by ' + _orderBy + ' ;';
 		
 		

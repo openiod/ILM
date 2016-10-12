@@ -168,7 +168,7 @@ module.exports = {
  and actual.grid_code = aqi.grid_code \
  and actual.avg_period = aqi.avg_period ';
 
-		_and3 = ' and aqi.grid_code = param.gridCode ';
+		_and3 = ' and aqi.grid_code = \'' + param.gridCode + '\' ';
 
 		var _groupBy	= " avg_type, aqi.retrieveddate ";
 		var _orderBy	= _groupBy;

@@ -151,7 +151,7 @@ module.exports = {
 			this.initDbConnection({source:'postgresql', param: param });
 		}
 		
-		var _attribute, _and1, _and2, _and3, _and4, _and5;
+		var _attribute, _and1, _and2, _and3, _and4, _and4b, _and5;
 		var _attribute 	= " feature_of_interest feature_of_interest, avg_type sensortype, to_char(aqi.retrieveddate AT TIME ZONE 'UTC' , 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') as isodatetime  , aqi.retrieveddate datetime,max(avg_aqi) aqi ";
 		
 		var _from 		= " public.grid_gem_foi_aqi aqi ";
@@ -190,14 +190,17 @@ module.exports = {
 		_and4 = ' and date_part(\'minute\', aqi.retrieveddate) = 1 \
  and aqi.avg_period = \'1hr\' \
  and actual.grid_code = aqi.grid_code \
+ and actual.avg_aqi_type = aqi.avg_aqi_type \
  and actual.avg_period = aqi.avg_period ';
+ 
+ 		_and4b = " and aqi.retrieveddate >= actual.retrieveddate - interval '3 days' ";
 
 		_and5 = ' and aqi.grid_code = \'' + param.gridCode + '\' ';
 
 		var _groupBy	= " feature_of_interest, avg_type, aqi.retrieveddate ";
 		var _orderBy	= _groupBy;
 		
-		var query = 'select ' + _attribute + ' from ' + _from + ', ' + _from2 + ' where 1=1 ' + _and1 + _and2 + _and3 + _and4 + _and5 +' group by ' + _groupBy + 
+		var query = 'select ' + _attribute + ' from ' + _from + ', ' + _from2 + ' where 1=1 ' + _and1 + _and2 + _and3 + _and4 + _and4b + _and5 +' group by ' + _groupBy + 
 		' order by ' + _orderBy + ' ;';
 		
 		

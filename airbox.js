@@ -152,7 +152,7 @@ module.exports = {
 		}
 		
 		var _attribute, _and1, _and2, _and3, _and4, _and4b, _and5;
-		var _attribute 	= " feature_of_interest feature_of_interest, avg_type sensortype, to_char(aqi.retrieveddate AT TIME ZONE 'UTC' , 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') as isodatetime  , aqi.retrieveddate datetime,max(avg_aqi) aqi ";
+		var _attribute 	= " aqi.feature_of_interest feature_of_interest, aqi.avg_type sensortype, to_char(aqi.retrieveddate AT TIME ZONE 'UTC' , 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') as isodatetime  , aqi.retrieveddate datetime,max(avg_aqi) aqi ";
 		
 		var _from 		= " public.grid_gem_foi_aqi aqi ";
 		var _from2 		= " (select grid_code, avg_period, max(retrieveddate) retrieveddate, avg_aqi_type from public.grid_gem_foi_aqi where date_part(\'minute\', retrieveddate) = 1 group by grid_code, avg_period, avg_aqi_type) actual ";
@@ -162,26 +162,26 @@ module.exports = {
 			if (param.featureofinterest == 'all') {
 				_and1 		= " ";
 			} else {
-				_and1 		= " and feature_of_interest = '" + param.featureofinterest + "' ";
+				_and1 		= " and aqi.feature_of_interest = '" + param.featureofinterest + "' ";
 			} 
 		} else {
-			 _and1 		= " and feature_of_interest = 'overall' ";
+			 _and1 		= " and aqi.feature_of_interest = 'overall' ";
 		}
 
 		if (param.aqitype && param.aqitype != 'AiREAS_NL') {
-			_and2 		= " and avg_aqi_type = '" + param.aqitype + "' ";
+			_and2 		= " and aqi.avg_aqi_type = '" + param.aqitype + "' ";
 		} else {
-			_and2 		= " and avg_aqi_type = 'AiREAS_NL' ";
+			_and2 		= " and aqi.avg_aqi_type = 'AiREAS_NL' ";
 		}
 
 		if (param.sensortype && param.sensortype != 'overall') {
 			if (param.sensortype == 'all') {
 				_and3 		= " ";
 			} else {
-				_and3 		= " and avg_type = '" + param.sensortype + "' ";
+				_and3 		= " and aqi.avg_type = '" + param.sensortype + "' ";
 			} 
 		} else {
-			 _and3 		= " and avg_type = 'overall' ";
+			 _and3 		= " and aqi.avg_type = 'overall' ";
 		}
 
 //		console.log(param);

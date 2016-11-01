@@ -152,7 +152,7 @@ module.exports = {
 		}
 		
 		var _attribute, _and1, _and2, _and3, _and4, _and4b, _and5;
-		var _attribute 	= " aqi.feature_of_interest feature_of_interest, aqi.avg_type sensortype, to_char(aqi.retrieveddate AT TIME ZONE 'UTC' , 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') as isodatetime  , aqi.retrieveddate datetime,max(avg_aqi) aqi ";
+		var _attribute 	= " aqi.feature_of_interest feature_of_interest, aqi.avg_type sensortype, to_char(aqi.retrieveddate, 'YYYY-MM-DD') || 'T' || to_char(aqi.retrieveddate, 'HH24:MI:SS') || to_char(extract('timezone_hour' from aqi.retrieveddate),'S00') ||':' || to_char(extract('timezone_minute' from aqi.retrieveddate),'FM00') as isodatetime, aqi.retrieveddate datetime, max(avg_aqi) aqi ";
 		
 		var _from 		= " public.grid_gem_foi_aqi aqi ";
 		var _from2 		= " (select grid_code, avg_period, max(retrieveddate) retrieveddate, avg_aqi_type from public.grid_gem_foi_aqi where date_part(\'minute\', retrieveddate) = 1 group by grid_code, avg_period, avg_aqi_type) actual ";

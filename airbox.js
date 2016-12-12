@@ -154,16 +154,16 @@ module.exports = {
 		var _daysStr;
 		var _daysBackStr;
 		
-		if (param.days == undefined) {
+		if (param.query.days == undefined) {
 			_daysStr = " - interval '3 days' "; 
 		} else {
-			_daysStr = " - interval '"+ param.days+ " days' "; 			
+			_daysStr = " - interval '"+ param.query.days+ " days' "; 			
 		}
 
-		if (param.daysBack == undefined) {
+		if (param.query.daysBack == undefined) {
 			_daysBackStr = ""; 
 		} else {
-			_daysBackStr = " - interval '"+ param.daysBack+ " days' "; 			
+			_daysBackStr = " - interval '"+ param.query.daysBack+ " days' "; 			
 		}
 		
 		var _attribute, _and1, _and2, _and3, _and4, _and4b, _and5;

@@ -211,7 +211,8 @@ module.exports = {
  and actual.avg_aqi_type = aqi.avg_aqi_type \
  and actual.avg_period = aqi.avg_period ';
  
- 		_and4b = " and aqi.retrieveddate >= actual.retrieveddate " + _daysStr + " " +_daysBackStr+ " and aqi.retrieveddate <= actual.retrieveddate " + _daysBackStr+" ";
+// 		_and4b = " and aqi.retrieveddate >= actual.retrieveddate " + _daysStr + " " +_daysBackStr+ " and aqi.retrieveddate <= actual.retrieveddate " + _daysBackStr+" ";
+ 		_and4b = " and aqi.retrieveddate >= actual.retrieveddate " + _daysStr + " and aqi.retrieveddate <= actual.retrieveddate " ;
 
 		_and5 = ' and aqi.grid_code = \'' + param.gridCode + '\' ';
 

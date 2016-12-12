@@ -151,6 +151,8 @@ module.exports = {
 			this.initDbConnection({source:'postgresql', param: param });
 		}
 		
+		console.log(param.query);
+		
 		var _daysStr;
 		var _daysBackStr;
 		
